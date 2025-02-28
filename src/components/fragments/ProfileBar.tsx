@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import LabelJob from "../elements/label/label";
 import Button from "../elements/button";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../services/auth.service.ts";
+import PopUpVerif from "./PopUpVerif.tsx";
 
 interface ProfileBarProps {
   name: string;
@@ -11,11 +12,19 @@ interface ProfileBarProps {
 
 const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
 
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
   
     const handleLogout = () => {
       logout();
-      navigate('/login');
+      setIsOpen(false);
+      if (isOpen) {
+        navigate('/login');
+      }
+      else {
+        close();
+      }
+      
     };
 
   return (
@@ -40,8 +49,26 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
         }}>
         View Profile
       </Button>
+
       <button>
-        <img src="/image/logout.svg" alt="" className="h-12" onClick={handleLogout}/>
+        <img src="/image/logout.svg" alt="" className="h-12" onClick={() => {
+          <PopUpVerif image="/image/verif-logout.png">
+            <p className="text-center mt-4 text-[16px] font-bold">Apakah kamu yakin ingin Logout?</p>
+            <div className="text-center text-[#584270]">
+              <Button
+                classname="bg-transparent border border-[#584270] text-[#584270] hover:bg-[#584270] hover:text-white rounded-md w-[112px] mx-3"
+                onClick={() => setIsOpen(false)}
+              >Tidak
+              </Button>
+              
+              <Button
+                classname="bg-[#584270] border border-[#584270]  rounded-md w-[112px] mx-3 text-white"
+                onClick={handleLogout}
+              >Ya
+              </Button>
+            </div>
+          </PopUpVerif>
+        }}/>
       </button>
     </div>
   );
