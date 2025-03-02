@@ -1,10 +1,10 @@
 import React from 'react';
-import Logo from '../components/elements/button/logo';
-import Navigasi from '../components/fragments/Navigasi';
-import ProfileBar from '../components/fragments/ProfileBar';
-import CardProduct from '../components/fragments/CardProduct';
+import Logo from '../components/elements/button/logo.tsx';
+import Navigasi from '../components/fragments/navigasi';
+import ProfileBar from '../components/fragments/profileBar';
+import CardProduct from '../components/fragments/cardProduct';
 import Button from '../components/elements/button';
-import Footer from '../components/fragments/Footer';
+import Footer from '../components/fragments/footer';
 
 interface Product {
     id: number;
@@ -77,7 +77,7 @@ const HomePage: React.FC = () => {
                         ))}
                     </li>
                     <Button
-                        classname="w-[210px] h-[48px] rounded-md mt-8 items-center justify-center flex mx-auto"
+                        classname="w-[208px] h-[48px] text-white rounded-md mt-8 items-center justify-center flex mx-auto"
                         onClick={() => {window.location.href = '/belajaryuk'}}>
                         Lihat Semuanya
                     </Button>
@@ -89,7 +89,7 @@ const HomePage: React.FC = () => {
                     <h1 className='text-[37px] font-bold'>Komunitas Terkini</h1>
                     <h1 className='text-base'>Berbagi Pengalamanmu Di sini! </h1>
                     <Button
-                        classname="w-[218px] h-[48px] rounded-md" onClick={() => {window.location.href = '/komunitas'}}>
+                        classname="w-[216px] h-[48px] text-white rounded-md" onClick={() => {window.location.href = '/komunitas'}}>
                         Lihat Daftar Grup
                     </Button>
                 </div>

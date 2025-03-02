@@ -1,5 +1,5 @@
-import FormLogin from "../components/fragments/FormLogin";
-import AuthLayout from "../components/layouts/AuthLayouts";
+import FormLogin from "../components/fragments/formLogin";
+import AuthLayout from "../components/fragments/authLayouts";
 import { Fragment } from "react";
 import React from "react";
 
@@ -14,7 +14,7 @@ const LoginPage = () => {
                     </div>
                     <AuthLayout>
                         <p className='text-lg text-center font-normal font-roboto mb-12'>Selamat Datang Kembali di IGNIT!</p> 
-                        <FormLogin/>
+                        <FormLogin />
                     </AuthLayout>
                 </div>
             </div>

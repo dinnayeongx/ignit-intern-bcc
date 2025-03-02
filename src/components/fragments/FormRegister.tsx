@@ -1,9 +1,10 @@
 import React, {useRef, useState} from "react";
 import { register } from "../../services/auth.service.ts";
-import InputForm from "../elements/Input";
-import Button from "../elements/button";
+import InputForm from "../elements/Input/index.tsx";
+import Button from "../elements/button/index.tsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import PopUpVerif from "./popUpVerif.tsx";
 
 interface RegisterData {
   username: string
@@ -30,12 +31,12 @@ const FormRegister = () => {
       const confirmPassword = confirmPasswordRef.current?.value;
 
       if (!username || !email || !password || !confirmPassword) {
-        setError("Please fill in all fields");
+        setError("Isi semua data.");
         return;
       }
   
       if (password != confirmPassword) {
-        setError("Passwords do not match");
+        setError("Password tidak sama!");
         return;
       }
   
@@ -49,6 +50,9 @@ const FormRegister = () => {
         if (status) {
           localStorage.setItem('res', res);
           console.log(res);
+          <PopUpVerif image="/image/verif-email.png" onClose={() => navigate('/login')}>
+            <p className="text-center mt-4 text-3xl font-bold">Silahkan melakukan verifikasi melalui link yang telah dikirimkan ke emailmu!</p>
+          </PopUpVerif>
           navigate('/login');
         } else {
           setError(res);
@@ -92,7 +96,8 @@ const FormRegister = () => {
             <span className="text-black font-semibold text-sm">Masuk</span>
           </Link>
         </p>
-        <Button classname="mt-4 rounded-[50px]" type="submit">
+
+        <Button classname="mt-4 rounded-[50px] text-white" type="submit">
           Daftar
         </Button>
       </div>
