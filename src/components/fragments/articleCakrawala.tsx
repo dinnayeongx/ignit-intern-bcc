@@ -18,7 +18,7 @@ const ArticleCakrawala: React.FC<ArticleCakrawalaProps> = ({ title, description,
                         <h2 className="text-[20px] font-medium text-left">
                             Gaji Seorang {title}
                         </h2>
-                        <p className="text-[32px] font-normal text-left">
+                        <p className="text-[24px] font-normal text-left">
                             {salary}
                         </p>
                     </div>
@@ -37,6 +37,7 @@ const ArticleCakrawala: React.FC<ArticleCakrawalaProps> = ({ title, description,
                     </div>
                 </div>
             </div>
+            
                 
         </>
         

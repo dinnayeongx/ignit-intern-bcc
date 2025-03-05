@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import React, {useRef, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import PopUpVerif from "./popUpVerif.tsx";
+import Cookies from 'js-cookie';
 
 interface LoginData {
   username: string;
@@ -16,6 +17,7 @@ const FormLogin = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  const [showPopup, setShowPopup] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -37,10 +39,11 @@ const FormLogin = () => {
 
     login(data, (status, res) => {
       if (status) {
+        Cookies.set('token', res, { expires: 1, path: '' });
         localStorage.setItem('token', res);
         navigate('/home');
       } else {
-        setError("Login gagal. Silakan coba lagi.");
+        setShowPopup(true);
         console.log(res);
       }
     });
@@ -49,11 +52,7 @@ const FormLogin = () => {
   return (
     <>
       {error && 
-      <div className="text-red-500 mb-4">
-        <PopUpVerif image="/image/verif-eror-login.png" onClose={() => close()}>
-            <p className="text-center mt-4 text-3xl font-bold">{error}</p>
-        </PopUpVerif>
-      </div>}
+      <div className="text-red-500 mb-4">{error}</div>}
 
       <form onSubmit={handleLogin} >
 
@@ -84,6 +83,13 @@ const FormLogin = () => {
         </div>
 
       </form>
+
+      {/* {showPopup && 
+        <PopUpVerif image="/image/verif-eror-login.png" onClose={() => setShowPopup(false)}>
+        <p className="text-center mt-4 text-3xl font-bold">Login gagal. Silakan coba lagi.</p>
+        </PopUpVerif>
+      } */}
+
     </>
     
   );

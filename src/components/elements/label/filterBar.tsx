@@ -13,7 +13,7 @@ const FilterBar: React.FC<FilterBarProps> = ({tag}) => {
     };
 
     return (
-        <button onClick={handleClick} className={`h-9 bg-[#F2EFF8] p-2 flex items-center justify-center after:bg-[#584270] rounded-md ${clicked ? 'bg-[#D4CBE7]' : 'bg-[#D4CBE7]'}`}
+        <button onClick={handleClick} className={`h-9 bg-[#F2EFF8] w-fit p-2 m-2 items-center after:bg-[#584270] rounded-md ${clicked ? 'bg-[#D4CBE7]' : 'bg-[#D4CBE7]'}`}
          >
             <p className="text-sm font-normal text-black">{tag}</p>
         </button>

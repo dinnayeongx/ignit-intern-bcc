@@ -47,7 +47,7 @@ const ProjectPage = () => {
                         </div>
                         <div className="flex">
                             <h2 className="text-[24px] font-normal pr-14">Kriteria</h2>
-                            <FilterBar tag="Web Design"></FilterBar>
+                            <FilterBar tag="UI/UX Designer"></FilterBar>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`h-11 py-3 bg-[#584270] items-center justify-center ${classname}`}
+      className={`flex h-11 py-3 bg-[#584270] items-center justify-center hover:bg-opacity-50 ${classname}`}
       type={type}
       onClick={onClick}
     >

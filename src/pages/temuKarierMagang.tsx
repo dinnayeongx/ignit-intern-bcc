@@ -2,36 +2,61 @@ import React, { useState } from "react";
 import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
-import CardProject from "../components/fragments/cardProject";
+import CardKarier from "../components/fragments/cardKarier";
 import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
 
-interface Project {
+interface Magang {
     id: number,
     image: string,
-    author: string,
-    title: string
+    position: string,
+    location: string,
+    link: string,
 }
 
 
-const project: Project[] = [
+const magang: Magang[] = [
     {
         id: 1,
-        image: "/image/project-1.jpeg",
-        author: "Raihani Syuja",
-        title: "DesignSphere",
+        image: "/image/karier-1.png",
+        position: "Product Design Intern - VIDA Digital Identity",
+        location: "Jakarta",
+        link: "https://vida.freshteam.com/jobs/DK6OhvPc9qdU/product-design-intern",
     },
     {
         id: 2,
-        image: "/image/project-1.jpeg",
-        author: "Dinda Kumala",
-        title: "WebCrafters",
+        image: "/image/karier-2.png",
+        position: "Mobile UI/UX Designer - TimeDoor",
+        location: "Bali",
+        link: "",
     },
     {
         id: 3,
-        image: "/image/project-1.jpeg",
-        author: "Anthony Glen",
-        title: "PixelForge",
+        image: "/image/karier-3.png",
+        position: "Data Scientist",
+        location: "Surabaya",
+        link: "",
+    },
+    {
+        id: 4,
+        image: "/image/karier-1.png",
+        position: "Software Engineer",
+        location: "Jakarta",
+        link: "https://wa.me/6282338373031",
+    },
+    {
+        id: 5,
+        image: "/image/karier-2.png",
+        position: "UI/UX Designer",
+        location: "Bandung",
+        link: "",
+    },
+    {
+        id: 6,
+        image: "/image/karier-3.png",
+        position: "Data Scientist",
+        location: "Surabaya",
+        link: "",
     },
 ];
 
@@ -63,9 +88,15 @@ const filterTag: FilterTag[] = [
     },
 ];
 
-const TemuKarierProjectPage = () => {
+const TemuKarierMagangPage = () => {
 
     const navigate = useNavigate();
+    const [selectedLink, setSelectedLink] = useState<string>("");
+
+    const openLink = (link: string) => {
+        setSelectedLink(link);
+        window.location.href = link;
+    };
 
     return (
         <>
@@ -98,25 +129,14 @@ const TemuKarierProjectPage = () => {
 
             <div className="h-auto w-full py-[60px] px-[80px]">
                 <div className="grid grid-flow-row gap-[60px]">
-                    <h1 className="text-[40px] font-bold text-center">Daftar Project yang Tersedia</h1>
+                    <h1 className="text-[40px] font-bold text-center">Daftar Magang yang Tersedia</h1>
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
-                        {project.map(project => (
-                            <CardProject key={project.id}>
-                                <CardProject.Header image={project.image} />
-                                <CardProject.Body author={project.author} title={project.title} />
-                                <CardProject.Footer 
-                                    onClick={() => {
-                                        if (project.id == 1) {
-                                            navigate("/temukarier/project/project-detail");
-                                        }
-                                        else if (project.id == 2) {
-                                            navigate("/temukarier/project-2");
-                                        }
-                                        else if (project.id == 3) {
-                                            navigate("/temukarier/project-3");
-                                        }
-                                    } } />
-                            </CardProject>
+                        {magang.map(magang => (
+                            <CardKarier key={magang.id}>
+                                <CardKarier.Header image={magang.image} />
+                                    <CardKarier.Body position={magang.position} location={magang.location} />
+                                        <CardKarier.Footer onClick={() => openLink(magang.link)} />
+                            </CardKarier>
                         ))}
                     </li>
                 </div>
@@ -127,4 +147,4 @@ const TemuKarierProjectPage = () => {
     )
 }
 
-export default TemuKarierProjectPage;
+export default TemuKarierMagangPage;

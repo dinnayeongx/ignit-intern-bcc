@@ -51,7 +51,7 @@ const FormRegister = () => {
           localStorage.setItem('res', res);
           console.log(res);
           <PopUpVerif image="/image/verif-email.png" onClose={() => navigate('/login')}>
-            <p className="text-center mt-4 text-3xl font-bold">Silahkan melakukan verifikasi melalui link yang telah dikirimkan ke emailmu!</p>
+            <p className="text-center mt-4 text-3xl font-bold">Silakan melakukan verifikasi melalui link yang telah dikirimkan ke emailmu!</p>
           </PopUpVerif>
           navigate('/login');
         } else {

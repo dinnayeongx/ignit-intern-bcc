@@ -5,7 +5,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import HomePage from './pages/home';
-// import ProductsPage from './pages/products';
 import CakrawalaITPage from './pages/cakrawalaIT';
 import TemuKarierPage from './pages/temuKarier';
 import TemuKarierProjectPage from './pages/temuKarierProject';
@@ -14,6 +13,9 @@ import BelajarYukPage from './pages/belajarYuk';
 import KomunitasPage from './pages/komunitas';
 import UserProfilePage from './pages/userProfile';
 import UIUXPage from './pages/uiux';
+import TemuKarierMagangPage from './pages/temuKarierMagang';
+import TemuKarierBootcampPage from './pages/temuKarierBootcamp';
+import Scroll from './components/fragments/scroll';
 
 
 const router = createBrowserRouter([
@@ -33,18 +35,6 @@ const router = createBrowserRouter([
     path: "/home",
     element: <HomePage />,
   },
-  // {
-  //   path: "/products",
-  //   element: <ProductsPage />,
-  // },
-  {
-    path: "/cakrawalait",
-    element: <CakrawalaITPage />,
-  },
-  {
-    path: "/temukarier",
-    element: <TemuKarierPage />,
-  },
   {
     path: "/belajaryuk",
     element: <BelajarYukPage />,
@@ -58,12 +48,28 @@ const router = createBrowserRouter([
     element: <UserProfilePage />,
   },
   {
+    path: "/temukarier",
+    element: <TemuKarierPage />,
+  },
+  {
+    path: "/temukarier/bootcamp",
+    element: <TemuKarierBootcampPage />,
+  },
+  {
+    path: "/temukarier/magang",
+    element: <TemuKarierMagangPage />,
+  },
+  {
     path: "/temukarier/project",
     element: <TemuKarierProjectPage />,
   },
   {
     path: "/temukarier/project/project-detail",
     element: <ProjectPage />,
+  },
+  {
+    path: "/cakrawalait",
+    element: <CakrawalaITPage />,
   },
   {
     path: "/cakrawalait/bidang-ui-ux",
@@ -76,6 +82,8 @@ const router = createBrowserRouter([
 const rootElement = document.getElementById('root') as HTMLElement;
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}>
+      <Scroll/>
+    </RouterProvider>
   </React.StrictMode>
 );

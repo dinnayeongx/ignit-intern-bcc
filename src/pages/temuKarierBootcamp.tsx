@@ -2,36 +2,40 @@ import React, { useState } from "react";
 import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
-import CardProject from "../components/fragments/cardProject";
+import CardKarier from "../components/fragments/cardKarier";
 import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
 
-interface Project {
+interface Bootcamp {
     id: number,
     image: string,
-    author: string,
-    title: string
+    title: string,
+    source: string,
+    link: string,
 }
 
 
-const project: Project[] = [
+const bootcamp: Bootcamp[] = [
     {
         id: 1,
-        image: "/image/project-1.jpeg",
-        author: "Raihani Syuja",
-        title: "DesignSphere",
+        image: "/image/karier-1.png",
+        title: "Kursus Online Ui/UX Design",
+        source: "JAYJAY",
+        link: "https://jayjay.co/ui-ux-design?utm_campaign=uiux_search_top_keywords&utm_source=google&utm_medium=cpc&utm_content=uiux_top_keywords&utm_term=ui%20ux%20design%20course&gad_source=1&gbraid=0AAAAAo5vV4bBpxxHNdNWZY42Ookx142s6&gclid=CjwKCAiA5pq-BhBuEiwAvkzVZezozMg2soh-Uy91uqLTZzWefrsHoyOZq2i9fzgsztsle-Ytap5LshoCDGQQAvD_BwE",
     },
     {
         id: 2,
-        image: "/image/project-1.jpeg",
-        author: "Dinda Kumala",
-        title: "WebCrafters",
+        image: "/image/karier-2.png",
+        title: "Project Manager Online Courses",
+        source: "Media Keren",
+        link: "",
     },
     {
         id: 3,
-        image: "/image/project-1.jpeg",
-        author: "Anthony Glen",
-        title: "PixelForge",
+        image: "/image/karier-3.png",
+        title: "Artificial Intelegence",
+        source: "Laylay",
+        link: "",
     },
 ];
 
@@ -63,9 +67,15 @@ const filterTag: FilterTag[] = [
     },
 ];
 
-const TemuKarierProjectPage = () => {
+const TemuKarierBootcampPage = () => {
 
     const navigate = useNavigate();
+    const [selectedLink, setSelectedLink] = useState<string>("");
+
+    const openLink = (link: string) => {
+        setSelectedLink(link);
+        window.location.href = link;
+    };
 
     return (
         <>
@@ -98,25 +108,14 @@ const TemuKarierProjectPage = () => {
 
             <div className="h-auto w-full py-[60px] px-[80px]">
                 <div className="grid grid-flow-row gap-[60px]">
-                    <h1 className="text-[40px] font-bold text-center">Daftar Project yang Tersedia</h1>
+                    <h1 className="text-[40px] font-bold text-center">Daftar Bootcamp yang Tersedia</h1>
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
-                        {project.map(project => (
-                            <CardProject key={project.id}>
-                                <CardProject.Header image={project.image} />
-                                <CardProject.Body author={project.author} title={project.title} />
-                                <CardProject.Footer 
-                                    onClick={() => {
-                                        if (project.id == 1) {
-                                            navigate("/temukarier/project/project-detail");
-                                        }
-                                        else if (project.id == 2) {
-                                            navigate("/temukarier/project-2");
-                                        }
-                                        else if (project.id == 3) {
-                                            navigate("/temukarier/project-3");
-                                        }
-                                    } } />
-                            </CardProject>
+                        {bootcamp.map(bootcamp => (
+                            <CardKarier key={bootcamp.id}>
+                                <CardKarier.Header image={bootcamp.image} />
+                                    <CardKarier.Body title={bootcamp.title} source={bootcamp.source} />
+                                        <CardKarier.Footer onClick={() => openLink(bootcamp.link)} />
+                            </CardKarier>
                         ))}
                     </li>
                 </div>
@@ -127,4 +126,4 @@ const TemuKarierProjectPage = () => {
     )
 }
 
-export default TemuKarierProjectPage;
+export default TemuKarierBootcampPage;

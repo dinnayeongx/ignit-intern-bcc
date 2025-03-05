@@ -4,6 +4,7 @@ import Item from "../components/fragments/majorItem";
 import Footer from "../components/fragments/footer";
 import ArticleCakrawala from "../components/fragments/articleCakrawala";
 import CardInform from "../components/fragments/cardInform";
+import QuizIT from "../components/fragments/quizIT";
 
 interface Inform {
     id: number,
@@ -84,7 +85,7 @@ const UIUXPage = () => {
                 <div>
                     <ArticleCakrawala
                         title="UI/UX Designer"
-                        salary="Rp x.xxx.xxx - Rp x.xxx.xxx"
+                        salary="Rp 3.000.000 - Rp 5.000.000"
                         description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem."
                     ></ArticleCakrawala>
                 </div>
@@ -172,8 +173,16 @@ const UIUXPage = () => {
                 </div>
             </div>
 
-            <div>
-                
+            <div className="h-auto w-full py-[60px] px-[80px] mx-auto">
+                <div className="grid grid-cols-2 gap-[60px]">
+                    <h1 className="text-[40px] font-bold my-auto">Apakah Kamu Sudah Paham Mengenai Bidang Ini?</h1>
+                    <div>
+                        {/* <p className="text-[20px] font-medium mb-[40px]">Menurut kamu, manakah yang paling penting dibutuhkan pada bidang UI/UX Designer?</p> */}
+                        <div>
+                            <QuizIT></QuizIT>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <Footer></Footer>

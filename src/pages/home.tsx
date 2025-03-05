@@ -57,7 +57,7 @@ const HomePage: React.FC = () => {
             <h1 className='text-[#584270] text-4xl font-bold text-center font-poppins mt-14 mb-6'>I G N I T</h1>
 
             <div className='justify-center text-center items-center mx-auto grid grid-cols-2 md:gap-6 md:flex'>
-                <Navigasi source="/image/menu-1.png" menu="CakrawalaIT" window="/cakrawalaIT"></Navigasi>
+                <Navigasi source="/image/menu-1.png" menu="CakrawalaIT" window="/cakrawalait"></Navigasi>
                 <Navigasi source="/image/menu-2.png" menu="TemuKarier" window="/temukarier"></Navigasi>
                 <Navigasi source="/image/menu-3.png" menu="BelajarYuk" window="/belajaryuk"></Navigasi>
                 <Navigasi source="/image/menu-4.png" menu="Komunitas" window="/komunitas"></Navigasi>

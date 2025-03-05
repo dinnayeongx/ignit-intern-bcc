@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 interface Karier {
     id: number,
     image: string,
-    contract: string,
     position: string,
-    location: string
+    location: string,
+    link: string,
 }
 
 
@@ -20,30 +20,36 @@ const karier: Karier[] = [
     {
         id: 1,
         image: "/image/karier-1.png",
-        contract: "Full Time",
         position: "Software Engineer",
         location: "Jakarta",
+        link: "https://wa.me/6282338373031",
     },
     {
         id: 2,
         image: "/image/karier-2.png",
-        contract: "Remote",
-        position: "UI/UX Designer",
+        position: "Product Design Intern - VIDA Digital Identity",
         location: "Bandung",
+        link: "https://vida.freshteam.com/jobs/DK6OhvPc9qdU/product-design-intern",
     },
     {
         id: 3,
         image: "/image/karier-3.png",
-        contract: "Contract",
         position: "Data Scientist",
         location: "Surabaya",
+        link: "",
     },
 ];
 
 const TemuKarierPage = () => {
 
     const [isOpen, setIsOpen] = useState(0);
+    const [selectedLink, setSelectedLink] = useState<string>("");
     const navigate = useNavigate();
+
+    const openPopUp = (link: string) => {
+        setSelectedLink(link);
+        setIsOpen(1);
+    };
 
     return (
         <>
@@ -60,53 +66,31 @@ const TemuKarierPage = () => {
                 </div>
             </div>
 
-            <div className="h-[468px] w-full py-[60px] px-[120px] grid grid-flow-col gap-[60px]">
-                <div className="flex items-center">
-                    <h2 className="text-[40px] font-bold text-left">Sesuaikan dengan <br /> Pilihanmu</h2>
-                </div>
-                <div className="grid grid-flow-row gap-10">
-                    <div>
-                        <p className="text-sm font-medium mb-1">Lowongan</p>
-                        <div className="flex gap-2">
-                            <FilterBar tag="Bootcamp"></FilterBar>
-                            <FilterBar tag="Magang"></FilterBar>
-                            <FilterBar tag="Project"></FilterBar>
-                        </div>
-                    </div>
-                    <div>
-                        <p className="text-sm font-medium mb-1">Kategori Bidang IT</p>
-                        <div className="flex gap-2">
-                            <FilterBar tag="Web Development"></FilterBar>
-                            <FilterBar tag="Cloud Computing"></FilterBar>
-                            <FilterBar tag="Cybersecurity"></FilterBar>
-                            <FilterBar tag="+"></FilterBar>
-                        </div>
-                    </div>
-                    <div>
-                        <p className="text-sm font-medium mb-1">Lokasi</p>
-                        <div className="flex gap-2">
-                            <FilterBar tag="Jakarta"></FilterBar>
-                            <FilterBar tag="Surabaya"></FilterBar>
-                            <FilterBar tag="Bandung"></FilterBar>
-                            <FilterBar tag="+"></FilterBar>
-                        </div>
-                    </div>
-                    <Button onClick={() => navigate("/temukarier/project")}
-                    classname="bg-[#584270] text-white text-base rounded-lg items-center w-[240px]">
-                        Search
-                    </Button>
+            <div className="h-[595px] w-full py-[60px] px-[120px] grid grid-flow-row gap-[40px]">
+                <h1 className="text-[40px] font-bold text-center">Pilih Lowongan yang kamu cari!</h1>
+                <img src="/image/temukarier-1.png" alt="" className="mx-auto h-[308px]"/>
+                <div className="flex gap-10 items-center justify-center">
+                    <Button classname="text-white bg-[#584270] w-[240px] rounded-lg text-2xl font-medium"
+                    onClick={() => navigate('/temukarier/bootcamp')}
+                    >Bootcamp</Button>
+                    <Button classname="text-white bg-[#584270] w-[240px] rounded-lg text-2xl font-medium"
+                    onClick={() => navigate('/temukarier/magang')}
+                    >Magang</Button>
+                    <Button classname="text-white bg-[#584270] w-[240px] rounded-lg text-2xl font-medium" 
+                    onClick={() => navigate('/temukarier/project')}
+                    >Project</Button>
                 </div>
             </div>
 
-            <div className="h-[744px] w-full py-[60px] px-[80px]">
+            <div className="h-auto w-full py-[60px] px-[80px]">
                 <div className="grid grid-flow-row gap-[60px]">
                     <h1 className="text-[40px] font-bold text-center">Baru Ditambahkan</h1>
-                    <li className="flex gap-10 items-center justify-center">
+                    <li className="grid grid-cols-3 gap-10 items-center justify-center">
                         {karier.map(karier => (
                             <CardKarier key={karier.id}>
-                                <CardKarier.Header image={karier.image} contract={karier.contract} />
+                                <CardKarier.Header image={karier.image} />
                                 <CardKarier.Body position={karier.position} location={karier.location} />
-                                <CardKarier.Footer onClick={() => setIsOpen(1)} />
+                                <CardKarier.Footer onClick={() => openPopUp(karier.link)} />
                             </CardKarier>
                         ))}
                     </li>
@@ -120,7 +104,7 @@ const TemuKarierPage = () => {
                     <p className="text-center mt-4 text-3xl mx-10 font-bold">Silakan Klik Link dibawah Ini untuk 
                     Informasi Lebih Lanjut</p>
                     <div className="text-center mt-4">
-                        <a href="https://wa.me/6282338373031" className="text-[#584270] text-3xl font-bold">
+                        <a href={selectedLink} className="text-[#584270] text-3xl font-bold">
                             Link
                         </a>
                     </div>

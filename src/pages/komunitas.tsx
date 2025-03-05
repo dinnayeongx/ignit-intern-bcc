@@ -9,6 +9,12 @@ import PopUpVerif from "../components/fragments/popUpVerif";
 const KomunitasPage = () => {
 
     const [isOpen, setIsOpen] = useState(0);
+    const [selectedLink, setSelectedLink] = useState<string>("");
+
+    const openPopUp = (link: string) => {
+        setSelectedLink(link);
+        setIsOpen(1);
+    };
 
     return (
         <>

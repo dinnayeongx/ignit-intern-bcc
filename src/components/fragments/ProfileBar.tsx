@@ -36,8 +36,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
       <div className="w-full my-2">
         <h4 className="h-6 font-bold text-2xl mb-3">{name}</h4>
         <div className="h-6 items-center mb-3">
-          <LabelJob job="Developer" />
-          <LabelJob job="Designer" />
+          <LabelJob job="Product Design" />
         </div>
         <p className="h-6 font-normal text-[16px] mb-6 lg:mb-0">{description}</p>
       </div>
@@ -56,7 +55,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
       {isOpen && (
         <PopUpVerif image="/image/verif-logout.png" onClose={() => setIsOpen(false)}>
           <p className="text-center mt-4 text-3xl font-bold">Apakah kamu yakin ingin Logout?</p>
-          <div className="text-center mt-4">
+          <div className="flex mx-auto justify-center items-center text-center mt-4">
             <Button
               classname="bg-transparent border border-[#584270] text-[#584270] hover:bg-[#584270] hover:text-white rounded-md w-[100px] mx-3"
               onClick={() => setIsOpen(false)}

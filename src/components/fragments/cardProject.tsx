@@ -61,7 +61,7 @@ const Footer: React.FC<FooterProps> = ({ onClick }) => {
     return (
       <>
           <Button classname='bg-[#584270] text-white w-[150px] mb-6 text-xl font-medium rounded-lg flex justify-center items-center mx-auto' onClick={onClick} >
-                  Daftar
+                  Gabung
           </Button>
       </>
     );
