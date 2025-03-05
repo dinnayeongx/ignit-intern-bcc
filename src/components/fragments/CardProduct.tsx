@@ -21,7 +21,7 @@ interface CardProductType extends React.FC<CardProductProps> {
 
 const CardProduct: CardProductType = ({ children }) => {
   return (
-    <div className="bg-white flex flex-col justify-between w-[304px] h-[370px] rounded-md shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]">
+    <div className="bg-white flex flex-col justify-between w-[304px] h-[370px] rounded-md shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_1px_10px_0px_rgba(0,0,0,0.25)]">
       {children}
     </div>
   );

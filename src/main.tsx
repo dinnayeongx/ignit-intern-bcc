@@ -8,9 +8,13 @@ import HomePage from './pages/home';
 // import ProductsPage from './pages/products';
 import CakrawalaITPage from './pages/cakrawalaIT';
 import TemuKarierPage from './pages/temuKarier';
+import TemuKarierProjectPage from './pages/temuKarierProject';
+import ProjectPage from './pages/project';
 import BelajarYukPage from './pages/belajarYuk';
 import KomunitasPage from './pages/komunitas';
 import UserProfilePage from './pages/userProfile';
+import UIUXPage from './pages/uiux';
+
 
 const router = createBrowserRouter([
   {
@@ -53,6 +57,18 @@ const router = createBrowserRouter([
     path: "/userprofile",
     element: <UserProfilePage />,
   },
+  {
+    path: "/temukarier/project",
+    element: <TemuKarierProjectPage />,
+  },
+  {
+    path: "/temukarier/project/project-detail",
+    element: <ProjectPage />,
+  },
+  {
+    path: "/cakrawalait/bidang-ui-ux",
+    element: <UIUXPage />,
+  }
 
 ]);
 

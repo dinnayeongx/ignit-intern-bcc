@@ -97,7 +97,7 @@ const FormRegister = () => {
           </Link>
         </p>
 
-        <Button classname="mt-4 rounded-[50px] text-white" type="submit">
+        <Button classname="mt-4 w-full rounded-[50px] text-white" type="submit">
           Daftar
         </Button>
       </div>

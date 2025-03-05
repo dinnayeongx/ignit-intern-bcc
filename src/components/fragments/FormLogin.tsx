@@ -74,7 +74,7 @@ const FormLogin = () => {
             Lupa Password? 
             <Link to="/" className='text-black font-semibold text-sm'> Klik di sini</Link>
           </p>
-          <Button classname='my-6 rounded-[50px] text-white' type="submit">
+          <Button classname='my-6 w-full rounded-[50px] text-white' type="submit">
             Masuk
           </Button>
           <p className="text-sm text-center">

@@ -23,26 +23,34 @@ const KomunitasPage = () => {
                     </p>
                 </div>
                 <li className="grid grid-cols-2 gap-6 py-5 mb-10">
-                    <Article 
-                        image="/image/article-1.png"
-                        title="Web Designer Enthusiast"
-                        description="Ayo bergabung dengan kami dan dapatkan pengalaman menarik tentang dunia web designer!">
-                    </Article>
-                    <Article 
-                        image="/image/article-2.png"
-                        title="CyberTech Connect"
-                        description="Ruang bagi profesional dan pemula untuk berbagi pengetahuan dalam dunia siber dan teknologi.">
-                    </Article>
-                    <Article 
-                        image="/image/article-3.png"
-                        title="CodeCrafters"
-                        description="Tempat bagi para pengembang untuk belajar, berbagi, dan berkolaborasi dalam dunia pemrograman.">
-                    </Article>
-                    <Article 
-                        image="/image/article-4.png"
-                        title="Tech Explorers"
-                        description="Tempat untuk mengeksplorasi berbagai tren dan inovasi terbaru dalam dunia teknologi.">
-                    </Article>
+                    <button onClick={() => setIsOpen(1)}>
+                        <Article 
+                            image="/image/article-1.png"
+                            title="Web Designer Enthusiast"
+                            description="Ayo bergabung dengan kami dan dapatkan pengalaman menarik tentang dunia web designer!">
+                        </Article>
+                    </button>
+                    <button onClick={() => setIsOpen(1)}>
+                        <Article 
+                            image="/image/article-2.png"
+                            title="CyberTech Connect"
+                            description="Ruang bagi profesional dan pemula untuk berbagi pengetahuan dalam dunia siber dan teknologi.">
+                        </Article>
+                    </button>
+                    <button onClick={() => setIsOpen(1)}>
+                        <Article 
+                            image="/image/article-3.png"
+                            title="CodeCrafters"
+                            description="Tempat bagi para pengembang untuk belajar, berbagi, dan berkolaborasi dalam dunia pemrograman.">
+                        </Article>
+                    </button>
+                    <button onClick={() => setIsOpen(1)}>
+                        <Article 
+                            image="/image/article-4.png"
+                            title="Tech Explorers"
+                            description="Tempat untuk mengeksplorasi berbagai tren dan inovasi terbaru dalam dunia teknologi.">
+                        </Article>
+                    </button>
                 </li>
 
                 <Button classname="mx-auto text-white bg-[#584270] w-40 rounded-lg flex items-center justify-center">

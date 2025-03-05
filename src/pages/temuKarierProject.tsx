@@ -2,47 +2,41 @@ import React, { useState } from "react";
 import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
-import CardKarier from "../components/fragments/cardKarier";
+import CardProject from "../components/fragments/cardProject";
 import Footer from "../components/fragments/footer";
-import PopUpVerif from "../components/fragments/popUpVerif";
 import { useNavigate } from "react-router-dom";
 
-interface Karier {
+interface Project {
     id: number,
     image: string,
-    contract: string,
-    position: string,
-    location: string
+    author: string,
+    title: string
 }
 
 
-const karier: Karier[] = [
+const project: Project[] = [
     {
         id: 1,
-        image: "/image/karier-1.png",
-        contract: "Full Time",
-        position: "Software Engineer",
-        location: "Jakarta",
+        image: "/image/project-1.jpeg",
+        author: "Raihani Syuja",
+        title: "DesignSphere",
     },
     {
         id: 2,
-        image: "/image/karier-2.png",
-        contract: "Remote",
-        position: "UI/UX Designer",
-        location: "Bandung",
+        image: "/image/project-1.jpeg",
+        author: "Dinda Kumala",
+        title: "WebCrafters",
     },
     {
         id: 3,
-        image: "/image/karier-3.png",
-        contract: "Contract",
-        position: "Data Scientist",
-        location: "Surabaya",
+        image: "/image/project-1.jpeg",
+        author: "Anthony Glen",
+        title: "PixelForge",
     },
 ];
 
-const TemuKarierPage = () => {
+const TemuKarierProjectPage = () => {
 
-    const [isOpen, setIsOpen] = useState(0);
     const navigate = useNavigate();
 
     return (
@@ -91,8 +85,7 @@ const TemuKarierPage = () => {
                             <FilterBar tag="+"></FilterBar>
                         </div>
                     </div>
-                    <Button onClick={() => navigate("/temukarier/project")}
-                    classname="bg-[#584270] text-white text-base rounded-lg items-center w-[240px]">
+                    <Button classname="bg-[#584270] text-white text-base rounded-lg items-center w-[240px]">
                         Search
                     </Button>
                 </div>
@@ -100,34 +93,33 @@ const TemuKarierPage = () => {
 
             <div className="h-[744px] w-full py-[60px] px-[80px]">
                 <div className="grid grid-flow-row gap-[60px]">
-                    <h1 className="text-[40px] font-bold text-center">Baru Ditambahkan</h1>
+                    <h1 className="text-[40px] font-bold text-center">Daftar Project yang Tersedia</h1>
                     <li className="flex gap-10 items-center justify-center">
-                        {karier.map(karier => (
-                            <CardKarier key={karier.id}>
-                                <CardKarier.Header image={karier.image} contract={karier.contract} />
-                                <CardKarier.Body position={karier.position} location={karier.location} />
-                                <CardKarier.Footer onClick={() => setIsOpen(1)} />
-                            </CardKarier>
+                        {project.map(project => (
+                            <CardProject key={project.id}>
+                                <CardProject.Header image={project.image} />
+                                <CardProject.Body author={project.author} title={project.title} />
+                                <CardProject.Footer 
+                                    onClick={() => {
+                                        if (project.id == 1) {
+                                            navigate("/temukarier/project/project-detail");
+                                        }
+                                        else if (project.id == 2) {
+                                            navigate("/temukarier/project-2");
+                                        }
+                                        else if (project.id == 3) {
+                                            navigate("/temukarier/project-3");
+                                        }
+                                    } } />
+                            </CardProject>
                         ))}
                     </li>
                 </div>
             </div>
 
             <Footer></Footer>
-
-            {isOpen == 1 && (
-                <PopUpVerif image="/image/verif-magang.png" onClose={() => setIsOpen(0)}>
-                    <p className="text-center mt-4 text-3xl mx-10 font-bold">Silakan Klik Link dibawah Ini untuk 
-                    Informasi Lebih Lanjut</p>
-                    <div className="text-center mt-4">
-                        <a href="https://wa.me/6282338373031" className="text-[#584270] text-3xl font-bold">
-                            Link
-                        </a>
-                    </div>
-                </PopUpVerif>
-            )}
         </>
     )
 }
 
-export default TemuKarierPage;
+export default TemuKarierProjectPage;

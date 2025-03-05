@@ -20,7 +20,7 @@ const PopUpVerif: React.FC<PopUpVerifProps> = ({children, image, onClose}) => {
                     onClick={handleClose}>
                         <img src="/image/x.svg" alt="" />
                     </button>
-                    <img src={image} alt="" className="mx-auto w-[280px] h-auto"/>
+                    <img src={image} alt="" className="mx-auto w-[300px] h-[280px]"/>
                     
                     {children}
                 </div>
