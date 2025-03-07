@@ -101,10 +101,10 @@ const TemuKarierPage = () => {
 
             {isOpen == 1 && (
                 <PopUpVerif image="/image/verif-magang.png" onClose={() => setIsOpen(0)}>
-                    <p className="text-center mt-4 text-3xl mx-10 font-bold">Silakan Klik Link dibawah Ini untuk 
+                    <p className="text-center mt-4 text-2xl mx-10 font-bold">Silakan Klik Link dibawah Ini untuk 
                     Informasi Lebih Lanjut</p>
                     <div className="text-center mt-4">
-                        <a href={selectedLink} className="text-[#584270] text-3xl font-bold">
+                        <a href={selectedLink} className="text-[#584270] text-2xl font-bold">
                             Link
                         </a>
                     </div>

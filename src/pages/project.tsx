@@ -56,7 +56,7 @@ const ProjectPage = () => {
 
             {isOpen === 1 && (
                 <PopUpVerif image="/image/verif-project.png" onClose={() => setIsOpen(0)}>
-                    <p className="text-center mt-4 text-3xl mx-10 font-bold">Permintaanmu sudah terkirim!
+                    <p className="text-center mt-4 text-2xl mx-10 font-bold">Permintaanmu sudah terkirim!
                     Tunggu balasannya lewat emailmu ya!</p>
                     <div className="text-center mt-4">
                         <a href="/temukarier" className="text-[#584270] text-xl font-bold">

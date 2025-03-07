@@ -10,8 +10,10 @@ interface HeaderProps {
 }
 
 interface BodyProps {
-  position: string;
-  location: string;
+  position?: string;
+  location?: string;
+  title?: string;
+  source?: string;
 }
 
 interface FooterProps {
@@ -44,14 +46,14 @@ const Header: React.FC<HeaderProps> = ({ image }) => {
   );
 };
 
-const Body: React.FC<BodyProps> = ({ position, location }) => {
+const Body: React.FC<BodyProps> = ({ position, location, title, source }) => {
   return (
     <>
         <div className="w-full h-[108px] p-3 pb-2 grid grid-rows-3 gap-1">
             <a href="#">
-                <h5 className="text-base">{position}</h5>
+                <h5 className="text-base">{position} {title}</h5>
             </a>
-            <h5 className="text-xl font-medium">{location}</h5>
+            <h5 className="text-xl font-medium">{location} {source}</h5>
         </div>
     </>
   );

@@ -86,7 +86,7 @@ const FormLogin = () => {
 
       {/* {showPopup && 
         <PopUpVerif image="/image/verif-eror-login.png" onClose={() => setShowPopup(false)}>
-        <p className="text-center mt-4 text-3xl font-bold">Login gagal. Silakan coba lagi.</p>
+        <p className="text-center mt-4 text-2xl font-bold">Login gagal. Silakan coba lagi.</p>
         </PopUpVerif>
       } */}
 

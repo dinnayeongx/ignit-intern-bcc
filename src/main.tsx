@@ -72,7 +72,7 @@ const router = createBrowserRouter([
     element: <CakrawalaITPage />,
   },
   {
-    path: "/cakrawalait/bidang-ui-ux",
+    path: "/cakrawalait/ui-ux",
     element: <UIUXPage />,
   }
 

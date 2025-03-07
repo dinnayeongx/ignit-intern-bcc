@@ -6,6 +6,7 @@ interface CardMajorProps {
 
 interface HeaderProps {
   image: string;
+  window: string;
 }
 
 interface BodyProps {
@@ -25,9 +26,9 @@ const CardMajor: CardMajorType = ({ children }) => {
   );
 };
 
-const Header: React.FC<HeaderProps> = ({ image }) => {
+const Header: React.FC<HeaderProps> = ({ image, window }) => {
   return (
-    <a href="#" className="relative">
+    <a href={window} className="relative">
       <img 
         src={image} 
         alt="product image" 

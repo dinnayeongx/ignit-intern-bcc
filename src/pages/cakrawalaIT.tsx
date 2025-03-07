@@ -3,11 +3,13 @@ import TopBar from "../components/fragments/topBar";
 import Item from "../components/fragments/majorItem";
 import CardMajor from "../components/fragments/cardMajor";
 import Footer from "../components/fragments/footer";
+import NavigasiMajor from "../components/fragments/navMajor";
 
 interface Major {
     id: number,
     image: string,
     major: string,
+    window: string,
 }
 
 const major: Major[] = [
@@ -15,16 +17,19 @@ const major: Major[] = [
         id: 1,
         image: "/image/product-1.png",
         major: "UI/UX Designer",
+        window: "/cakrawalait/ui-ux",
     },
     {
         id: 2,
         image: "/image/product-2.png",
         major: "Data Science",
+        window: "/cakrawalait/data-science",
     },
     {
         id: 3,
         image: "/image/product-3.png",
         major: "Front End",
+        window: "/cakrawalait/front-end",
     },
 ];
 
@@ -44,25 +49,12 @@ const CakrawalaITPage = () => {
                 </div>
             </div>
 
-            <div className="h-[412px] w-full pt-[58px] pb-[82px]">
+            <div className="h-[412px] w-fit pt-[58px] pb-[82px] mx-auto">
                 <h1 className="text-[40px] font-bold text-center mb-[52px]">
                     Bidang IT
                 </h1>
-                <div className="h-[172px] flex gap-40 items-center justify-center">
-                    <img src="/image/vector-left.svg" alt="" className="-mr-20"/>
-                    <Item
-                        image="/image/major-5.png" name="Product Manager" description=""
-                    ></Item>
-                    <Item
-                        image="/image/major-2.png" name="UI/UX Designer" description=""
-                    ></Item>
-                    <Item
-                        image="/image/major-4.png" name="Data Sciences" description=""
-                    ></Item>
-                    <Item
-                        image="/image/major-3.png" name="Programming" description=""
-                    ></Item>
-                    <img src="/image/vector-right.svg" alt="" className="-ml-20"/>
+                <div className="h-[172px] items-center justify-center">
+                    <NavigasiMajor></NavigasiMajor>
                 </div>
             </div>
 
@@ -72,7 +64,7 @@ const CakrawalaITPage = () => {
                 <li className='grid grid-cols-3 gap-10 pt-[60px] mx-auto items-center justify-center'>
                     {major.map((major) => (
                         <CardMajor key={major.id}>
-                            <CardMajor.Header image={major.image}/>
+                            <CardMajor.Header image={major.image} window={major.window}/>
                                 <CardMajor.Body major={major.major}>
                                 </CardMajor.Body>
                         </CardMajor>

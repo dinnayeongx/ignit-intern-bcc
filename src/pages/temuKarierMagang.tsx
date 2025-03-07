@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
@@ -12,6 +12,7 @@ interface Magang {
     position: string,
     location: string,
     link: string,
+    category: string,
 }
 
 
@@ -22,6 +23,7 @@ const magang: Magang[] = [
         position: "Product Design Intern - VIDA Digital Identity",
         location: "Jakarta",
         link: "https://vida.freshteam.com/jobs/DK6OhvPc9qdU/product-design-intern",
+        category: "UI/UX Designer"
     },
     {
         id: 2,
@@ -29,6 +31,7 @@ const magang: Magang[] = [
         position: "Mobile UI/UX Designer - TimeDoor",
         location: "Bali",
         link: "",
+        category: "UI/UX Designer"
     },
     {
         id: 3,
@@ -36,6 +39,7 @@ const magang: Magang[] = [
         position: "Data Scientist",
         location: "Surabaya",
         link: "",
+        category: "IT Project Manager"
     },
     {
         id: 4,
@@ -43,6 +47,7 @@ const magang: Magang[] = [
         position: "Software Engineer",
         location: "Jakarta",
         link: "https://wa.me/6282338373031",
+        category: "IoT Developer"
     },
     {
         id: 5,
@@ -50,6 +55,7 @@ const magang: Magang[] = [
         position: "UI/UX Designer",
         location: "Bandung",
         link: "",
+        category: "UI/UX Designer"
     },
     {
         id: 6,
@@ -57,6 +63,7 @@ const magang: Magang[] = [
         position: "Data Scientist",
         location: "Surabaya",
         link: "",
+        category: "Database Administrator"
     },
 ];
 
@@ -92,11 +99,39 @@ const TemuKarierMagangPage = () => {
 
     const navigate = useNavigate();
     const [selectedLink, setSelectedLink] = useState<string>("");
+    const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+    const [filteredItems, setFilteredItems] = useState(magang);
 
     const openLink = (link: string) => {
         setSelectedLink(link);
         window.location.href = link;
     };
+
+    const handleFilterButtonClick = (tag: string) => {
+        if (selectedFilters.includes(tag)) {
+            const filters = selectedFilters.filter((el) => el !== tag);
+            setSelectedFilters(filters);
+        }
+        else {
+            setSelectedFilters([...selectedFilters, tag]);
+        }
+    };
+
+    useEffect(() => {
+        filterItems();
+    }, [selectedFilters]);
+    
+    const filterItems = () => {
+        if (selectedFilters.length > 0) {
+            const showItems = magang.filter((item) => {
+                return selectedFilters.includes(item.category)}
+            );
+            setFilteredItems(showItems.flat());
+        }
+        else {
+            setFilteredItems([...magang]);
+        }
+    }
 
     return (
         <>
@@ -117,12 +152,15 @@ const TemuKarierMagangPage = () => {
                 <h2 className="text-[40px] font-bold text-center">Sesuaikan dengan Pilihanmu</h2>
                 <div className="px-[260px]">
                     <p className="text-2xl font-medium mb-2 text-center">Kategori Bidang IT</p>
-                    <div className="flex flex-wrap gap-2 mx-auto h-auto w-full text-center justify-center items-center">
+                    <div className="flex flex-wrap gap-2 mx-auto h-auto w-full text-center justify-center items-center" >
                         {filterTag.map(filterTag => (
-                                <div className="flex justify-center items-center">
-                                    <FilterBar tag={filterTag.tag} />
-                              </div>
-                            ))}
+                            <div className="flex justify-center items-center" key={filterTag.tag}>
+                                <FilterBar tag={filterTag.tag} 
+                                    onClick={() => handleFilterButtonClick(filterTag.tag)}
+                                    isSelected={selectedFilters.includes(filterTag.tag)}
+                                />
+                            </div>
+                        ))}
                     </div> 
                 </div>
             </div>
@@ -131,7 +169,7 @@ const TemuKarierMagangPage = () => {
                 <div className="grid grid-flow-row gap-[60px]">
                     <h1 className="text-[40px] font-bold text-center">Daftar Magang yang Tersedia</h1>
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
-                        {magang.map(magang => (
+                        {filteredItems.map((magang) => (
                             <CardKarier key={magang.id}>
                                 <CardKarier.Header image={magang.image} />
                                     <CardKarier.Body position={magang.position} location={magang.location} />

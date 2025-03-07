@@ -5,6 +5,8 @@ import Footer from "../components/fragments/footer";
 import ArticleCakrawala from "../components/fragments/articleCakrawala";
 import CardInform from "../components/fragments/cardInform";
 import QuizIT from "../components/fragments/quizIT";
+import Navigasi from "../components/fragments/navigasi";
+import NavigasiMajor from "../components/fragments/navMajor";
 
 interface Inform {
     id: number,
@@ -55,20 +57,7 @@ const UIUXPage = () => {
                     Bidang IT
                 </h1>
                 <div className="h-[172px] flex gap-40 items-center justify-center">
-                    <img src="/image/vector-left.svg" alt="" className="-mr-20"/>
-                    <Item
-                        image="/image/major-5.png" name="Product Manager" description=""
-                    ></Item>
-                    <Item
-                        image="/image/major-2.png" name="UI/UX Designer" description=""
-                    ></Item>
-                    <Item
-                        image="/image/major-4.png" name="Data Sciences" description=""
-                    ></Item>
-                    <Item
-                        image="/image/major-3.png" name="Programming" description=""
-                    ></Item>
-                    <img src="/image/vector-right.svg" alt="" className="-ml-20"/>
+                    <NavigasiMajor/>
                 </div>
             </div>
 
@@ -177,7 +166,6 @@ const UIUXPage = () => {
                 <div className="grid grid-cols-2 gap-[60px]">
                     <h1 className="text-[40px] font-bold my-auto">Apakah Kamu Sudah Paham Mengenai Bidang Ini?</h1>
                     <div>
-                        {/* <p className="text-[20px] font-medium mb-[40px]">Menurut kamu, manakah yang paling penting dibutuhkan pada bidang UI/UX Designer?</p> */}
                         <div>
                             <QuizIT></QuizIT>
                         </div>

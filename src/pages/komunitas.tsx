@@ -122,10 +122,10 @@ const KomunitasPage = () => {
 
             {isOpen == 2 && (
                 <PopUpVerif image="/image/verif-komun.png" onClose={() => setIsOpen(0)}>
-                    <p className="text-center mt-4 text-3xl font-bold">Silahkan bergabung dengan komunitasmu 
+                    <p className="text-center mt-4 text-2xl font-bold">Silahkan bergabung dengan komunitasmu 
                     menggunakan link berikut:</p>
                     <div className="text-center mt-4">
-                    <a href="https://wa.me/6282338373031" className="text-[#584270] text-3xl font-bold">
+                    <a href="https://wa.me/6282338373031" className="text-[#584270] text-2xl font-bold">
                         Link Komunitas
                     </a>
                     </div>

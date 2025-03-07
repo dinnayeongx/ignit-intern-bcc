@@ -54,7 +54,7 @@ const HomePage: React.FC = () => {
                 <h1 className='absolute text-5xl font-bold text-white mt-[280px] w-[84%] text-left'>Selamat Datang di IGNIT!</h1>
             </div>
 
-            <h1 className='text-[#584270] text-4xl font-bold text-center font-poppins mt-14 mb-6'>I G N I T</h1>
+            <h1 className='text-[#584270] text-[48px] font-bold text-center font-poppins mt-14 mb-6'>I G N I T</h1>
 
             <div className='justify-center text-center items-center mx-auto grid grid-cols-2 md:gap-6 md:flex'>
                 <Navigasi source="/image/menu-1.png" menu="CakrawalaIT" window="/cakrawalait"></Navigasi>
@@ -83,6 +83,8 @@ const HomePage: React.FC = () => {
                     </Button>
                 </div>
             </div>
+
+            <hr className="bg-[rgba(0,0,0,0.10)]" />
 
             <div className='grid grid-cols-2 ml-12 py-14 lg:mx-auto gap-6 mb-4 justify-center items-center'>
                 <div className='flex flex-col mx-auto gap-6 float-left'>

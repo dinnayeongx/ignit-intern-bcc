@@ -26,13 +26,19 @@ const QuizIT: React.FC = () => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
+    const [image, setImage] = useState('');
+    const [nav, setNav] = useState('');
     const navigate = useNavigate();
 
     const handleAnswer = (answer: string) => {
         if (answer === questions[0].answer) {
-            setPopupMessage('Jawabanmu benar!');
+            setPopupMessage('🎉 Selamat! Kamu Jawab dengan Benar! 🎉<br/>Biar lebih jago lagi, explore di ');
+            setImage('/image/popup-true.png');
+            setNav('BelajarYuk! 🎨👨‍💻');
         } else {
-            setPopupMessage('Jawabanmu salah!');
+            setPopupMessage('Oops! Jawabanmu Belum Sepenuhnya Tepat 😕 Sepertinya masih ada yang perlu dipelajari lagi, buka ');
+            setImage('/image/popup-false.png');
+            setNav('BelajarYuk! 📚💡');
         }
         setShowPopup(true);
     }
@@ -58,13 +64,14 @@ const QuizIT: React.FC = () => {
             </div>
 
             {showPopup && (
-                <PopUpVerif image="/image/verif-magang.png" onClose={() => setShowPopup(false)}>
-                    <p className="text-center mt-4 text-3xl mx-10 font-bold">{popupMessage}</p>
-                    <div className="text-center mt-4">
+                <PopUpVerif image={image} onClose={() => setShowPopup(false)}>
+                    <p className="text-center mt-4 text-2xl mx-auto font-bold" dangerouslySetInnerHTML={{ __html: popupMessage }}>
+                    </p>
+                    <div className="text-center mt-2">
                         <button
                             onClick={handleNavigate}
-                            className="text-[#584270] text-3xl font-bold"
-                        >BelajarYuk
+                            className="text-[#584270] text-2xl font-bold"
+                        >{nav}
                         </button>
                     </div>
                 </PopUpVerif>
