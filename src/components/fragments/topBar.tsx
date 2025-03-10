@@ -18,7 +18,7 @@ const TopBar : React.FC<TopBarProps> = ({title, nav}) => {
                     <h1 className="text-[28px] leading-9 font-medium text-[#584270] items-center">{title}</h1>
                 </div>
                 <div>
-                    <h2 className="text-[24px] float-right mr-4 leading-9 font-medium text-[#9B7EBD] items-center">{nav}</h2>
+                    <a href="" className="text-[20px] float-right mr-5 leading-9 font-medium text-[#9B7EBD] items-center">{nav}</a>
                 </div>
             </div>
         </>

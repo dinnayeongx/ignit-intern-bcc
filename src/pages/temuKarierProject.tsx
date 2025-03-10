@@ -5,6 +5,7 @@ import Button from "../components/elements/button";
 import CardProject from "../components/fragments/cardProject";
 import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
+import { getTags } from "../services/auth.service";
 
 interface Project {
     id: number,
@@ -39,39 +40,53 @@ const project: Project[] = [
     },
 ];
 
-interface FilterTag {
-    tag: string
-}
+// interface FilterTag {
+//     tag: string
+// }
 
-const filterTag: FilterTag[] = [
-    {
-        tag: "IoT Developer",
-    },
-    {
-        tag: "Cloud Computing",
-    },
-    {
-        tag: "Cybersecurity",
-    },
-    {
-        tag: "UI/UX Designer",
-    },
-    {
-        tag: "IT Project Manager",
-    },
-    {
-        tag: "Database Administrator",
-    },
-    {
-        tag: "Network Engineer",
-    },
-];
+// const filterTag: FilterTag[] = [
+//     {
+//         tag: "IoT Developer",
+//     },
+//     {
+//         tag: "Cloud Computing",
+//     },
+//     {
+//         tag: "Cybersecurity",
+//     },
+//     {
+//         tag: "UI/UX Designer",
+//     },
+//     {
+//         tag: "IT Project Manager",
+//     },
+//     {
+//         tag: "Database Administrator",
+//     },
+//     {
+//         tag: "Network Engineer",
+//     },
+// ];
 
 const TemuKarierProjectPage = () => {
 
     const navigate = useNavigate();
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
     const [filteredItems, setFilteredItems] = useState(project);
+    const [tags, setTags] = useState<string[]>([]);
+        
+    useEffect(() => {
+        getTags((success, message) => {
+            console.log("API Response:", message);
+            if (success) {
+                setTags(message);
+          }
+        });
+    }, []);
+        
+    useEffect(() => {
+        console.log("Tags State:", tags);
+    }, [tags]);
 
     const handleFilterButtonClick = (tag: string) => {
         if (selectedFilters.includes(tag)) {
@@ -119,14 +134,14 @@ const TemuKarierProjectPage = () => {
                 <div className="px-[260px]">
                     <p className="text-2xl font-medium mb-2 text-center">Kategori Bidang IT</p>
                     <div className="flex flex-wrap gap-2 mx-auto h-auto w-full text-center justify-center items-center">
-                        {filterTag.map(filterTag => (
-                                <div className="flex justify-center items-center" key={filterTag.tag}>
-                                    <FilterBar tag={filterTag.tag} 
-                                    onClick={() => handleFilterButtonClick(filterTag.tag)}
-                                    isSelected={selectedFilters.includes(filterTag.tag)}
-                                    />
-                              </div>
-                            ))}
+                        {tags.map((tag) => (
+                            <div className="flex justify-center items-center" key={tag}>
+                                <FilterBar tag={tag} 
+                                onClick={() => handleFilterButtonClick(tag)}
+                                isSelected={selectedFilters.includes(tag)}
+                                />
+                          </div>
+                        ))}
                     </div> 
                 </div>
             </div>

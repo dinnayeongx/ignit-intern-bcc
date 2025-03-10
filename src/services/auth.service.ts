@@ -11,11 +11,12 @@ type Callback = (status: boolean, res: string) => void;
 const header = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${Cookies.get('token')}`,
+  "ngrok-skip-browser-warning": "69420",
 }
 
 export const login = async (data: LoginData, callback: Callback): Promise<void> => {
   try {
-    const res = await axiosInstance.post("/auth/login", data, { headers: header });
+    const res = await axiosInstance.post("/auth/login", data);
     callback(true, res.data.payload.token);
   } catch (error) {
     callback(false, error.message || "Terjadi kesalahan");
@@ -50,3 +51,15 @@ export const logout = (): void => {
   localStorage.removeItem('token');
 };
 
+
+type CallbackTag = (success: boolean, message: string) => void;
+
+export const getTags = async (callback: CallbackTag): Promise<void> => {
+  try {
+    const res = await axiosInstance.get("/utils/tags", { headers: header });
+    callback(true, res.data.payload.map((item: { name: string }) => item.name));
+  } 
+  catch (error) {
+    callback(false, error.message || "Terjadi kesalahan"); 
+  }
+};

@@ -6,13 +6,14 @@ interface CardModulProductProps {
 
 interface HeaderProps {
   image: string;
-  job: string;
+  job?: string;
+  onClick?: () => void
 }
 
 interface BodyProps {
   title: string;
   product: string;
-  price: number;
+  price?: number;
 }
 
 interface CardModulProductType extends React.FC<CardModulProductProps> {
@@ -22,19 +23,19 @@ interface CardModulProductType extends React.FC<CardModulProductProps> {
 
 const CardModulProduct: CardModulProductType = ({ children }) => {
   return (
-    <div className="bg-white flex flex-col justify-between w-[304px] h-[420px] rounded-md shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_1px_10px_0px_rgba(0,0,0,0.25)]">
+    <div className="bg-white flex flex-col justify-between w-[304px] h-auto rounded-md shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_1px_10px_0px_rgba(0,0,0,0.25)]">
       {children}
     </div>
   );
 };
 
-const Header: React.FC<HeaderProps> = ({ image, job }) => {
+const Header: React.FC<HeaderProps> = ({ image, job, onClick }) => {
   return (
-    <a href="#" className="relative">
+    <a href="#" className="relative" onClick={onClick}>
       <img 
         src={image} 
         alt="product image" 
-        className="w-[304px] h-[300px] rounded-t-md relative"
+        className="w-[304px] h-auto rounded-t-md relative"
       />
       <div className="absolute -top-1 left-0">
         <label className='font-normal text-xs justify-center items-center bg-white rounded-tl-md rounded-br-md mr-1 py-0.5 px-1'>
@@ -51,8 +52,8 @@ const Body: React.FC<BodyProps> = ({ title, product, price }) => {
       <a href="#">
         <h5 className="text-base">{title}</h5>
       </a>
-      <h5 className="text-xl font-medium">{product} Modul</h5>
-      <h5 className="text-xl font-medium text-[#584270]">Harga: {price}</h5>
+      <h5 className="text-xl font-medium">{product}</h5>
+      <h5 className="text-xl font-medium text-[#584270]">{price}</h5>
     </div>
   );
 };

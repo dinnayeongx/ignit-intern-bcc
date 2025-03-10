@@ -36,7 +36,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
       <div className="w-full my-2">
         <h4 className="h-6 font-bold text-2xl mb-3">{name}</h4>
         <div className="h-6 items-center mb-3">
-          <LabelJob job="Product Design" />
+          <LabelJob job="Product Design" classname="bg-[rgba(217,217,217,0.50)]"/>
         </div>
         <p className="h-6 font-normal text-[16px] mb-6 lg:mb-0">{description}</p>
       </div>
