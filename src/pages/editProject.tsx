@@ -1,33 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import TopBar from "../components/fragments/topBar";
-import FormTambahProject from "../components/fragments/formTambahProject";
+import FormEditProject from "../components/fragments/formEditProject";
 import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
 
-const TambahProject = () => {
-    
+const EditProject = () => {
     const navigate = useNavigate();
-    
 
     return (
         <>
-            <TopBar title="Tambah Project" nav="User Profile" onClick={() => navigate("/userprofile")}></TopBar>
+            <TopBar title="Edit Project" nav="User Profile" onClick={() => navigate("/userprofile")}></TopBar>
 
-            <div className="py-14 px-24 h-[990px]">
+            <div className="py-14 px-24 h-auto">
                 <div>
                     <h1 className="text-[40px] font-bold mb-[76px]">Deskripsi</h1>
                 </div>
                 <div >
-                    <FormTambahProject></FormTambahProject>
+                    <FormEditProject></FormEditProject>
                 </div>
             </div>
 
             <div className="relative w-full bottom-0">
                 <Footer></Footer>
             </div>
+
             
         </>
     );
 };
 
-export default TambahProject;    
+export default EditProject;    

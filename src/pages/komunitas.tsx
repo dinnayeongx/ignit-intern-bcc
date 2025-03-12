@@ -19,15 +19,19 @@ const KomunitasPage = () => {
     return (
         <>
             <TopBar title="Komunitas"/>
-            <div className="h-[688px] w-full py-[60px] px-[80px]">
-                <div className="grid grid-flow-row gap-6 mb-10">
-                    <h1 className="text-[40px] font-bold text-center">
-                        Community Threads
+
+            <div className="h-[399px] w-full bg-gradient-to-r from-[#9B7EBD] to-[#7F5EA3] py-[60px] px-[80px] items-center justify-center flex">
+                <div className="grid grid-flow-row gap-6 my-auto">
+                    <h1 className="text-[40px] text-white font-bold text-center">
+                        Welcome to Komunitas!
                     </h1>
-                    <p className="text-[16px] font-normal text-center">
+                    <p className="text-[16px] text-white font-normal text-center">
                         Explore and engage in discussions
                     </p>
                 </div>
+            </div>
+
+            <div className="h-full w-full py-[60px] px-[80px]">
                 <li className="grid grid-cols-2 gap-6 py-5 mb-10">
                     <button onClick={() => setIsOpen(1)}>
                         <Article 
@@ -104,7 +108,7 @@ const KomunitasPage = () => {
             {isOpen == 1 && (
                 <PopUpVerif image="/image/verif-logout.png" onClose={() => setIsOpen(0)}>
                 <p className="text-center mt-4 text-3xl font-bold">Ingin bergabung?</p>
-                <div className="text-center mt-4">
+                <div className="text-center justify-center mt-4 flex mx-auto">
                     <Button
                     classname="bg-transparent border border-[#584270] text-[#584270] hover:bg-[#584270] hover:text-white rounded-md w-[100px] mx-3"
                     onClick={() => setIsOpen(0)}

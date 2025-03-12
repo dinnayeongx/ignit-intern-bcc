@@ -28,6 +28,7 @@ const FormLogin = () => {
     const password = passwordRef.current?.value;
 
     if (!username || !password) {
+      setShowPopup(true);
       setError("Username dan Password harus diisi.");
       return;
     }
@@ -84,11 +85,16 @@ const FormLogin = () => {
 
       </form>
 
-      {/* {showPopup && 
-        <PopUpVerif image="/image/verif-eror-login.png" onClose={() => setShowPopup(false)}>
-        <p className="text-center mt-4 text-2xl font-bold">Login gagal. Silakan coba lagi.</p>
-        </PopUpVerif>
-      } */}
+      {showPopup && (
+  <PopUpVerif
+    image="/image/verif-eror-login.png"
+    onClose={() => setShowPopup(false)}
+  >
+    <p className="text-center mt-4 text-2xl font-bold">
+      {"Login gagal. Silakan coba lagi."}
+    </p>
+  </PopUpVerif>
+)}
 
     </>
     

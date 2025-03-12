@@ -52,14 +52,4 @@ export const logout = (): void => {
 };
 
 
-type CallbackTag = (success: boolean, message: string) => void;
 
-export const getTags = async (callback: CallbackTag): Promise<void> => {
-  try {
-    const res = await axiosInstance.get("/utils/tags", { headers: header });
-    callback(true, res.data.payload.map((item: { name: string }) => item.name));
-  } 
-  catch (error) {
-    callback(false, error.message || "Terjadi kesalahan"); 
-  }
-};

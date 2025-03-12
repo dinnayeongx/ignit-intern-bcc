@@ -5,7 +5,8 @@ import Button from "../components/elements/button";
 import CardKarier from "../components/fragments/cardKarier";
 import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
-import { getTags } from "../services/auth.service";
+import { getTags } from "../services/temukarier.service";
+import { getMagang } from "../services/temukarier.service";
 
 interface Magang {
     id: number,
@@ -101,8 +102,9 @@ const TemuKarierMagangPage = () => {
     const navigate = useNavigate();
     const [selectedLink, setSelectedLink] = useState<string>("");
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-    const [filteredItems, setFilteredItems] = useState(magang);
+    const [filteredItems, setFilteredItems] = useState<Magang[]>([]);
     const [tags, setTags] = useState<string[]>([]);
+    const [magangData, setMagangData] = useState<Magang[]>([]);
     
     useEffect(() => {
         getTags((success, message) => {
@@ -112,6 +114,28 @@ const TemuKarierMagangPage = () => {
           }
         });
     }, []);
+
+    useEffect(() => {
+        getMagang((success, message) => {
+            console.log("API Response 2:", message);
+          if (success) {
+            const formattedData = message.map((item: any) => ({
+                id: item.id,
+                image: `/image/karier-${item.imageId}.png`,
+                position: item.name,
+                location: "Unknown",
+                link: item.url,
+                category: item.tags[0] || "Unknown",
+            }));
+            setMagangData(formattedData);
+          }
+        });
+    }, []);
+
+    useEffect(() => {
+        console.log("Magang Data:", magangData);
+    }, [magangData]);
+
     
     useEffect(() => {
         console.log("Tags State:", tags);
@@ -134,17 +158,17 @@ const TemuKarierMagangPage = () => {
 
     useEffect(() => {
         filterItems();
-    }, [selectedFilters]);
+    }, [selectedFilters, magangData]);
     
     const filterItems = () => {
         if (selectedFilters.length > 0) {
-            const showItems = magang.filter((item) => {
+            const showItems = magangData.filter((item) => {
                 return selectedFilters.includes(item.category)}
             );
             setFilteredItems(showItems.flat());
         }
         else {
-            setFilteredItems([...magang]);
+            setFilteredItems(magangData);
         }
     }
 
@@ -184,11 +208,11 @@ const TemuKarierMagangPage = () => {
                 <div className="grid grid-flow-row gap-[60px]">
                     <h1 className="text-[40px] font-bold text-center">Daftar Magang yang Tersedia</h1>
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
-                        {filteredItems.map((magang) => (
+                        {magang.map((magang) => (
                             <CardKarier key={magang.id}>
                                 <CardKarier.Header image={magang.image} />
                                     <CardKarier.Body position={magang.position} location={magang.location} />
-                                        <CardKarier.Footer onClick={() => openLink(magang.link)} />
+                                        <CardKarier.Footer onClick={() => navigate('/temukarier/magang/detail')} />
                             </CardKarier>
                         ))}
                     </li>

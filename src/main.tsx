@@ -17,9 +17,12 @@ import KomunitasPage from './pages/komunitas';
 import UserProfilePage from './pages/userProfile';
 import UIUXPage from './pages/uiux';
 import TemuKarierMagangPage from './pages/temuKarierMagang';
+import TemuKarierDetail from './pages/temukarierdetail';
 import TemuKarierBootcampPage from './pages/temuKarierBootcamp';
 import Scroll from './components/fragments/scroll';
 import TambahProject from './pages/tambahProject';
+import MyProject from './pages/myProject';
+import EditProject from './pages/editProject';
 
 
 const router = createBrowserRouter([
@@ -64,8 +67,16 @@ const router = createBrowserRouter([
     element: <UserProfilePage />,
   },
   {
+    path: "/userprofile/my-project",
+    element: <MyProject />,
+  },
+  {
     path: "/userprofile/tambah-project",
     element: <TambahProject />,
+  },
+  {
+    path: "/userprofile/edit-project",
+    element: <EditProject />,
   },
   {
     path: "/temukarier",
@@ -80,11 +91,15 @@ const router = createBrowserRouter([
     element: <TemuKarierMagangPage />,
   },
   {
+    path: "/temukarier/magang/detail",
+    element: <TemuKarierDetail />,
+  },
+  {
     path: "/temukarier/project",
     element: <TemuKarierProjectPage />,
   },
   {
-    path: "/temukarier/project/project-detail",
+    path: "/temukarier/project/1",
     element: <ProjectPage />,
   },
   {

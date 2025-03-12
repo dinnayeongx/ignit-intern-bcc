@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TopBar from "../components/fragments/topBar";
 import LabelJob from "../components/elements/label/label";
 import FormUpdate from "../components/fragments/formUpdateBio";
@@ -8,6 +8,8 @@ import Skill from "../components/fragments/skill";
 import Footer from "../components/fragments/footer";
 import FormSkillPopUp from "../components/fragments/formSkillPopUp";
 import FormEduPopUp from "../components/fragments/formEduPopUp";
+import { useNavigate } from "react-router-dom";
+import PopUpProjects from "../components/fragments/popUpProjects";
 
 interface ProfileBarProps {
     photo: string;
@@ -71,6 +73,17 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
 
     const [showFormSkill, setShowFormSkill] = useState(false);
     const [showFormEdu, setShowFormEdu] = useState(false);
+    const navigate = useNavigate();
+    const [showPopUp, setShowPopUp] = useState(false);
+    const [profileImage, setProfileImage] = useState<string>(photo);
+
+    const handleButtonClick = () => {
+        setShowPopUp(prevState => !prevState);
+    };
+
+    useEffect(() => {
+        console.log("PopUp state changed:", showPopUp);
+    }, [showPopUp]);
 
     const handleClickButtonSkill = () => {
         setShowFormSkill(!showFormSkill);
@@ -80,20 +93,45 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
         setShowFormEdu(!showFormEdu);
     };
 
+    const handleProfileImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setProfileImage(reader.result as string);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+
 
     return (
         <>
-            <TopBar title="User Profile" nav="Projects"></TopBar>
+            <TopBar title="User Profile"></TopBar>
+
+            {showPopUp && <PopUpProjects/>}
 
             
             <div className="h-[340px] w-full bg-gradient-to-r from-[#9B7EBD] to-[#7F5EA3] py-[60px] px-[130px] items-center justify-center flex gap-10">
                 <div className="h-32 w-32">
                     <img
-                        src={Profile.photo}
+                        src={profileImage}
                         alt="pic"
                         className="h-24 w-24 rounded-[20px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.60)] justify-center flex lg:mx-auto mb-2"
                     />
-                    <a href="" className="text-base font-medium text-white text-center flex justify-center">Edit Foto</a>
+                   <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleProfileImageChange}
+                        className="mt-2 text-white"
+                        id="profileImageInput"
+                        style={{ display: 'none' }}
+                    />
+                    <label
+                        htmlFor="profileImageInput"
+                        className="text-base font-medium text-white text-center flex justify-center cursor-pointer"
+                    >Edit Foto
+                    </label>
                 </div>
                 
                 <div className="w-full gap-3">
@@ -103,6 +141,9 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
                     </div>
                     <p className="h-6 font-normal text-[16px] items-center text-white mb-6 lg:mb-0">{Profile.description}</p>
                 </div>
+
+                <Button classname="bg-white text-black rounded-lg w-[128px] font-medium" onClick={handleButtonClick}
+                >Projects</Button>
             </div>
 
             <div className="py-[60px] px-[80px] w-full h-auto grid grid-cols-2 gap-[60px]">

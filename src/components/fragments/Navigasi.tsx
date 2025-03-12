@@ -15,9 +15,9 @@ const Navigasi: React.FC<NavigasiProps> = ({ menu, source, window }) => {
   };
 
   return (
-    <button className="mb-12 bg-[#D4CBE780] w-[144px] h-[176px] rounded-xl" onClick={handleClick}>
+    <button className="mb-12 bg-[#D4CBE780] w-[144px] h-[176px] rounded-xl shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_1px_10px_0px_rgba(0,0,0,0.25)]" onClick={handleClick}>
       <img src={source} alt={menu} className="mx-auto h-[135px]" />
-      <h3 className="my-1 text-base font-medium">{menu}</h3>
+      <h3 className="my-1 text-base font-bold">{menu}</h3>
     </button>
   );
 };

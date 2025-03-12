@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../elements/button";
 import InputForm from "../elements/Input";
+import PopUpVerif from "./popUpVerif";
+import { useNavigate } from "react-router-dom";
 
 interface PopUpEduProps {
     children: React.ReactNode;
@@ -8,6 +10,12 @@ interface PopUpEduProps {
 }
 
 const FormEduPopUp: React.FC<PopUpEduProps> = ({children, onClose}) => {
+    const [showPopUp, setShowPopUp] = useState(0);
+
+    const handleOpen = () => {
+        setShowPopUp(1);
+    }
+
     const handleClose = () => {
         onClose();
     }
@@ -81,6 +89,7 @@ const FormEduPopUp: React.FC<PopUpEduProps> = ({children, onClose}) => {
                             </InputForm>
                         </div>
                         <Button classname="w-[240px] text-white mt-3 p-3 rounded-lg justify-center items-center mx-auto"
+                        onClick={handleOpen}
                         >Tambah Edu</Button>
                     
                     </div>
@@ -88,6 +97,17 @@ const FormEduPopUp: React.FC<PopUpEduProps> = ({children, onClose}) => {
                     {children}
                 </div>
             </div>
+
+            {showPopUp && (
+                <PopUpVerif image="/image/popup-done.png" onClose={() => setShowPopUp(0)}>
+                    <p className="text-center mt-4 text-2xl font-bold">Yay! Berhasil ditambahkan!</p>
+                    <div className="text-center mt-4">
+                    <a href="/userprofile" className="text-[#584270] text-base font-bold">
+                        Kembali ke Halaman User Profile
+                    </a>
+                    </div>
+                </PopUpVerif>
+            )}
         </>
     );
 };

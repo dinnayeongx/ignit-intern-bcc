@@ -5,7 +5,7 @@ import Button from "../components/elements/button";
 import CardProject from "../components/fragments/cardProject";
 import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
-import { getTags } from "../services/auth.service";
+import { getTags, getProjects } from "../services/temukarier.service";
 
 interface Project {
     id: number,
@@ -13,32 +13,36 @@ interface Project {
     author: string,
     title: string
     category: string,
+    status: string,
 }
 
 
-const project: Project[] = [
-    {
-        id: 1,
-        image: "/image/project-1.jpeg",
-        author: "Raihani Syuja",
-        title: "DesignSphere",
-        category: "UI/UX Designer"
-    },
-    {
-        id: 2,
-        image: "/image/project-1.jpeg",
-        author: "Dinda Kumala",
-        title: "WebCrafters",
-        category: "UI/UX Designer"
-    },
-    {
-        id: 3,
-        image: "/image/project-1.jpeg",
-        author: "Anthony Glen",
-        title: "PixelForge",
-        category: "IoT Developer"
-    },
-];
+// const project: Project[] = [
+//     {
+//         id: 1,
+//         image: "/image/project-1.jpeg",
+//         author: "Raihani Syuja",
+//         title: "DesignSphere",
+//         category: "UI/UX Designer",
+//         status: "On Going",
+//     },
+//     {
+//         id: 2,
+//         image: "/image/project-1.jpeg",
+//         author: "Dinda Kumala",
+//         title: "WebCrafters",
+//         category: "UI/UX Designer",
+//         status: "On Going",
+//     },
+//     {
+//         id: 3,
+//         image: "/image/project-1.jpeg",
+//         author: "Anthony Glen",
+//         title: "PixelForge",
+//         category: "IoT Developer",
+//         status: "On Going",
+//     },
+// ];
 
 // interface FilterTag {
 //     tag: string
@@ -72,8 +76,9 @@ const TemuKarierProjectPage = () => {
 
     const navigate = useNavigate();
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-    const [filteredItems, setFilteredItems] = useState(project);
+    const [filteredItems, setFilteredItems] = useState<Project[]>([]);
     const [tags, setTags] = useState<string[]>([]);
+    const [projectsData, setProjectsData] = useState<Project[]>([]);
         
     useEffect(() => {
         getTags((success, message) => {
@@ -88,6 +93,27 @@ const TemuKarierProjectPage = () => {
         console.log("Tags State:", tags);
     }, [tags]);
 
+    useEffect(() => {
+        getProjects((success, message) => {
+            console.log("API Response 2:", message);
+            if (success) {
+                const formattedData = message.map((item: any) => ({
+                    id: item.id,
+                    image: `/image/karier-${item.imageId}.png`,
+                    author: item.createdBy,
+                    title: item.name,
+                    category: item.tags[0] || "Unknown",
+                    status: item.status,
+                }));
+                    setProjectsData(formattedData);
+                  }
+                });
+            }, []);
+        
+            useEffect(() => {
+                console.log("Magang Data:", projectsData);
+            }, [projectsData]);
+
     const handleFilterButtonClick = (tag: string) => {
         if (selectedFilters.includes(tag)) {
             const filters = selectedFilters.filter((el) => el !== tag);
@@ -100,17 +126,17 @@ const TemuKarierProjectPage = () => {
     
     useEffect(() => {
         filterItems();
-    }, [selectedFilters]);
+    }, [selectedFilters, projectsData]);
         
     const filterItems = () => {
         if (selectedFilters.length > 0) {
-            const showItems = project.filter((item) => {
+            const showItems = projectsData.filter((item) => {
                 return selectedFilters.includes(item.category)}
             );
             setFilteredItems(showItems.flat());
         }
         else {
-            setFilteredItems([...project]);
+            setFilteredItems(projectsData);
         }
     }
 
@@ -150,22 +176,12 @@ const TemuKarierProjectPage = () => {
                 <div className="grid grid-flow-row gap-[60px]">
                     <h1 className="text-[40px] font-bold text-center">Daftar Project yang Tersedia</h1>
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
-                        {filteredItems.map(project => (
+                        {projectsData.map(project => (
                             <CardProject key={project.id}>
                                 <CardProject.Header image={project.image} />
                                 <CardProject.Body author={project.author} title={project.title} />
                                 <CardProject.Footer 
-                                    onClick={() => {
-                                        if (project.id == 1) {
-                                            navigate("/temukarier/project/project-detail");
-                                        }
-                                        else if (project.id == 2) {
-                                            navigate("/temukarier/project-2");
-                                        }
-                                        else if (project.id == 3) {
-                                            navigate("/temukarier/project-3");
-                                        }
-                                    } } />
+                                    onClick={() => navigate(`/temukarier/project/${project.id}`)}  />
                             </CardProject>
                         ))}
                     </li>

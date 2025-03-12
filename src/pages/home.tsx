@@ -41,7 +41,16 @@ const products: Product[] = [
 const HomePage: React.FC = () => {    
     return (
         <>
-            <Logo/>
+            <div className="h-32 w-full shadow-[0px_0px_6px_0px_rgba(0,0,0,0.12)] p-5 flex gap-8">
+                <button className="flex items-center h-full w-[84px]" 
+                onClick={() => window.location.href = "/home" }>
+                    <img src="/IGNITLogo.png" alt="" className="items-center"/>
+                </button>
+            
+                <div className="flex items-center w-full h-full">
+                    <h1 className="text-[48px] leading-9 font-bold text-[#584270] items-center font-poppins">I G N I T</h1>
+                </div>
+            </div>
 
             <ProfileBar 
                 name="John Doe" description="Creating beautiful interface"
