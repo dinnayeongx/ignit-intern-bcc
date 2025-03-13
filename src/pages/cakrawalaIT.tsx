@@ -41,7 +41,7 @@ const CakrawalaITPage = () => {
 
             <HeroSection page="Jelajahi Bidang di CakrawalaIT" description="Jelajahi bidang IT yang kamu minati disini!"></HeroSection>
 
-            <div className="h-[412px] w-fit pt-[58px] pb-[82px] mx-auto">
+            <div className="h-full w-fit pt-[58px] pb-[82px] mx-auto">
                 <h1 className="text-[40px] font-bold text-center mb-[52px]">
                     Bidang IT
                 </h1>
@@ -50,10 +50,10 @@ const CakrawalaITPage = () => {
                 </div>
             </div>
 
-            <div className="h-[688px] py-[60px] px-[132px] bg-[#F7F7FB]">
+            <div className="h-full w-full py-[60px] lg:px-[132px] px-12 bg-[#F7F7FB]">
                 <h1 className='text-[37px] font-bold mb-6'>Banyak Diminati</h1>
                 <h1 className='text-base'>Bidang IT yang lagi banyak dicari nih!</h1>
-                <li className='grid grid-cols-3 gap-10 pt-[60px] mx-auto items-center justify-center'>
+                <li className='grid lg:grid-cols-3 gap-10 pt-[60px] mx-auto items-center justify-center'>
                     {major.map((major) => (
                         <CardMajor key={major.id}>
                             <CardMajor.Header image={major.image} window={major.window}/>

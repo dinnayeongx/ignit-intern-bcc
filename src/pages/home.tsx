@@ -59,25 +59,25 @@ const HomePage: React.FC = () => {
             
             <div className="flex justify-center ">
                 <img src="/image/image-1.png" alt="" 
-                    className='relative  w-[87%] h-[85] rounded-xl shadow-[0px_4px_4px_0px_rgba(0,0,0,0.45)]'
+                    className='relative w-[87%] h-[85] rounded-xl shadow-[0px_4px_4px_0px_rgba(0,0,0,0.45)]'
                 />
-                <h1 className='absolute text-5xl font-bold text-white mt-[280px] w-[84%] text-left'>Selamat Datang di IGNIT!</h1>
+                <h1 className='absolute md:text-5xl text-3xl font-bold text-white md:mt-[280px] mt-[90px] w-[84%] text-left'>Selamat Datang di IGNIT!</h1>
             </div>
 
             <h1 className='text-[#584270] text-[48px] font-bold text-center font-poppins mt-14 mb-6'>I G N I T</h1>
 
-            <div className='justify-center text-center items-center mx-auto grid grid-cols-2 md:gap-6 md:flex'>
+            <div className='min-w-0 h-full justify-center text-center items-center md:mx-auto mx-24 grid grid-cols-2 md:gap-6 md:flex'>
                 <Navigasi source="/image/menu-1.png" menu="CakrawalaIT" window="/cakrawalait"></Navigasi>
                 <Navigasi source="/image/menu-2.png" menu="TemuKarier" window="/temukarier"></Navigasi>
                 <Navigasi source="/image/menu-3.png" menu="BelajarYuk" window="/belajaryuk"></Navigasi>
                 <Navigasi source="/image/menu-4.png" menu="Komunitas" window="/komunitas"></Navigasi>
             </div>
 
-            <div className='bg-[#F7F7FB] grid lg:grid-rows-2 mt-2 pt-9 h-[680px]'>
-                <div className='flex flex-col ml-12 lg:mx-auto gap-6'>
-                    <h1 className='text-[37px] font-bold'>Sedang Tren Saat Ini</h1>
-                    <h1 className='text-base'>Pilihan BelajarYuk yang lagi tren dikalangan Mahasiswa IT!</h1>
-                    <li className='grid grid-cols-3 gap-10 pt-8'>
+            <div className='bg-[#F7F7FB] w-full mt-2 py-9 h-full '>
+                <div className='flex flex-col mx-auto gap-6'>
+                    <h1 className='text-[37px] md:ml-36 ml-12 font-bold'>Sedang Tren Saat Ini</h1>
+                    <h1 className='text-base md:ml-36 ml-12'>Pilihan BelajarYuk yang lagi tren dikalangan Mahasiswa IT!</h1>
+                    <li className='grid md:grid-cols-3 gap-10 pt-8 justify-center items-center mx-auto'>
                         {products.map((product) => (
                             <CardProduct key={product.id}>
                                 <CardProduct.Header image={product.image} job={product.job}/>
@@ -96,7 +96,7 @@ const HomePage: React.FC = () => {
 
             <hr className="bg-[rgba(0,0,0,0.10)]" />
 
-            <div className='grid grid-cols-2 ml-12 py-14 lg:mx-auto gap-6 mb-4 justify-center items-center'>
+            <div className='grid md:grid-cols-2 md:ml-12 py-14 lg:mx-auto gap-6 mb-4 justify-center items-center'>
                 <div className='flex flex-col mx-auto gap-6 float-left'>
                     <h1 className='text-[37px] font-bold'>Komunitas Terkini</h1>
                     <h1 className='text-base'>Berbagi Pengalamanmu Di sini! </h1>
@@ -105,9 +105,9 @@ const HomePage: React.FC = () => {
                         Lihat Daftar Grup
                     </Button>
                 </div>
-                <div className='float-right'>
+                <div className='md:float-right mx-auto'>
                     <img src="/image/iamge-2.png" alt=""
-                    className='h-[280px] rounded-2xl shadow-[0px_4px_4px_0px_rgba(0,0,0,0.45)]'></img>
+                    className='md:h-[280px] h-48 rounded-2xl shadow-[0px_4px_4px_0px_rgba(0,0,0,0.45)]'></img>
                 </div>
             </div>
 

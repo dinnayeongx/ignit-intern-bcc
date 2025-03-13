@@ -27,7 +27,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
     };
 
   return (
-    <div className="bg-[#F2EFF8] h-[200px] w-full items-center mb-8 lg:px-32 lg:justify-center lg:flex lg:gap-10">
+    <div className="bg-[#F2EFF8] h-full lg:h-[200px] w-full items-center mb-8 p-8 lg:px-32 lg:justify-center lg:flex lg:gap-10">
       <img
         src="/image/foto-prof.jpg"
         alt="pic"
@@ -41,7 +41,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
         <p className="h-6 font-normal text-[16px] mb-6 lg:mb-0">{description}</p>
       </div>
       <Button
-        classname="rounded-lg text-white lg:p-1 lg:px-6 lg:h-12 lg:w-52 -mr-6 text-[12px] lg:text-[14px] items-center"
+        classname="rounded-lg text-white lg:p-1 lg:px-6 lg:h-12 w-full lg:w-52 -mr-6 text-[12px] lg:text-[14px] items-center"
         onClick={() => {
           navigate('/userprofile');
         }}>
@@ -49,7 +49,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
       </Button>
 
       <button onClick={() => setIsOpen(true)}>
-        <img src="/image/logout.svg" alt="" className="h-12" />
+        <img src="/image/logout.svg" alt="" className="lg:h-12 relative -right-96 -top-60 lg:-top-0 lg:-right-0 lg:none" />
       </button>
 
       {isOpen && (

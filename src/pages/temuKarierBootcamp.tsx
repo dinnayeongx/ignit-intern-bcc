@@ -128,7 +128,7 @@ const TemuKarierBootcampPage = () => {
         }, []);
     
         useEffect(() => {
-            console.log("Magang Data:", bootcampData);
+            console.log("Bootcamp Data:", bootcampData);
         }, [bootcampData]);
     
     const handleFilterButtonClick = (tag: string) => {

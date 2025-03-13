@@ -73,7 +73,7 @@ const NavigasiMajor: React.FC = () => {
   const visibleItems = navigasi.slice(currentIndex, currentIndex + 4);
 
   return (
-    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="absolute md:relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <button
         onClick={handlePrev}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-2 focus:outline-none">

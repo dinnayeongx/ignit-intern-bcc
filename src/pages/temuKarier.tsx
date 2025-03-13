@@ -6,6 +6,7 @@ import CardKarier from "../components/fragments/cardKarier.tsx";
 import Footer from "../components/fragments/footer.tsx";
 import PopUpVerif from "../components/fragments/popUpVerif.tsx";
 import { useNavigate } from "react-router-dom";
+import HeroSection from "../components/fragments/heroSection.tsx";
 
 interface Karier {
     id: number,
@@ -55,18 +56,9 @@ const TemuKarierPage = () => {
         <>
             <TopBar title="Temukarier"></TopBar>
 
-            <div className="h-[399px] w-full bg-gradient-to-r from-[#9B7EBD] to-[#7F5EA3] py-[60px] px-[80px] items-center justify-center flex">
-                <div className="grid grid-flow-row gap-6 my-auto">
-                    <h1 className="text-[40px] text-white font-bold text-center">
-                        Welcome to Temukarier
-                    </h1>
-                    <p className="text-[16px] text-white font-normal text-center">
-                        Find your dream job in the IT field
-                    </p>
-                </div>
-            </div>
+            <HeroSection page="Welcome to Temukarier" description="Find your dream job in the IT field"></HeroSection>
 
-            <div className="h-[595px] w-full py-[60px] px-[120px] grid grid-flow-row gap-[40px]">
+            <div className="h-full w-full py-[60px] md:px-[120px] grid grid-flow-row gap-[40px]">
                 <h1 className="text-[40px] font-bold text-center">Pilih Lowongan yang kamu cari!</h1>
                 <img src="/image/temukarier-1.png" alt="" className="mx-auto h-[308px]"/>
                 <div className="flex gap-10 items-center justify-center">
