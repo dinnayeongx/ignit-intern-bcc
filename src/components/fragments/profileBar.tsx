@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LabelJob from "../elements/label/label.tsx";
-import Button from "../elements/button/index.tsx";
+import Button from "../elements/button";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../services/auth.service.ts";
 import PopUpVerif from "./popUpVerif.tsx";

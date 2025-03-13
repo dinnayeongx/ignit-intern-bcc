@@ -1,6 +1,6 @@
 import { login } from "../../services/auth.service";
-import InputForm from "../elements/Input/index.tsx";
-import Button from "../elements/button/index.tsx";
+import InputForm from "../elements/Input";
+import Button from "../elements/button";
 import { Link } from 'react-router-dom';
 import React, {useRef, useState} from "react";
 import { useNavigate } from "react-router-dom";
