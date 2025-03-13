@@ -4,6 +4,7 @@ import ProfileBar from '../components/fragments/profileBar.tsx';
 import CardProduct from '../components/fragments/cardProduct.tsx';
 import Button from '../components/elements/button';
 import Footer from '../components/fragments/footer.tsx';
+import { useNavigate } from 'react-router-dom';
 
 interface Product {
     id: number;
@@ -37,12 +38,13 @@ const products: Product[] = [
     },
 ];
 
-const HomePage: React.FC = () => {    
+const HomePage: React.FC = () => {
+    const navigate = useNavigate();    
     return (
         <>
             <div className="h-32 w-full shadow-[0px_0px_6px_0px_rgba(0,0,0,0.12)] p-5 flex gap-8">
                 <button className="flex items-center h-full w-[84px]" 
-                onClick={() => window.location.href = "/home" }>
+                onClick={() => navigate("/home") }>
                     <img src="/IGNITLogo.png" alt="" className="items-center"/>
                 </button>
             
@@ -86,7 +88,7 @@ const HomePage: React.FC = () => {
                     </li>
                     <Button
                         classname="w-[208px] h-[48px] text-white rounded-md mt-8 items-center justify-center flex mx-auto"
-                        onClick={() => {window.location.href = '/belajaryuk'}}>
+                        onClick={() => navigate('/belajaryuk')}>
                         Lihat Semuanya
                     </Button>
                 </div>
@@ -99,7 +101,7 @@ const HomePage: React.FC = () => {
                     <h1 className='text-[37px] font-bold'>Komunitas Terkini</h1>
                     <h1 className='text-base'>Berbagi Pengalamanmu Di sini! </h1>
                     <Button
-                        classname="w-[216px] h-[48px] text-white rounded-md" onClick={() => {window.location.href = '/komunitas'}}>
+                        classname="w-[216px] h-[48px] text-white rounded-md" onClick={() => navigate('/komunitas')}>
                         Lihat Daftar Grup
                     </Button>
                 </div>
