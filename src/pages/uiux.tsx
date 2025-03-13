@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState, useEffect, use} from "react";
 import TopBar from "../components/fragments/topBar";
 import Item from "../components/fragments/majorItem";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import ArticleCakrawala from "../components/fragments/articleCakrawala";
 import CardInform from "../components/fragments/cardInform";
 import QuizIT from "../components/fragments/quizIT";
 import NavigasiMajor from "../components/fragments/navMajor";
+import { getCakrawalaInfo } from "../services/cakrawalait.service";
 
 interface Inform {
     id: number,
@@ -14,28 +15,60 @@ interface Inform {
     title: string,
 }
 
-const Inform: Inform[] = [
-    {
-        id: 1,
-        image: "/image/uiux-5.png",
-        career: "UX Researcher",
-        title: "Meneliti Perilaku Pengguna untuk meningkatkan pengalaman.",
-    },
-    {
-        id: 2,
-        image: "/image/uiux-6.png",
-        career: "Product Designer",
-        title: "Merancang produk digital dari konsep hingga implementasi.",
-    },
-    {
-        id: 3,
-        image: "/image/uiux-7.png",
-        career: "Interaction Designer",
-        title: "Membuat interaksi antarmuka yang intuitif dan menarik.",
-    },
-];
+// const Inform: Inform[] = [
+//     {
+//         id: 1,
+//         image: "/image/uiux-5.png",
+//         career: "UX Researcher",
+//         title: "Meneliti Perilaku Pengguna untuk meningkatkan pengalaman.",
+//     },
+//     {
+//         id: 2,
+//         image: "/image/uiux-6.png",
+//         career: "Product Designer",
+//         title: "Merancang produk digital dari konsep hingga implementasi.",
+//     },
+//     {
+//         id: 3,
+//         image: "/image/uiux-7.png",
+//         career: "Interaction Designer",
+//         title: "Membuat interaksi antarmuka yang intuitif dan menarik.",
+//     },
+// ];
+interface QuizITType {
+    question: string,
+    options: string[],
+    answer: string,
+}
+interface CakrawalaInfoProps {
+    description: string,
+    salaryRange: string,
+    criteria: string,
+    skills: string[],
+    relatedStudies: string[],
+    careerOpportunities: string[],
+    responsibilities: string[],
+    questions: QuizITType[],
+    answer: number,
+    tag: string,
+    imageIds: number[],
+}
 
 const UIUXPage = () => {
+    const [cakrawalaInfoData, setCakrawalaInfoData] = useState<CakrawalaInfoProps | null>(null);
+
+    useEffect(() => {
+        getCakrawalaInfo((success, message) => {
+            if (success) {
+                setCakrawalaInfoData(message as CakrawalaInfoProps);
+            }
+            else {
+                console.error('Error fetching data:', message);
+            }
+        });
+    }, []);
+
+
     return (
         <>
             <TopBar title="CakrawalaIT"></TopBar>
@@ -67,13 +100,13 @@ const UIUXPage = () => {
                     <img src="/image/uiux-1.png" alt="" className="bg-[rgba(217,217,217,0.50)] rounded-2xl shadow-[0px_3px_5px_0px_rgba(0,0,0,0.25),0px_6px_10px_0px_rgba(0,0,0,0.25),0px_1px_18px_0px_rgba(0,0,0,0.25)] h-[472px] w-[452px]"/>
                     <div className="items-center my-auto">
                         <h1 className="text-[40px] font-bold mb-6 items-center">UI/UX Designer</h1>
-                        <p className="text-base text-justify items-center leading-7">UI/UX Designer adalah profesional yang bertanggung jawab untuk merancang tampilan dan pengalaman pengguna dalam sebuah aplikasi atau situs web. UI (User Interface) Designer berfokus pada estetika visual, termasuk tata letak, warna, dan elemen interaktif, sedangkan UX (User Experience) Designer memastikan pengalaman pengguna yang intuitif dan mudah digunakan melalui riset, wireframing, dan pengujian. Pekerjaan ini membutuhkan kreativitas, pemahaman tentang perilaku pengguna.</p>
+                        <p className="text-base text-justify items-center leading-7">{cakrawalaInfoData?.description}</p>
                     </div>
                 </div>
                 <div>
                     <ArticleCakrawala
                         title="UI/UX Designer"
-                        salary="Rp 3.000.000 - Rp 5.000.000"
+                        salary={cakrawalaInfoData?.salaryRange}
                         description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem."
                     ></ArticleCakrawala>
                 </div>
@@ -87,11 +120,10 @@ const UIUXPage = () => {
                     <div className="items-center my-auto">
                         <h1 className="text-[40px] font-bold mb-6">Skill dan Keterampilan</h1>
                         <ol className="list-decimal ml-6">
-                            <li className="text-xl leading-10">Design Thinking & Problem Solving</li>
-                            <li className="text-xl leading-10">Wireframing & Prototyping</li>
-                            <li className="text-xl leading-10">User Research & Usability Testing</li>
-                            <li className="text-xl leading-10">Visual Design & UI Principles</li>
-                            <li className="text-xl leading-10">Collaboration & Communication</li>
+                            {cakrawalaInfoData?.skills.map((skill, index) => (
+                                <li className="text-xl leading-10">{skill}</li>
+                            ))}
+                            
                         </ol>
                     </div>
                 </div>
@@ -104,21 +136,14 @@ const UIUXPage = () => {
                     Jurusan Terkait
                 </h1>
                 <div className="grid grid-cols-3 mx-auto gap-10 items-center justify-center">
-                    <Item
-                        name="Desain Komunikasi Visual (DKV)"
-                        description="4-year degree"
-                        image="/image/major-6.png"
-                    ></Item>
-                    <Item
-                        name="Teknik Informatika"
-                        description="4-year degree"
-                        image="/image/major-2.png"
-                    ></Item>
-                    <Item
-                        name="Sistem Informasi"
-                        description="4-year degree"
-                        image="/image/major-7.png"
-                    ></Item>
+                    {cakrawalaInfoData?.relatedStudies.map((major, index) => (
+                        <Item
+                            key={index}
+                            name={major}
+                            description="4-year degree"
+                            image={`/image/major-${index + 1}.png`}
+                        >{major}</Item>
+                    ))}
                 </div>
             </div>
 
@@ -133,11 +158,12 @@ const UIUXPage = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-10 pt-[60px] mx-auto items-center justify-center'>
-                    {Inform.map((inform) => (
+                    {cakrawalaInfoData?.careerOpportunities.map((inform) => (
                         <CardInform key={inform.id}>
                             <CardInform.Header image={inform.image}/>
                                 <CardInform.Body career={inform.career} title={inform.title}>
                                 </CardInform.Body>
+                        {inform}
                         </CardInform>
                     ))}
                 </div>
@@ -166,7 +192,9 @@ const UIUXPage = () => {
                     <h1 className="text-[40px] font-bold my-auto">Apakah Kamu Sudah Paham Mengenai Bidang Ini?</h1>
                     <div>
                         <div>
-                            <QuizIT></QuizIT>
+                            {cakrawalaInfoData && cakrawalaInfoData.questions && (
+                                <QuizIT questions={cakrawalaInfoData.questions} />
+                            )}
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import Navigasi from '../components/fragments/navigasi';
 import ProfileBar from '../components/fragments/profileBar';
 import CardProduct from '../components/fragments/cardProduct';
 import Button from '../components/elements/button';
-import Footer from '../components/fragments/footer';
+import Footer from '../components/fragments/footer.tsx';
 
 interface Product {
     id: number;

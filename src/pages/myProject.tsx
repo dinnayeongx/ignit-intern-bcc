@@ -1,6 +1,6 @@
 import React from "react";
 import TopBar from "../components/fragments/topBar";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import ListProject from "../components/fragments/listProject";
 import { useNavigate } from "react-router-dom";
 

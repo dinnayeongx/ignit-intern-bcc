@@ -5,11 +5,12 @@ import FormUpdate from "../components/fragments/formUpdateBio";
 import Education from "../components/elements/label/education";
 import Button from "../components/elements/button";
 import Skill from "../components/fragments/skill";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import FormSkillPopUp from "../components/fragments/formSkillPopUp";
 import FormEduPopUp from "../components/fragments/formEduPopUp";
 import { useNavigate } from "react-router-dom";
 import PopUpProjects from "../components/fragments/popUpProjects";
+import { getProfile, updateProfile } from "../services/profile.service";
 
 interface ProfileBarProps {
     photo: string;
@@ -18,14 +19,15 @@ interface ProfileBarProps {
     description: string;
 }
 
-const Profile: ProfileBarProps = {
-    photo: "/image/foto-prof.jpg",
-    name: "John Doe",
-    passion: "Product Design",
-    description: "Passionate about creating amazing designs"
-}
+// const Profile: ProfileBarProps = {
+//     photo: "/image/foto-prof.jpg",
+//     name: "John Doe",
+//     passion: "Product Design",
+//     description: "Passionate about creating amazing designs"
+// }
 
 interface EducationProps {
+    id: number;
     image: string;
     school: string;
     major: string;
@@ -33,41 +35,55 @@ interface EducationProps {
     end: string;
 }
 
-const education: EducationProps[] = [
-    {
-        image: "/image/major-1.png",
-        school: "University of ABC",
-        major: "Sistem Informasi",
-        start: "2023",
-        end: "Sekarang",
-    },
-    {
-        image: "/image/edu-1.png",
-        school: "SMA Negeri 12",
-        major: "Jurusan IPA",
-        start: "2020",
-        end: "2023",
-    },
-]
+// const education: EducationProps[] = [
+//     {
+//         image: "/image/major-1.png",
+//         school: "University of ABC",
+//         major: "Sistem Informasi",
+//         start: "2023",
+//         end: "Sekarang",
+//     },
+//     {
+//         image: "/image/edu-1.png",
+//         school: "SMA Negeri 12",
+//         major: "Jurusan IPA",
+//         start: "2020",
+//         end: "2023",
+//     },
+// ]
 
 interface SkillProps {
+    id: number;
     skill: string;
     description: string;
     years: string;
 }
 
-const skill: SkillProps[] = [
-    {
-        skill: "UI/UX Design",
-        description: "Proficient in creating intuitive interfaces",
-        years: "5",
-    },
-    {
-        skill: "Front-End Development",
-        description: "Skilled in HTML, CSS, JavaScript",
-        years: "3",
-    },
-]
+// const skill: SkillProps[] = [
+//     {
+//         skill: "UI/UX Design",
+//         description: "Proficient in creating intuitive interfaces",
+//         years: "5",
+//     },
+//     {
+//         skill: "Front-End Development",
+//         description: "Skilled in HTML, CSS, JavaScript",
+//         years: "3",
+//     },
+// ]
+
+interface Profile {
+    id: number;
+    username: string;
+    email: string;
+    fullName: string;
+    passion: string;
+    summary: string;
+    educations: EducationProps[];
+    skills: SkillProps[];
+    // projects: projects[];
+    // errors: errors[];
+  }
 
 const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion, photo }) => {
 
@@ -76,6 +92,43 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
     const navigate = useNavigate();
     const [showPopUp, setShowPopUp] = useState(false);
     const [profileImage, setProfileImage] = useState<string>(photo);
+    const [profileData, setProfileData] = useState<Profile | null>(null);
+
+    useEffect(() => {
+        getProfile((success, message) => {
+          if (success) {
+            setProfileData(message as Profile);
+          }
+        });
+    }, []);
+
+    const handleUpdateProfile = () => {
+        updateProfile(profileData as Profile, (success, message) => {
+            if (success) {
+                console.log("Profile updated successfully");
+            } else {
+                console.error("Failed to update profile:", message);
+            }
+        });
+    }
+
+    const handleFormSubmit = (updatedData: { fullName: string; passion: string; summary: string }) => {
+        setProfileData((prevData) => ({
+            ...prevData,
+            fullName: updatedData.fullName,
+            passion: updatedData.passion,
+            summary: updatedData.summary,
+        }));
+    
+        handleUpdateProfile();
+    };
+
+    useEffect(() => {
+        if (profileData) {
+            handleUpdateProfile();
+        }
+    }, [profileData]);
+
 
     const handleButtonClick = () => {
         setShowPopUp(prevState => !prevState);
@@ -103,6 +156,10 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
           reader.readAsDataURL(file);
         }
       };
+
+      if (!profileData) {
+        return <div>Loading profile...</div>;
+    }
 
 
     return (
@@ -135,11 +192,11 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
                 </div>
                 
                 <div className="w-full gap-3">
-                    <h4 className="h-6 font-bold text-white text-2xl mb-3 items-center">{Profile.name}</h4>
+                    <h4 className="h-6 font-bold text-white text-2xl mb-3 items-center">{profileData.username}</h4>
                     <div className="h-6 items-center mb-3">
-                        <LabelJob job={Profile.passion} classname="bg-[#F2EEFF]"/>
+                        <LabelJob job={profileData.passion} classname="bg-[#F2EEFF]"/>
                     </div>
-                    <p className="h-6 font-normal text-[16px] items-center text-white mb-6 lg:mb-0">{Profile.description}</p>
+                    <p className="h-6 font-normal text-[16px] items-center text-white mb-6 lg:mb-0">{profileData.summary}</p>
                 </div>
 
                 <Button classname="bg-white text-black rounded-lg w-[128px] font-medium" onClick={handleButtonClick}
@@ -152,7 +209,7 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
                     <p className="text-base">Share a little about yourself</p>
                 </div>
                 <div>
-                    <FormUpdate></FormUpdate>
+                    <FormUpdate fullname={profileData.fullname} passion={profileData.passion} summary={profileData.summary} onSubmit={handleFormSubmit}></FormUpdate>
                 </div>
             </div>
 
@@ -163,7 +220,7 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
                     <h1 className="text-[40px] font-bold mb-6">Education</h1>
                 </div>
                 <div>
-                    {education.map((edu, index) => (
+                    {profileData.educations.map((edu, index) => (
                         <Education key={index} image={edu.image} school={edu.school} major={edu.major} start={edu.start} end={edu.end}>
                         </Education>
                     ))}
@@ -178,7 +235,7 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
             <div className="py-[60px] px-[80px] w-full h-auto">
                 <h1 className="text-[40px] font-bold mb-[60px] text-center">Skills</h1>
                 <div className="grid grid-flow-col gap-[40px] justify-center items-center mx-auto">
-                    {skill.map((skill, index) => (
+                    {profileData.skills.map((skill, index) => (
                         <Skill key={index} skill={skill.skill} description={skill.description} years={skill.years}></Skill>
                     ))}
                 </div>

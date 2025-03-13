@@ -8,21 +8,25 @@ interface QuizITType {
     answer: string,
 }
 
-const questions: QuizITType[] = [
-    {
-        question: 'Menurut kamu, manakah yang paling penting dibutuhkan pada bidang UI/UX Designer?',
-        options: [
-            'Kemampuan membuat desain yang menarik secara estetika',
-            'Pemahaman tentang perilaku pengguna dan user experience',
-            'Keahlian dalam menulis kode pemrograman secara mendetail',
-            'Menguasai semua software desain grafis tanpa pengecualian',
-            'Menyelesaikan proyek tanpa mempertimbangkan usability',
-        ],
-        answer: 'Pemahaman tentang perilaku pengguna dan user experience',
-    },
-];
+interface QuizITProps {
+    questions: QuizITType[];
+}
 
-const QuizIT: React.FC = () => {
+// const questions: QuizITType[] = [
+//     {
+//         question: 'Menurut kamu, manakah yang paling penting dibutuhkan pada bidang UI/UX Designer?',
+//         options: [
+//             'Kemampuan membuat desain yang menarik secara estetika',
+//             'Pemahaman tentang perilaku pengguna dan user experience',
+//             'Keahlian dalam menulis kode pemrograman secara mendetail',
+//             'Menguasai semua software desain grafis tanpa pengecualian',
+//             'Menyelesaikan proyek tanpa mempertimbangkan usability',
+//         ],
+//         answer: 'Pemahaman tentang perilaku pengguna dan user experience',
+//     },
+// ];
+
+const QuizIT: React.FC<QuizITProps> = ({ questions }) => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
@@ -30,8 +34,8 @@ const QuizIT: React.FC = () => {
     const [nav, setNav] = useState('');
     const navigate = useNavigate();
 
-    const handleAnswer = (answer: string) => {
-        if (answer === questions[0].answer) {
+    const handleAnswer = (answer: string, questionIndex: number) => {
+        if (answer === questions[questionIndex].answer) {
             setPopupMessage('🎉 Selamat! Kamu Jawab dengan Benar! 🎉<br/>Biar lebih jago lagi, explore di ');
             setImage('/image/popup-true.png');
             setNav('BelajarYuk! 🎨👨‍💻');
@@ -51,16 +55,24 @@ const QuizIT: React.FC = () => {
     return (
         <>
             <div>
-                <p className="text-[20px] font-medium mb-[40px] text-center">{questions[0].question}</p>
-                <div className="items-center justify-center">
+                {questions.map((question, index) => (
+                    <div key={index}>
+                        <p className="text-[20px] font-medium mb-[40px] text-center">{question.question}</p>
+                        <div className="items-center justify-center">
                     
-                    {questions[0].options.map((option, index) => (
-                        <button className="shadow-[0px_1px_10px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_2px_4px_0px_rgba(0,0,0,0.25)] text-center mb-6 w-full h-auto bg-[#D4CBE7] rounded-2xl py-1 justify-center items-center hover:bg-opacity-50"
-                        onClick={() => handleAnswer(option)}>
+                    {question.options.map((option, optionIndex) => (
+                        <button
+                        key={index} 
+                        className="shadow-[0px_1px_10px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_2px_4px_0px_rgba(0,0,0,0.25)] text-center mb-6 w-full h-auto bg-[#D4CBE7] rounded-2xl py-1 justify-center items-center hover:bg-opacity-50"
+                        onClick={() => handleAnswer(option, index)}>
                         {option}
                         </button>
                     ))}
-                </div>
+                        </div>
+                    </div>
+                    
+                ))}
+                
             </div>
 
             {showPopup && (

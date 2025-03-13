@@ -3,7 +3,7 @@ import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
 import CardProject from "../components/fragments/cardProject";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
 import { getTags, getProjects } from "../services/temukarier.service";
 

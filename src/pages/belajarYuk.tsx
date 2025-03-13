@@ -3,7 +3,7 @@ import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
 import CardModulProduct from "../components/fragments/cardModulProduct";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import PopUpVerif from "../components/fragments/popUpVerif";
 import { useNavigate } from "react-router-dom";
 import HeroSection from "../components/fragments/heroSection";

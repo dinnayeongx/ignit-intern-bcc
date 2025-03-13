@@ -1,45 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import InputForm from "../elements/Input";
 import Button from "../elements/button";
 
-const FormUpdate = () => {
+interface FormUpdateProps {
+    initialFullname: string;
+    initialPassion: string;
+    initialSummary: string;
+    onSubmit: (data: { fullName: string; passion: string; summary: string }) => void;
+}
+
+const FormUpdate: React.FC<FormUpdateProps> = ({ initialFullname, initialPassion, initialSummary, onSubmit }) => {
+    const [fullName, setFullName] = useState(initialFullname);
+    const [passion, setPassion] = useState(initialPassion);
+    const [summary, setSummary] = useState(initialSummary);
+    const [error, setError] = useState<string | null>(null);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!fullName || !passion || !summary) {
+            setError("All fields are required.");
+            return;
+        }
+
+        onSubmit({ fullName, passion, summary });
+
+    }
+
     return (
         <div className="w-full h-auto items-center justify-left">
-            <div className="mb-10">
-                <InputForm
-                    type="text"
-                    placeholder="John Doe"
-                    name="fullname"
-                    className="rounded-md border border-[rgba(0,0,0,0.10)] h-auto mb-0 p-3 px-1"
-                    label="Full Name"
-                    note="Required"
-                >
-                </InputForm>
-            </div>
-            <div className="mb-10">
-                <InputForm
-                    type="text"
-                    placeholder="Ex: Product Design"
-                    name="passion"
-                    className="rounded-md border border-[rgba(0,0,0,0.10)] h-auto mb-0 p-3 px-1"
-                    label="Passion"
-                    note="Required"
-                >
-                </InputForm>
-            </div>
-            <div className="mb-10">
-                <InputForm
-                    type="text"
-                    placeholder="Enter your summary here"
-                    name="summary"
-                    className="rounded-md border border-[rgba(0,0,0,0.10)] h-auto mb-0 p-3 px-1"
-                    label="Summary"
-                    note="Required"
-                >
-                </InputForm>
-            </div>
-            <Button classname="w-[240px] text-white p-3 rounded-lg"
-            >Simpan Perubahan</Button>
+            {error && <div className="text-red-500 mb-4">{error}</div>}
+            <form onSubmit={handleSubmit}>
+                <div className="mb-10">
+                    <InputForm
+                        type="text"
+                        placeholder="John Doe"
+                        name="fullname"
+                        className="rounded-md border border-[rgba(0,0,0,0.10)] h-auto mb-0 p-3 px-1"
+                        label="Full Name"
+                        note="Required"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                    >
+                    </InputForm>
+                </div>
+                <div className="mb-10">
+                    <InputForm
+                        type="text"
+                        placeholder="Ex: Product Design"
+                        name="passion"
+                        className="rounded-md border border-[rgba(0,0,0,0.10)] h-auto mb-0 p-3 px-1"
+                        label="Passion"
+                        note="Required"
+                        value={passion}
+                        onChange={(e) => setPassion(e.target.value)}
+                    >
+                    </InputForm>
+                </div>
+                <div className="mb-10">
+                    <InputForm
+                        type="text"
+                        placeholder="Enter your summary here"
+                        name="summary"
+                        className="rounded-md border border-[rgba(0,0,0,0.10)] h-auto mb-0 p-3 px-1"
+                        label="Summary"
+                        note="Required"
+                        value={summary}
+                        onChange={(e) => setSummary(e.target.value)}
+                    >
+                    </InputForm>
+                </div>
+                <Button classname="w-[240px] text-white p-3 rounded-lg" type="submit"
+                >Simpan Perubahan</Button>
+            </form>
+            
             
         </div>
     );

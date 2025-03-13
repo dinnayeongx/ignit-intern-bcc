@@ -3,71 +3,73 @@ import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
 import CardKarier from "../components/fragments/cardKarier";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
 import { getTags } from "../services/temukarier.service";
 import { getMagang } from "../services/temukarier.service";
+import ImageComponent from "../services/ImageComponent";
 
 interface Magang {
     id: number,
-    image: string,
-    position: string,
-    location: string,
+    imageId: string,
+    title: string,
+    source: string,
     link: string,
     category: string,
+    imageUrl: string,
 }
 
 
-const magang: Magang[] = [
-    {
-        id: 1,
-        image: "/image/karier-1.png",
-        position: "Product Design Intern - VIDA Digital Identity",
-        location: "Jakarta",
-        link: "https://vida.freshteam.com/jobs/DK6OhvPc9qdU/product-design-intern",
-        category: "UI/UX Designer"
-    },
-    {
-        id: 2,
-        image: "/image/karier-2.png",
-        position: "Mobile UI/UX Designer - TimeDoor",
-        location: "Bali",
-        link: "",
-        category: "UI/UX Designer"
-    },
-    {
-        id: 3,
-        image: "/image/karier-3.png",
-        position: "Data Scientist",
-        location: "Surabaya",
-        link: "",
-        category: "IT Project Manager"
-    },
-    {
-        id: 4,
-        image: "/image/karier-1.png",
-        position: "Software Engineer",
-        location: "Jakarta",
-        link: "https://wa.me/6282338373031",
-        category: "IoT Developer"
-    },
-    {
-        id: 5,
-        image: "/image/karier-2.png",
-        position: "UI/UX Designer",
-        location: "Bandung",
-        link: "",
-        category: "UI/UX Designer"
-    },
-    {
-        id: 6,
-        image: "/image/karier-3.png",
-        position: "Data Scientist",
-        location: "Surabaya",
-        link: "",
-        category: "Database Administrator"
-    },
-];
+// const magang: Magang[] = [
+//     {
+//         id: 1,
+//         image: "/image/karier-1.png",
+//         position: "Product Design Intern - VIDA Digital Identity",
+//         location: "Jakarta",
+//         link: "https://vida.freshteam.com/jobs/DK6OhvPc9qdU/product-design-intern",
+//         category: "UI/UX Designer"
+//     },
+//     {
+//         id: 2,
+//         image: "/image/karier-2.png",
+//         position: "Mobile UI/UX Designer - TimeDoor",
+//         location: "Bali",
+//         link: "",
+//         category: "UI/UX Designer"
+//     },
+//     {
+//         id: 3,
+//         image: "/image/karier-3.png",
+//         position: "Data Scientist",
+//         location: "Surabaya",
+//         link: "",
+//         category: "IT Project Manager"
+//     },
+//     {
+//         id: 4,
+//         image: "/image/karier-1.png",
+//         position: "Software Engineer",
+//         location: "Jakarta",
+//         link: "https://wa.me/6282338373031",
+//         category: "IoT Developer"
+//     },
+//     {
+//         id: 5,
+//         image: "/image/karier-2.png",
+//         position: "UI/UX Designer",
+//         location: "Bandung",
+//         link: "",
+//         category: "UI/UX Designer"
+//     },
+//     {
+//         id: 6,
+//         image: "/image/karier-3.png",
+//         position: "Data Scientist",
+//         location: "Surabaya",
+//         link: "",
+//         category: "Database Administrator"
+//     },
+// ];
 
 // interface FilterTag {
 //     tag: string
@@ -121,11 +123,12 @@ const TemuKarierMagangPage = () => {
           if (success) {
             const formattedData = message.map((item: any) => ({
                 id: item.id,
-                image: `/image/karier-${item.imageId}.png`,
+                imageId: item.imageId,
                 position: item.name,
                 location: "Unknown",
                 link: item.url,
                 category: item.tags[0] || "Unknown",
+                imageUrl: `https://be-intern.bccdev.id/alex/api/images/${item.imageId}`
             }));
             setMagangData(formattedData);
           }
@@ -208,9 +211,11 @@ const TemuKarierMagangPage = () => {
                 <div className="grid grid-flow-row gap-[60px]">
                     <h1 className="text-[40px] font-bold text-center">Daftar Magang yang Tersedia</h1>
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
-                        {magang.map((magang) => (
+                        {magangData.map((magang) => (
                             <CardKarier key={magang.id}>
-                                <CardKarier.Header image={magang.image} />
+                                <CardKarier.Header>
+                                    <ImageComponent imageUrl={magang.imageUrl}></ImageComponent>
+                                </CardKarier.Header>
                                     <CardKarier.Body position={magang.position} location={magang.location} />
                                         <CardKarier.Footer onClick={() => navigate('/temukarier/magang/detail')} />
                             </CardKarier>

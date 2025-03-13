@@ -2,7 +2,7 @@ import React from "react";
 import TopBar from "../components/fragments/topBar";
 import Item from "../components/fragments/majorItem";
 import CardMajor from "../components/fragments/cardMajor";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import NavigasiMajor from "../components/fragments/navMajor";
 import HeroSection from "../components/fragments/heroSection";
 

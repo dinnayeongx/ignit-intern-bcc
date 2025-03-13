@@ -1,4 +1,4 @@
-import FormLogin from "../components/fragments/formLogin";
+import FormLogin from "../components/fragments/formLogin.tsx";
 import AuthLayout from "../components/fragments/authLayouts";
 import { Fragment } from "react";
 import React from "react";

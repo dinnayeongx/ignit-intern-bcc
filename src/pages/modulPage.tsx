@@ -3,7 +3,7 @@ import TopBar from "../components/fragments/topBar";
 import CardModulProduct from "../components/fragments/cardModulProduct";
 import { useNavigate } from "react-router-dom";
 import ModulBanner from "../components/fragments/modulBanner";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 
 interface Product {
     id: number;

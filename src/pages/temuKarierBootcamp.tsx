@@ -3,7 +3,7 @@ import TopBar from "../components/fragments/topBar";
 import FilterBar from "../components/elements/label/filterBar";
 import Button from "../components/elements/button";
 import CardKarier from "../components/fragments/cardKarier";
-import Footer from "../components/fragments/footer";
+import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
 import { getTags, getBootcamp } from "../services/temukarier.service";
 import ImageComponent from "../services/ImageComponent";
@@ -117,7 +117,7 @@ const TemuKarierBootcampPage = () => {
                     location: "Unknown",
                     link: item.url,
                     category: item.tags[0] || "Unknown",
-                    imageUrl: `https://be-intern.bccdev.id/alex/api/docs/images/${item.imageId}`
+                    imageUrl: `https://be-intern.bccdev.id/alex/api/images/${item.imageId}`
                 }));
                 setBootcampData(formattedData);
               }
