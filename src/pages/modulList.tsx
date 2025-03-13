@@ -1,9 +1,9 @@
 import React from "react";
-import TopBar from "../components/fragments/topBar.tsx";
-import ModulBanner from "../components/fragments/modulBanner.tsx";
-import Footer from "../components/fragments/footer.tsx";
+import TopBar from "../components/fragments/topBar";
+import ModulBanner from "../components/fragments/modulBanner";
+import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
-import HeroSection from "../components/fragments/heroSection.tsx";
+import HeroSection from "../components/fragments/heroSection";
 
 
 const ModulList = () => {

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import TopBar from "../components/fragments/topBar.tsx";
-import LabelJob from "../components/elements/label/label.tsx";
-import FormUpdate from "../components/fragments/formUpdateBio.tsx";
-import Education from "../components/elements/label/education.tsx";
+import TopBar from "../components/fragments/topBar";
+import LabelJob from "../components/elements/label/label";
+import FormUpdate from "../components/fragments/formUpdateBio";
+import Education from "../components/elements/label/education";
 import Button from "../components/elements/button";
-import Skill from "../components/fragments/skill.tsx";
-import Footer from "../components/fragments/footer.tsx";
-import FormSkillPopUp from "../components/fragments/formSkillPopUp.tsx";
-import FormEduPopUp from "../components/fragments/formEduPopUp.tsx";
+import Skill from "../components/fragments/skill";
+import Footer from "../components/fragments/footer";
+import FormSkillPopUp from "../components/fragments/formSkillPopUp";
+import FormEduPopUp from "../components/fragments/formEduPopUp";
 import { useNavigate } from "react-router-dom";
-import PopUpProjects from "../components/fragments/popUpProjects.tsx";
-import { getProfile, updateProfile } from "../services/profile.service.ts";
+import PopUpProjects from "../components/fragments/popUpProjects";
+import { getProfile, updateProfile } from "../services/profile.service";
 
 interface ProfileBarProps {
     photo: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import TopBar from "../components/fragments/topBar.tsx";
+import TopBar from "../components/fragments/topBar";
 import Button from "../components/elements/button";
 
 const TemuKarierDetail = () => {

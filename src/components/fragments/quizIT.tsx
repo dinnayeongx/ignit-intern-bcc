@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PopUpVerif from "./popUpVerif.tsx";
+import PopUpVerif from "./popUpVerif";
 
 interface QuizITType {
     question: string,

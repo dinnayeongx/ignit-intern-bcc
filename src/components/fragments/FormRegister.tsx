@@ -1,10 +1,10 @@
 import React, {useRef, useState} from "react";
-import { register } from "../../services/auth.service.ts";
-import InputForm from "../elements/Input/index.tsx";
-import Button from "../elements/button/index.tsx";
+import { register } from "../../services/auth.service";
+import InputForm from "../elements/Input/index";
+import Button from "../elements/button/index";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import PopUpVerif from "./popUpVerif.tsx";
+import PopUpVerif from "./popUpVerif";
 
 interface RegisterData {
   username: string

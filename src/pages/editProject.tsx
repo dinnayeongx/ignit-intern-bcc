@@ -1,7 +1,7 @@
 import React from "react";
-import TopBar from "../components/fragments/topBar.tsx";
-import FormEditProject from "../components/fragments/formEditProject.tsx";
-import Footer from "../components/fragments/footer.tsx";
+import TopBar from "../components/fragments/topBar";
+import FormEditProject from "../components/fragments/formEditProject";
+import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
 
 const EditProject = () => {

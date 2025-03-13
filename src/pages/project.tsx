@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import TopBar from "../components/fragments/topBar.tsx";
+import TopBar from "../components/fragments/topBar";
 import Button from "../components/elements/button";
-import FilterBar from "../components/elements/label/filterBar.tsx";
-import Footer from "../components/fragments/footer.tsx";
+import FilterBar from "../components/elements/label/filterBar";
+import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
-import PopUpVerif from "../components/fragments/popUpVerif.tsx";
+import PopUpVerif from "../components/fragments/popUpVerif";
 
 const ProjectPage = () => {
 
