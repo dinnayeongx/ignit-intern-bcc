@@ -1,14 +1,15 @@
 {
     "builds": [
-        {
-            "src": "package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "dist",
-                "engines": {
-                    "node": "22.x"
-                }
-            }
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
         }
-    ]
-}
+      }
+    ],
+    "env": {
+      "NODE_VERSION": "22.x"
+    }
+  }
+  
