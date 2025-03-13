@@ -1,5 +1,5 @@
 import { login } from "../../services/auth.service";
-import InputForm from "../elements/Input";
+import InputForm from "../elements/input";
 import Button from "../elements/button";
 import { Link } from 'react-router-dom';
 import React, {useRef, useState} from "react";

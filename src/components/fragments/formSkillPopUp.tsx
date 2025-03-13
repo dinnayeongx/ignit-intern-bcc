@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../elements/button";
-import InputForm from "../elements/Input";
+import InputForm from "../elements/input";
 import PopUpVerif from "./popUpVerif.tsx";
 
 interface PopUpSKillProps {
@@ -96,7 +96,7 @@ export default FormSKillPopUp;
 
 // import React, { useState } from "react";
 // import Button from "../elements/button";
-// import InputForm from "../elements/Input";
+// import InputForm from "../elements/input";
 // import PopUpVerif from "./popUpVerif";
 
 // interface PopUpSKillProps {

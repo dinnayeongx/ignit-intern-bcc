@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputForm from "../elements/Input";
+import InputForm from "../elements/input";
 import Button from "../elements/button";
 
 interface FormUpdateProps {
@@ -83,7 +83,7 @@ export default FormUpdate;
 
 
 // import React, { useState } from "react";
-// import InputForm from "../elements/Input";
+// import InputForm from "../elements/input";
 // import Button from "../elements/button";
 
 // const FormUpdate = () => {

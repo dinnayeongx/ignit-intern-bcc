@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputForm from "../elements/Input";
+import InputForm from "../elements/input";
 import FilterBar from "../elements/label/filterBar.tsx";
 import Button from "../elements/button";
 import PopUpVerif from "./popUpVerif.tsx";
@@ -178,7 +178,7 @@ const FormEditProject = () => {
 export default FormEditProject;
 
 // import React, { useState } from "react";
-// import InputForm from "../elements/Input";
+// import InputForm from "../elements/input";
 // import FilterBar from "../elements/label/filterBar";
 // import Button from "../elements/button";
 // import PopUpVerif from "./popUpVerif";

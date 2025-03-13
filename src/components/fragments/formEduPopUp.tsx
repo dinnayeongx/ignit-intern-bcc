@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../elements/button";
-import InputForm from "../elements/Input";
+import InputForm from "../elements/input";
 import PopUpVerif from "./popUpVerif.tsx";
 import { useNavigate } from "react-router-dom";
 
@@ -116,7 +116,7 @@ export default FormEduPopUp;
 
 // import React, { useState } from "react";
 // import Button from "../elements/button";
-// import InputForm from "../elements/Input";
+// import InputForm from "../elements/input";
 // import PopUpVerif from "./popUpVerif";
 // import { useNavigate } from "react-router-dom";
 
