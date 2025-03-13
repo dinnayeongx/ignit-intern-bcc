@@ -1,8 +1,8 @@
 import React from 'react';
 import Logo from '../components/elements/button/logo.tsx';
-import Navigasi from '../components/fragments/navigasi';
-import ProfileBar from '../components/fragments/profileBar';
-import CardProduct from '../components/fragments/cardProduct';
+import Navigasi from '../components/fragments/navigasi.tsx';
+import ProfileBar from '../components/fragments/profileBar.tsx';
+import CardProduct from '../components/fragments/cardProduct.tsx';
 import Button from '../components/elements/button';
 import Footer from '../components/fragments/footer.tsx';
 

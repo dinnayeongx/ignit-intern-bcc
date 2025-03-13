@@ -1,8 +1,8 @@
 import React from "react";
-import TopBar from "../components/fragments/topBar";
-import CardModulProduct from "../components/fragments/cardModulProduct";
+import TopBar from "../components/fragments/topBar.tsx";
+import CardModulProduct from "../components/fragments/cardModulProduct.tsx";
 import { useNavigate } from "react-router-dom";
-import ModulBanner from "../components/fragments/modulBanner";
+import ModulBanner from "../components/fragments/modulBanner.tsx";
 import Footer from "../components/fragments/footer.tsx";
 
 interface Product {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Item from "./majorItem";
+import Item from "./majorItem.tsx";
 
 const navigasi = [
   {

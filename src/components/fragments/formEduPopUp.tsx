@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../elements/button";
 import InputForm from "../elements/Input";
-import PopUpVerif from "./popUpVerif";
+import PopUpVerif from "./popUpVerif.tsx";
 import { useNavigate } from "react-router-dom";
 
 interface PopUpEduProps {

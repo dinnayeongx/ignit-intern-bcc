@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import TopBar from "../components/fragments/topBar";
-import FilterBar from "../components/elements/label/filterBar";
+import TopBar from "../components/fragments/topBar.tsx";
+import FilterBar from "../components/elements/label/filterBar.tsx";
 import Button from "../components/elements/button";
-import CardKarier from "../components/fragments/cardKarier";
+import CardKarier from "../components/fragments/cardKarier.tsx";
 import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
-import { getTags } from "../services/temukarier.service";
-import { getMagang } from "../services/temukarier.service";
-import ImageComponent from "../services/ImageComponent";
+import { getTags } from "../services/temukarier.service.ts";
+import { getMagang } from "../services/temukarier.service.ts";
+import ImageComponent from "../services/ImageComponent.tsx";
 
 interface Magang {
     id: number,

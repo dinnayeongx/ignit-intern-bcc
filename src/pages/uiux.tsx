@@ -1,12 +1,12 @@
 import React, {useState, useEffect, use} from "react";
-import TopBar from "../components/fragments/topBar";
-import Item from "../components/fragments/majorItem";
+import TopBar from "../components/fragments/topBar.tsx";
+import Item from "../components/fragments/majorItem.tsx";
 import Footer from "../components/fragments/footer.tsx";
-import ArticleCakrawala from "../components/fragments/articleCakrawala";
-import CardInform from "../components/fragments/cardInform";
-import QuizIT from "../components/fragments/quizIT";
-import NavigasiMajor from "../components/fragments/navMajor";
-import { getCakrawalaInfo } from "../services/cakrawalait.service";
+import ArticleCakrawala from "../components/fragments/articleCakrawala.tsx";
+import CardInform from "../components/fragments/cardInform.tsx";
+import QuizIT from "../components/fragments/quizIT.tsx";
+import NavigasiMajor from "../components/fragments/navMajor.tsx";
+import { getCakrawalaInfo } from "../services/cakrawalait.service.ts";
 
 interface Inform {
     id: number,

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import TopBar from "../components/fragments/topBar";
-import FilterBar from "../components/elements/label/filterBar";
+import TopBar from "../components/fragments/topBar.tsx";
+import FilterBar from "../components/elements/label/filterBar.tsx";
 import Button from "../components/elements/button";
-import CardKarier from "../components/fragments/cardKarier";
+import CardKarier from "../components/fragments/cardKarier.tsx";
 import Footer from "../components/fragments/footer.tsx";
-import PopUpVerif from "../components/fragments/popUpVerif";
+import PopUpVerif from "../components/fragments/popUpVerif.tsx";
 import { useNavigate } from "react-router-dom";
 
 interface Karier {

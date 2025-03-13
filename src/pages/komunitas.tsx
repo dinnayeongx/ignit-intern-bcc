@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import TopBar from "../components/fragments/topBar";
-import Article from "../components/fragments/article";
+import TopBar from "../components/fragments/topBar.tsx";
+import Article from "../components/fragments/article.tsx";
 import Button from "../components/elements/button";
-import Item from "../components/fragments/majorItem";
+import Item from "../components/fragments/majorItem.tsx";
 import Footer from "../components/fragments/footer.tsx";
-import PopUpVerif from "../components/fragments/popUpVerif";
-import HeroSection from "../components/fragments/heroSection";
+import PopUpVerif from "../components/fragments/popUpVerif.tsx";
+import HeroSection from "../components/fragments/heroSection.tsx";
 
 const KomunitasPage = () => {
 

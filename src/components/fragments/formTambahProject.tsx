@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import InputForm from "../elements/Input";
-import FilterBar from "../elements/label/filterBar";
+import FilterBar from "../elements/label/filterBar.tsx";
 import Button from "../elements/button";
-import PopUpVerif from "./popUpVerif";
+import PopUpVerif from "./popUpVerif.tsx";
 
 interface FilterTag {
     tag: string
