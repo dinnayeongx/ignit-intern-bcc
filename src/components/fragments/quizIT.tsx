@@ -9,7 +9,7 @@ interface QuizITType {
 }
 
 interface QuizITProps {
-    questions: QuizITType[];
+    questions: QuizITType;
 }
 
 // const questions: QuizITType[] = [
@@ -34,8 +34,8 @@ const QuizIT: React.FC<QuizITProps> = ({ questions }) => {
     const [nav, setNav] = useState('');
     const navigate = useNavigate();
 
-    const handleAnswer = (answer: string, questionIndex: number) => {
-        if (answer === questions[questionIndex].answer) {
+    const handleAnswer = (answer: string) => {
+        if (answer === questions.answer) {
             setPopupMessage('🎉 Selamat! Kamu Jawab dengan Benar! 🎉<br/>Biar lebih jago lagi, explore di ');
             setImage('/image/popup-true.png');
             setNav('BelajarYuk! 🎨👨‍💻');
@@ -55,23 +55,19 @@ const QuizIT: React.FC<QuizITProps> = ({ questions }) => {
     return (
         <>
             <div>
-                {questions.map((question, index) => (
-                    <div key={index}>
-                        <p className="text-[20px] font-medium mb-[40px] text-center">{question.question}</p>
+                        <p className="text-[20px] font-medium mb-[40px] text-center">{questions.question}</p>
                         <div className="items-center justify-center">
                     
-                    {question.options.map((option, optionIndex) => (
+                    {questions.options && questions.options.map((option, index) => (
                         <button
                         key={index} 
                         className="shadow-[0px_1px_10px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_2px_4px_0px_rgba(0,0,0,0.25)] text-center mb-6 w-full h-auto bg-[#D4CBE7] rounded-2xl py-1 justify-center items-center hover:bg-opacity-50"
-                        onClick={() => handleAnswer(option, index)}>
+                        onClick={() => handleAnswer(option)}>
                         {option}
                         </button>
                     ))}
                         </div>
-                    </div>
-                    
-                ))}
+
                 
             </div>
 

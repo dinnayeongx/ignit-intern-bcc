@@ -47,7 +47,7 @@ interface CakrawalaInfoProps {
     skills: string[],
     relatedStudies: string[],
     careerOpportunities: string[],
-    responsibilities: string[],
+    responsibilites: string[],
     questions: QuizITType[],
     answer: number,
     tag: string,
@@ -60,6 +60,7 @@ const UIUXPage = () => {
     useEffect(() => {
         getCakrawalaInfo((success, message) => {
             if (success) {
+                console.log(message);
                 setCakrawalaInfoData(message as CakrawalaInfoProps);
             }
             else {
@@ -107,7 +108,7 @@ const UIUXPage = () => {
                     <ArticleCakrawala
                         title="UI/UX Designer"
                         salary={cakrawalaInfoData?.salaryRange}
-                        description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem."
+                        description={cakrawalaInfoData?.criteria}
                     ></ArticleCakrawala>
                 </div>
             </div>
@@ -121,9 +122,11 @@ const UIUXPage = () => {
                         <h1 className="text-[40px] font-bold mb-6">Skill dan Keterampilan</h1>
                         <ol className="list-decimal ml-6">
                             {cakrawalaInfoData?.skills.map((skill, index) => (
-                                <li className="text-xl leading-10">{skill}</li>
+                                <div key={index}>
+                                    <li className="text-xl leading-10">{skill}</li>
+                                </div>
+                                
                             ))}
-                            
                         </ol>
                     </div>
                 </div>
@@ -137,12 +140,14 @@ const UIUXPage = () => {
                 </h1>
                 <div className="grid grid-cols-3 mx-auto gap-10 items-center justify-center">
                     {cakrawalaInfoData?.relatedStudies.map((major, index) => (
-                        <Item
-                            key={index}
+                        <div key={index}>
+                            <Item
                             name={major}
                             description="4-year degree"
                             image={`/image/major-${index + 1}.png`}
-                        >{major}</Item>
+                            >{major}</Item>
+                        </div>
+                        
                     ))}
                 </div>
             </div>
@@ -158,13 +163,16 @@ const UIUXPage = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-10 pt-[60px] mx-auto items-center justify-center'>
-                    {cakrawalaInfoData?.careerOpportunities.map((inform) => (
-                        <CardInform key={inform.id}>
+                    {cakrawalaInfoData?.careerOpportunities.map((inform, index) => (
+                        <div key={index}>
+                            <CardInform key={inform.id}>
                             <CardInform.Header image={inform.image}/>
                                 <CardInform.Body career={inform.career} title={inform.title}>
                                 </CardInform.Body>
-                        {inform}
-                        </CardInform>
+                            {inform}
+                            </CardInform>
+                        </div>
+                        
                     ))}
                 </div>
             </div>
@@ -176,11 +184,11 @@ const UIUXPage = () => {
                     <div className="items-center my-auto">
                         <h1 className="text-[40px] font-bold mb-6">Peran dan Tanggung Jawab</h1>
                         <ol className="list-decimal ml-6">
-                            <li className="text-xl leading-10">Merancang Antarmuka Pengguna (UI)</li>
-                            <li className="text-xl leading-10">Mengembangkan Pengalaman Pengguna (UX)</li>
-                            <li className="text-xl leading-10">Melakukan Riset Pengguna</li>
-                            <li className="text-xl leading-10">Membuat Wireframe & Prototipe</li>
-                            <li className="text-xl leading-10">Berkolaborasi dengan Tim</li>
+                            {cakrawalaInfoData?.responsibilites.map((responsibility, index) => (
+                                <div key={index}>
+                                    <li className="text-xl leading-10">{responsibility}</li>
+                                </div>
+                            ))}
                         </ol>
                     </div>
                     <img src="/image/uiux-3.png" alt="" className="h-[356px]"/>
@@ -192,7 +200,7 @@ const UIUXPage = () => {
                     <h1 className="text-[40px] font-bold my-auto">Apakah Kamu Sudah Paham Mengenai Bidang Ini?</h1>
                     <div>
                         <div>
-                            {cakrawalaInfoData && cakrawalaInfoData.questions && (
+                            {cakrawalaInfoData?.questions && (
                                 <QuizIT questions={cakrawalaInfoData.questions} />
                             )}
                         </div>

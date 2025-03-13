@@ -7,7 +7,7 @@ const header = {
 //   "ngrok-skip-browser-warning": "69420",
 }
 
-type CallbackCakrawalaInfo = (success: boolean, message: CakrawalaInfo[] | string) => void;
+
 
 interface errors{
     message: string;
@@ -28,9 +28,11 @@ interface CakrawalaInfo {
     imageIds: number[],
 }
 
-export const getCakrawalaInfo = async (name: string, callback: CallbackCakrawalaInfo): Promise<void> => {
+type CallbackCakrawalaInfo = (success: boolean, message: CakrawalaInfo[] | string) => void;
+
+export const getCakrawalaInfo = async (callback: CallbackCakrawalaInfo): Promise<void> => {
   try {
-    const res = await axiosInstance.get(`/cakrawala/info/${name}`, { headers: header });
+    const res = await axiosInstance.get(`/cakrawala/info/UIUX`, { headers: header });
     
     if (res.data.success) {
         const cakrawalaData: CakrawalaInfo[] | null = res.data.payload;
