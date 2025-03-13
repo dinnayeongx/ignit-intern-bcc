@@ -43,7 +43,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ name, description }) => {
       <Button
         classname="rounded-lg text-white lg:p-1 lg:px-6 lg:h-12 lg:w-52 -mr-6 text-[12px] lg:text-[14px] items-center"
         onClick={() => {
-          window.location.href = "/userprofile";
+          navigate('/userprofile');
         }}>
         View Profile
       </Button>

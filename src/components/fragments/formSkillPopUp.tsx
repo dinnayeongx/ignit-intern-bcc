@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../elements/button";
 import InputForm from "../elements/input";
 import PopUpVerif from "./popUpVerif.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface PopUpSKillProps {
     children: React.ReactNode;
@@ -10,6 +11,7 @@ interface PopUpSKillProps {
 
 const FormSKillPopUp: React.FC<PopUpSKillProps> = ({children, onClose}) => {
     const [showPopUp, setShowPopUp] = useState(0);
+    const navigate = useNavigate();
     
     const handleOpen = () => {
         setShowPopUp(1);
@@ -81,9 +83,9 @@ const FormSKillPopUp: React.FC<PopUpSKillProps> = ({children, onClose}) => {
                 <PopUpVerif image="/image/popup-done.png" onClose={() => setShowPopUp(0)}>
                     <p className="text-center mt-4 text-2xl font-bold">Yay! Berhasil ditambahkan!</p>
                     <div className="text-center mt-4">
-                    <a href="/userprofile" className="text-[#584270] text-base font-bold">
+                    <button onClick={() => navigate("/userprofile")} className="text-[#584270] text-base font-bold">
                         Kembali ke Halaman User Profile
-                    </a>
+                    </button>
                     </div>
                 </PopUpVerif>
             )}

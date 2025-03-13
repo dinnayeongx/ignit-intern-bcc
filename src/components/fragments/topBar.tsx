@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface TopBarProps {
     title: string;
@@ -8,11 +9,13 @@ interface TopBarProps {
 }
 
 const TopBar : React.FC<TopBarProps> = ({title, nav, onClick}) => {
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="h-20 w-full shadow-[0px_0px_6px_0px_rgba(0,0,0,0.12)] p-5 flex gap-6">
                 <button className="flex items-center h-full w-[56px]" 
-                onClick={() => window.location.href = "/home" }>
+                onClick={() => navigate("/home") }>
                     <img src="/IGNITLogo.png" alt="" className="items-center"/>
                 </button>
             

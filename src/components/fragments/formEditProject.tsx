@@ -3,6 +3,7 @@ import InputForm from "../elements/input";
 import FilterBar from "../elements/label/filterBar.tsx";
 import Button from "../elements/button";
 import PopUpVerif from "./popUpVerif.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface Status {
     status: string
@@ -49,6 +50,7 @@ const filterTag: FilterTag[] = [
 const FormEditProject = () => {
     const [image, setImage] = useState(null);
     const [showPopUp, setShowPopUp] = useState(0);
+    const navigate = useNavigate();
         
     const handleOpen = () => {
          setShowPopUp(1);
@@ -162,9 +164,9 @@ const FormEditProject = () => {
                     <PopUpVerif image="/image/popup-tambah.png" onClose={() => setShowPopUp(0)}>
                         <p className="text-center mt-4 text-2xl font-bold">Project kamu telah berhasil ditambahkan.</p>
                         <div className="text-center mt-4">
-                        <a href="/userprofile" className="text-[#584270] text-base font-bold">
+                        <button onClick={() => navigate("/userprofile")} className="text-[#584270] text-base font-bold">
                             Kembali ke Halaman Project
-                        </a>
+                        </button>
                         </div>
                     </PopUpVerif>
                 )}
