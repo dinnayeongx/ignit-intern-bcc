@@ -5,6 +5,7 @@ import Button from "../components/elements/button";
 import Item from "../components/fragments/majorItem";
 import Footer from "../components/fragments/footer";
 import PopUpVerif from "../components/fragments/popUpVerif";
+import HeroSection from "../components/fragments/heroSection";
 
 const KomunitasPage = () => {
 
@@ -20,16 +21,7 @@ const KomunitasPage = () => {
         <>
             <TopBar title="Komunitas"/>
 
-            <div className="h-[399px] w-full bg-gradient-to-r from-[#9B7EBD] to-[#7F5EA3] py-[60px] px-[80px] items-center justify-center flex">
-                <div className="grid grid-flow-row gap-6 my-auto">
-                    <h1 className="text-[40px] text-white font-bold text-center">
-                        Welcome to Komunitas!
-                    </h1>
-                    <p className="text-[16px] text-white font-normal text-center">
-                        Explore and engage in discussions
-                    </p>
-                </div>
-            </div>
+            <HeroSection page="Welcome to Komunitas!" description="Explore and engage in discussions"></HeroSection>
 
             <div className="h-full w-full py-[60px] px-[80px]">
                 <li className="grid grid-cols-2 gap-6 py-5 mb-10">

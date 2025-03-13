@@ -4,6 +4,7 @@ import Item from "../components/fragments/majorItem";
 import CardMajor from "../components/fragments/cardMajor";
 import Footer from "../components/fragments/footer";
 import NavigasiMajor from "../components/fragments/navMajor";
+import HeroSection from "../components/fragments/heroSection";
 
 interface Major {
     id: number,
@@ -38,16 +39,7 @@ const CakrawalaITPage = () => {
         <>
             <TopBar title="CakrawalaIT"></TopBar>
 
-            <div className="h-[399px] w-full bg-gradient-to-r from-[#9B7EBD] to-[#7F5EA3] py-[60px] px-[80px] items-center justify-center flex">
-                <div className="grid grid-flow-row gap-6 my-auto">
-                    <h1 className="text-[40px] text-white font-bold text-center">
-                        Jelajahi Bidang di CakrawalaIT
-                    </h1>
-                    <p className="text-[16px] text-white font-normal text-center">
-                        Jelajahi bidang IT yang kamu minati disini!
-                    </p>
-                </div>
-            </div>
+            <HeroSection page="Jelajahi Bidang di CakrawalaIT" description="Jelajahi bidang IT yang kamu minati disini!"></HeroSection>
 
             <div className="h-[412px] w-fit pt-[58px] pb-[82px] mx-auto">
                 <h1 className="text-[40px] font-bold text-center mb-[52px]">

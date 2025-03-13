@@ -6,6 +6,7 @@ import CardModulProduct from "../components/fragments/cardModulProduct";
 import Footer from "../components/fragments/footer";
 import PopUpVerif from "../components/fragments/popUpVerif";
 import { useNavigate } from "react-router-dom";
+import HeroSection from "../components/fragments/heroSection";
 
 
 interface Product {
@@ -157,16 +158,7 @@ const BelajarYukPage = () => {
         <>
             <TopBar title="BelajarYuk"></TopBar>
 
-            <div className="h-[399px] w-full bg-gradient-to-r from-[#9B7EBD] to-[#7F5EA3] py-[60px] px-[80px] items-center justify-center flex">
-                <div className="grid grid-flow-row gap-6 my-auto">
-                    <h1 className="text-[40px] text-white font-bold text-center">
-                        Welcome to BelajarYuk
-                    </h1>
-                    <p className="text-[16px] text-white font-normal text-center">
-                        Enhance your IT skills with our module packets
-                    </p>
-                </div>
-            </div>
+            <HeroSection page="Welcome to BelajarYuk" description="Enhance your IT skills with our module packets"></HeroSection>
 
             <div className="h-auto w-full py-[60px] px-[100px] grid grid-cols-2 gap-[60px] mx-auto">
                 <h1 className="text-[40px] font-bold text-center items-center justify-center my-auto">Mau Belajar Apa Hari Ini?</h1>

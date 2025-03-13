@@ -6,8 +6,7 @@ import CardKarier from "../components/fragments/cardKarier";
 import Footer from "../components/fragments/footer";
 import { useNavigate } from "react-router-dom";
 import { getTags, getBootcamp } from "../services/temukarier.service";
-import { getImages } from "../services/image.service";
-import ImageComponent from "../components/fragments/ImageComponent";
+import ImageComponent from "../services/ImageComponent";
 
 interface Bootcamp {
     id: number,
@@ -118,9 +117,13 @@ const TemuKarierBootcampPage = () => {
                     location: "Unknown",
                     link: item.url,
                     category: item.tags[0] || "Unknown",
+                    imageUrl: `https://be-intern.bccdev.id/alex/api/docs/images/${item.imageId}`
                 }));
                 setBootcampData(formattedData);
               }
+              else {
+                console.error("Failed to fetch bootcamp data imageid:", message);
+                }
             });
         }, []);
     
@@ -198,7 +201,7 @@ const TemuKarierBootcampPage = () => {
                         {bootcampData.map(bootcamp => (
                             <CardKarier key={bootcamp.id}>
                                 <CardKarier.Header> 
-                                    <ImageComponent ></ImageComponent>
+                                    <ImageComponent imageUrl={bootcamp.imageUrl} />
                                 </CardKarier.Header>
                                     <CardKarier.Body title={bootcamp.title} source={bootcamp.source} />
                                         <CardKarier.Footer onClick={() => openLink(bootcamp.link)} />

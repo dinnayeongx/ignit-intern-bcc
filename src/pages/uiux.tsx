@@ -5,7 +5,6 @@ import Footer from "../components/fragments/footer";
 import ArticleCakrawala from "../components/fragments/articleCakrawala";
 import CardInform from "../components/fragments/cardInform";
 import QuizIT from "../components/fragments/quizIT";
-import Navigasi from "../components/fragments/navigasi";
 import NavigasiMajor from "../components/fragments/navMajor";
 
 interface Inform {
