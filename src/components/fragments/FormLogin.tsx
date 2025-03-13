@@ -1,10 +1,10 @@
 import { login } from "../../services/auth.service";
-import InputForm from "../elements/Input/index";
-import Button from "../elements/button/index";
+import InputForm from "../elements/Input/index.tsx";
+import Button from "../elements/button/index.tsx";
 import { Link } from 'react-router-dom';
 import React, {useRef, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import PopUpVerif from "./popUpVerif";
+import PopUpVerif from "./popUpVerif.tsx";
 import Cookies from 'js-cookie';
 
 interface LoginData {

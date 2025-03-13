@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import TopBar from "../components/fragments/topBar";
-import FormTambahProject from "../components/fragments/formTambahProject";
-import Footer from "../components/fragments/footer";
+import TopBar from "../components/fragments/topBar.tsx";
+import FormTambahProject from "../components/fragments/formTambahProject.tsx";
+import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
 
 const TambahProject = () => {

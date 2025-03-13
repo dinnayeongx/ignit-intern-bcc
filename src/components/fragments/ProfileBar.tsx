@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import LabelJob from "../elements/label/label";
-import Button from "../elements/button/index";
+import LabelJob from "../elements/label/label.tsx";
+import Button from "../elements/button/index.tsx";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../services/auth.service";
-import PopUpVerif from "./popUpVerif";
+import { logout } from "../../services/auth.service.ts";
+import PopUpVerif from "./popUpVerif.tsx";
 
 interface ProfileBarProps {
   name: string;

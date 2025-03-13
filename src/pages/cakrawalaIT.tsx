@@ -1,10 +1,10 @@
 import React from "react";
-import TopBar from "../components/fragments/topBar";
-import Item from "../components/fragments/majorItem";
-import CardMajor from "../components/fragments/cardMajor";
-import Footer from "../components/fragments/footer";
-import NavigasiMajor from "../components/fragments/navMajor";
-import HeroSection from "../components/fragments/heroSection";
+import TopBar from "../components/fragments/topBar.tsx";
+import Item from "../components/fragments/majorItem.tsx";
+import CardMajor from "../components/fragments/cardMajor.tsx";
+import Footer from "../components/fragments/footer.tsx";
+import NavigasiMajor from "../components/fragments/navMajor.tsx";
+import HeroSection from "../components/fragments/heroSection.tsx";
 
 interface Major {
     id: number,

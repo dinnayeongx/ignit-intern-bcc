@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../elements/button";
 import InputForm from "../elements/Input";
-import PopUpVerif from "./popUpVerif";
+import PopUpVerif from "./popUpVerif.tsx";
 
 interface PopUpSKillProps {
     children: React.ReactNode;

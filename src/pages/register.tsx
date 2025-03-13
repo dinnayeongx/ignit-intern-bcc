@@ -1,6 +1,6 @@
 import React from "react";
-import FormRegister from "../components/fragments/formRegister";
-import AuthLayout from "../components/fragments/authLayouts";
+import FormRegister from "../components/fragments/formRegister.tsx";
+import AuthLayout from "../components/fragments/authLayouts.tsx";
 import { Fragment } from "react";
 
 const RegisterPage: React.FC = () => {

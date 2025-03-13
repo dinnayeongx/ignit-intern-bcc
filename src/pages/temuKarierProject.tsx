@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import TopBar from "../components/fragments/topBar";
-import FilterBar from "../components/elements/label/filterBar";
+import TopBar from "../components/fragments/topBar.tsx";
+import FilterBar from "../components/elements/label/filterBar.tsx";
 import Button from "../components/elements/button";
-import CardProject from "../components/fragments/cardProject";
-import Footer from "../components/fragments/footer";
+import CardProject from "../components/fragments/cardProject.tsx";
+import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
-import { getTags, getProjects } from "../services/temukarier.service";
+import { getTags, getProjects } from "../services/temukarier.service.ts";
 
 interface Project {
     id: number,
