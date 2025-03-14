@@ -44,6 +44,8 @@ export const getBootcamp = async (callback: CallbackBootcamp): Promise<void> => 
       },
       headers: {
         accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     });
     
@@ -88,6 +90,8 @@ export const getMagang = async (callback: CallbackMagang): Promise<void> => {
       },
       headers: {
         accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     });
     
@@ -134,6 +138,8 @@ export const getProjects = async (callback: CallbackProjects): Promise<void> => 
       },
       headers: {
         accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     });
     
@@ -177,6 +183,8 @@ export const getGabungProject = async (callback: CallbackGabungProject): Promise
       },
       headers: {
         accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     });
     

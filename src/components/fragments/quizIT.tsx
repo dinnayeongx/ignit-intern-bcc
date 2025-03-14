@@ -12,19 +12,19 @@ interface QuizITProps {
     questions: QuizITType;
 }
 
-// const questions: QuizITType[] = [
-//     {
-//         question: 'Menurut kamu, manakah yang paling penting dibutuhkan pada bidang UI/UX Designer?',
-//         options: [
-//             'Kemampuan membuat desain yang menarik secara estetika',
-//             'Pemahaman tentang perilaku pengguna dan user experience',
-//             'Keahlian dalam menulis kode pemrograman secara mendetail',
-//             'Menguasai semua software desain grafis tanpa pengecualian',
-//             'Menyelesaikan proyek tanpa mempertimbangkan usability',
-//         ],
-//         answer: 'Pemahaman tentang perilaku pengguna dan user experience',
-//     },
-// ];
+const questions: QuizITType[] = [
+    {
+        question: 'Menurut kamu, manakah yang paling penting dibutuhkan pada bidang UI/UX Designer?',
+        options: [
+            'Kemampuan membuat desain yang menarik secara estetika',
+            'Pemahaman tentang perilaku pengguna dan user experience',
+            'Keahlian dalam menulis kode pemrograman secara mendetail',
+            'Menguasai semua software desain grafis tanpa pengecualian',
+            'Menyelesaikan proyek tanpa mempertimbangkan usability',
+        ],
+        answer: 'Pemahaman tentang perilaku pengguna dan user experience',
+    },
+];
 
 const QuizIT: React.FC<QuizITProps> = ({ questions }) => {
 
