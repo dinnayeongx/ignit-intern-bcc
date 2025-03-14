@@ -64,7 +64,7 @@ export const verified = async (callback: Callback): Promise<void> => {
   }
 
   try {
-    const res = await axiosInstance.get(`/auth/verify?token=${token}`);
+    const res = await axiosInstance.get(`/auth/verify?token=cabffcc5-d89d-40a6-912e-cd2d899c2f9f`);
     callback(true, res.data.message);
   } catch (error) {
     const errorMessage =
