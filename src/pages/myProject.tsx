@@ -36,6 +36,7 @@ const MyProject = () => {
                         key={index}
                         image={item.image}
                         title={item.title}
+                        onClick={() => navigate("/userprofile/edit-project")}
                     />
                 ))}
             </div>

@@ -59,18 +59,20 @@ interface SkillProps {
     years: string;
 }
 
-// const skill: SkillProps[] = [
-//     {
-//         skill: "UI/UX Design",
-//         description: "Proficient in creating intuitive interfaces",
-//         years: "5",
-//     },
-//     {
-//         skill: "Front-End Development",
-//         description: "Skilled in HTML, CSS, JavaScript",
-//         years: "3",
-//     },
-// ]
+const skill: SkillProps[] = [
+    {
+        id: 1,
+        skill: "UI/UX Design",
+        description: "Proficient in creating intuitive interfaces",
+        years: "5",
+    },
+    {
+        id: 2, 
+        skill: "Front-End Development",
+        description: "Skilled in HTML, CSS, JavaScript",
+        years: "3",
+    },
+]
 
 interface Profile {
     id: number;
@@ -161,7 +163,7 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
       };
 
       if (!profileData) {
-        return <div>Loading profile...</div>;
+        return <div className="flex justify-center items-center h-screen">Loading profile...</div>;
     }
 
 
@@ -238,7 +240,7 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
             <div className="py-[60px] px-[80px] w-full h-auto">
                 <h1 className="text-[40px] font-bold mb-[60px] text-center">Skills</h1>
                 <div className="grid grid-flow-col gap-[40px] justify-center items-center mx-auto">
-                    {profileData.skills.map((skill, index) => (
+                    {skill.map((skill, index) => (
                         <Skill key={index} skill={skill.skill} description={skill.description} years={skill.years}></Skill>
                     ))}
                 </div>

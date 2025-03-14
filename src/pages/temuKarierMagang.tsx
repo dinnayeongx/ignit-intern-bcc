@@ -125,8 +125,8 @@ const TemuKarierMagangPage = () => {
             const formattedData = message.map((item: any) => ({
                 id: item.id,
                 imageId: item.imageId,
-                position: item.name,
-                location: "Unknown",
+                title: item.title,
+                source: item.source,
                 link: item.url,
                 category: item.tags[0] || "Unknown",
                 imageUrl: `${axiosInstance.defaults.baseURL}/utils/images/${item.imageId}`
@@ -216,7 +216,7 @@ const TemuKarierMagangPage = () => {
                             <CardKarier key={magang.id}>
                                 <CardKarier.Header image={magang.imageUrl}>
                                 </CardKarier.Header>
-                                    <CardKarier.Body position={magang.position} location={magang.location} />
+                                    <CardKarier.Body position={magang.title} location={magang.source} />
                                         <CardKarier.Footer onClick={() => navigate('/temukarier/magang/detail')} />
                             </CardKarier>
                         ))}
