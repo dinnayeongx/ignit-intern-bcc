@@ -11,31 +11,31 @@ import ImageComponent from "../services/ImageComponent.tsx";
 
 interface Inform {
     id: number,
-    image: string,
+    imageUrls: string,
     career: string,
     title: string,
 }
 
-// const Inform: Inform[] = [
-//     {
-//         id: 1,
-//         image: "/image/uiux-5.png",
-//         career: "UX Researcher",
-//         title: "Meneliti Perilaku Pengguna untuk meningkatkan pengalaman.",
-//     },
-//     {
-//         id: 2,
-//         image: "/image/uiux-6.png",
-//         career: "Product Designer",
-//         title: "Merancang produk digital dari konsep hingga implementasi.",
-//     },
-//     {
-//         id: 3,
-//         image: "/image/uiux-7.png",
-//         career: "Interaction Designer",
-//         title: "Membuat interaksi antarmuka yang intuitif dan menarik.",
-//     },
-// ];
+const Inform: Inform[] = [
+    {
+        id: 1,
+        imageUrls: "/image/uiux-5.png",
+        career: "UX Researcher",
+        title: "Meneliti Perilaku Pengguna untuk meningkatkan pengalaman.",
+    },
+    {
+        id: 2,
+        imageUrls: "/image/uiux-6.png",
+        career: "Product Designer",
+        title: "Merancang produk digital dari konsep hingga implementasi.",
+    },
+    {
+        id: 3,
+        imageUrls: "/image/uiux-7.png",
+        career: "Interaction Designer",
+        title: "Membuat interaksi antarmuka yang intuitif dan menarik.",
+    },
+];
 interface QuizITType {
     question: string,
     options: string[],
@@ -170,14 +170,14 @@ const UIUXPage = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-10 pt-[60px] mx-auto items-center justify-center'>
-                    {cakrawalaInfoData?.careerOpportunities.map((inform, index) => (
+                    {Inform.map((inform, index) => (
                         <div key={index}>
                             <CardInform key={inform.id}>
-                            <CardInform.Header image={inform.imageUrls}>
-                            </CardInform.Header>
-                                <CardInform.Body career={inform.career} title={inform.title}>
-                                </CardInform.Body>
-                            {inform}
+                                <CardInform.Header image={inform.imageUrls}>
+                                </CardInform.Header>
+                                    <CardInform.Body career={inform.career} title={inform.title}>
+                                    </CardInform.Body>
+                                {inform}
                             </CardInform>
                         </div>
                         
@@ -208,9 +208,7 @@ const UIUXPage = () => {
                     <h1 className="text-[40px] font-bold my-auto">Apakah Kamu Sudah Paham Mengenai Bidang Ini?</h1>
                     <div>
                         <div>
-                            {cakrawalaInfoData?.questions && (
-                                <QuizIT questions={cakrawalaInfoData.questions} />
-                            )}
+                            <QuizIT questions={cakrawalaInfoData?.questions} />
                         </div>
                     </div>
                 </div>

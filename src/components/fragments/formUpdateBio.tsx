@@ -83,7 +83,7 @@ const FormUpdate: React.FC<FormUpdateProps> = ({
                         onChange={handleChange}
                     />
                 </div>
-                <Button className="w-[240px] text-white p-3 rounded-lg" type="submit">
+                <Button classname="w-[240px] text-white p-3 rounded-lg" type="submit">
                     Simpan Perubahan
                 </Button>
             </form>

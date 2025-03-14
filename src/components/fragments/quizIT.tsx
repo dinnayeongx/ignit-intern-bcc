@@ -55,8 +55,8 @@ const QuizIT: React.FC<QuizITProps> = ({ questions }) => {
     return (
         <>
             <div>
-                        <p className="text-[20px] font-medium mb-[40px] text-center">{questions.question}</p>
-                        <div className="items-center justify-center">
+                    <p className="text-[20px] font-medium mb-[40px] text-center">{questions.question}</p>
+                    <div className="items-center justify-center">
                     
                     {questions.options && questions.options.map((option, index) => (
                         <button

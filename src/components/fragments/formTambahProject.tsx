@@ -136,7 +136,7 @@ const FormTambahProject = () => {
                     <PopUpVerif image="/image/popup-tambah.png" onClose={() => setShowPopUp(0)}>
                         <p className="text-center mt-4 text-2xl font-bold">Project kamu telah berhasil ditambahkan.</p>
                         <div className="text-center mt-4">
-                        <a onClick={() => navigate("/userprofile")} className="text-[#584270] text-base font-bold">
+                        <a onClick={() => navigate("/userprofile/my-project")} className="text-[#584270] text-base font-bold">
                             Kembali ke Halaman Project
                         </a>
                         </div>
