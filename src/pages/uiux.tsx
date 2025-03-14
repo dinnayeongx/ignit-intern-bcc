@@ -56,6 +56,14 @@ interface CakrawalaInfoProps {
     imageUrls: string[],
 }
 
+const skills: string[] = [
+   "Design Thinking & Problem Solving",
+    "Wireframing & Prototyping",
+    "User Research & Usability Testing",
+    "Visual Design & UI Principles",
+    "Collaboration & Communication"   
+];
+
 
 const UIUXPage = () => {
     const [cakrawalaInfoData, setCakrawalaInfoData] = useState<CakrawalaInfoProps | null>(null);
@@ -131,7 +139,7 @@ const UIUXPage = () => {
                     <div className="items-center my-auto">
                         <h1 className="text-[40px] font-bold mb-6">Skill dan Keterampilan</h1>
                         <ol className="list-decimal ml-6">
-                            {cakrawalaInfoData?.skills.map((skill, index) => (
+                            {skills.map((skill, index) => (
                                 <div key={index}>
                                     <li className="text-xl leading-10">{skill}</li>
                                 </div>
