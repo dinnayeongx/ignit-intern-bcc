@@ -96,11 +96,14 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
 
     useEffect(() => {
         getProfile((success, message) => {
-          if (success) {
-            setProfileData(message as Profile);
-          }
+            if (success) {
+                setProfileData(message as Profile);
+            } else {
+                console.error("Failed to fetch profile:", message);
+            }
         });
     }, []);
+    
 
     const handleUpdateProfile = () => {
         updateProfile(profileData as Profile, (success, message) => {
@@ -112,23 +115,23 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
         });
     }
 
-    const handleFormSubmit = (updatedData: { fullName: string; passion: string; summary: string }) => {
-        setProfileData((prevData) => ({
-            ...prevData,
-            fullName: updatedData.fullName,
-            passion: updatedData.passion,
-            summary: updatedData.summary,
-        }));
+    const handleFormSubmit = (updatedData: Partial<Profile>) => {
+        setProfileData(prevData => {
+            if (!prevData) return prevData;
+            
+            const newData = { ...prevData, ...updatedData };
     
-        handleUpdateProfile();
+            updateProfile(newData, (success, message) => {
+                if (success) {
+                    console.log("Profile updated successfully");
+                } else {
+                    console.error("Failed to update profile:", message);
+                }
+            });
+    
+            return newData;
+        });
     };
-
-    useEffect(() => {
-        if (profileData) {
-            handleUpdateProfile();
-        }
-    }, [profileData]);
-
 
     const handleButtonClick = () => {
         setShowPopUp(prevState => !prevState);
