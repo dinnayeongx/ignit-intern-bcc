@@ -28,7 +28,7 @@ const RegisterPage: React.FC = () => {
       )}
 
       <div className="bg-gradient-to-b from-[#a28bc7] to-[#d4cbe7]">
-        <div className="justify-center min-h-screen items-center grid lg:grid-cols-2 lg:gap-2 lg:mx-auto md:px-[110px]">
+        <div className="justify-center min-h-screen items-center grid lg:grid-cols-2 md:gap-2 lg:mx-auto md:px-[110px]">
           <div className="w-0 lg:w-full">
             <img
               src="/image/foto-2.jpg"

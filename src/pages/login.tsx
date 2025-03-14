@@ -10,7 +10,7 @@ const LoginPage = () => {
                 <div className="justify-center min-h-screen items-center grid lg:grid-cols-2 md:gap-2 lg:mx-auto md:px-[110px]">
                     <div className="w-0 lg:w-full">
                         <img src="/image/foto-2.jpg" alt=""
-                        className="lg:h-[545px] lg:w-[465px] rounded-xl mx-autoflex"/>
+                        className="lg:h-[545px] lg:w-[465px] rounded-xl mx-auto flex"/>
                     </div> 
                     <AuthLayout>
                         <p className='text-lg text-center font-normal font-roboto mb-12'>Selamat Datang Kembali di IGNIT!</p> 
