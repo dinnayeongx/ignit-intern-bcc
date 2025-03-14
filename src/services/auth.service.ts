@@ -64,7 +64,7 @@ export const verified = async (callback: Callback): Promise<void> => {
   }
 
   try {
-    const res = await axiosInstance.get(`/auth/verify?token=cabffcc5-d89d-40a6-912e-cd2d899c2f9f`);
+    const res = await axiosInstance.get(`/auth/verify?token=eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIzIiwic3ViIjoiYWRtaW5pc3RyYXRvcl9pZ25pdCIsImVtYWlsIjoiYWRtaW5pc3RyYXRvckBpZ25pdC5jb20iLCJpYXQiOjE3NDE4OTEzMjcsImV4cCI6MTc0MTkxMjkyN30.8x8Zz3t9xYvgfQc71dVKBOJcSeQWNizEUrdPHR4WyxL12-wluN0r90669TPZlXLP`);
     callback(true, res.data.message);
   } catch (error) {
     const errorMessage =
