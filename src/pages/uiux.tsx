@@ -109,14 +109,16 @@ const UIUXPage = () => {
                     <img src="/image/uiux-1.png" alt="" className="bg-[rgba(217,217,217,0.50)] rounded-2xl shadow-[0px_3px_5px_0px_rgba(0,0,0,0.25),0px_6px_10px_0px_rgba(0,0,0,0.25),0px_1px_18px_0px_rgba(0,0,0,0.25)] h-[472px] w-[452px]"/>
                     <div className="items-center my-auto">
                         <h1 className="text-[40px] font-bold mb-6 items-center">UI/UX Designer</h1>
-                        <p className="text-base text-justify items-center leading-7">{cakrawalaInfoData?.description}</p>
+                        <p className="text-base text-justify items-center leading-7">UI/UX Designer adalah profesional yang bertanggung jawab untuk merancang tampilan dan pengalaman pengguna dalam sebuah aplikasi atau situs web. UI (User Interface) Designer berfokus pada estetika visual, termasuk tata letak, warna, dan elemen interaktif, sedangkan UX (User Experience) Designer memastikan pengalaman pengguna yang intuitif dan mudah digunakan melalui riset, wireframing, dan pengujian. Pekerjaan ini membutuhkan kreativitas, pemahaman tentang perilaku pengguna.</p>
                     </div>
                 </div>
                 <div>
                     <ArticleCakrawala
                         title="UI/UX Designer"
-                        salary={cakrawalaInfoData?.salaryRange}
-                        description={cakrawalaInfoData?.criteria}
+                        // salary={cakrawalaInfoData?.salaryRange}
+                        // description={cakrawalaInfoData?.criteria}
+                        description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem."
+                        salary="Rp 3.000.000 - Rp 5.000.000"
                     ></ArticleCakrawala>
                 </div>
             </div>
