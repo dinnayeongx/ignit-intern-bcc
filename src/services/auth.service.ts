@@ -54,7 +54,9 @@ export const logout = (): void => {
 
 export const verified = async (callback: Callback): Promise<void> => {
   const urlParams = new URLSearchParams(window.location.search);
+  console.log("URL Saat Ini:", window.location.href);
   let token = urlParams.get("token") || localStorage.getItem("verificationToken");
+  console.log("Token yang ditemukan:", token);
 
   if (!token) {
     callback(false, "Token verifikasi tidak ditemukan.");
