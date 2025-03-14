@@ -26,7 +26,7 @@ const questions: QuizITType[] = [
     },
 ];
 
-const QuizIT: React.FC<QuizITProps> = ({ questions }) => {
+const QuizIT: React.FC<QuizITType> = ({ question, options, answer }) => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
@@ -35,7 +35,7 @@ const QuizIT: React.FC<QuizITProps> = ({ questions }) => {
     const navigate = useNavigate();
 
     const handleAnswer = (answer: string) => {
-        if (answer === questions.answer) {
+        if (answer === question.answer) {
             setPopupMessage('🎉 Selamat! Kamu Jawab dengan Benar! 🎉<br/>Biar lebih jago lagi, explore di ');
             setImage('/image/popup-true.png');
             setNav('BelajarYuk! 🎨👨‍💻');
