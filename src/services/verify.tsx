@@ -24,7 +24,7 @@ const VerifyPage = ({onVerify}) => {
         console.log("Verifikasi gagal:", res);
       }
     });
-  }, [navigate, location]);
+  }, [navigate, onVerify, location]);
 
   return null;
 

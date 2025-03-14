@@ -12,7 +12,8 @@
       "NODE_VERSION": "22.x"
     },
     "rewrites": [
-      { "source": "/verify", "destination": "/index.html" }
+      { "source": "/verify", "destination": "/index.html" },
+      { "source": "/(.*)", "destination": "/index.html" }
     ]
     
   }
