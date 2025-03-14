@@ -16,8 +16,13 @@ const ImageComponent: React.FC<ImageComponentProps> = ({ imageUrl }) => {
     setLoading(true);
     axiosInstance
       .get(imageUrl, {
-        responseType: 'arraybuffer'
-      })
+        responseType: 'arraybuffer',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        }
+      }
+    )
       .then((response) => {
         const contentType = response.headers['content-type'];
         const blob = new Blob([response.data], { type: contentType });

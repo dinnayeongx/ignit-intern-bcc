@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const header = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${Cookies.get('token')}`,
-  "ngrok-skip-browser-warning": "69420",
+  //"ngrok-skip-browser-warning": "69420",
 }
 
 type CallbackBelajarYuk = (success: boolean, message: BelajarYuk[] | string) => void;
@@ -29,6 +29,8 @@ export const getBelajarYuk = async (callback: CallbackBelajarYuk): Promise<void>
       },
       headers: {
         accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     });
     
@@ -72,6 +74,8 @@ export const getSavedBelajarYuk = async (callback: CallbackSavedBelajarYuk): Pro
       },
       headers: {
         accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     });
     
@@ -110,6 +114,8 @@ export const getModulList = async (callback: CallbackModulList): Promise<void> =
       },
       headers: {
         accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     });
     
