@@ -7,6 +7,7 @@ import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
 import { getTags, getBootcamp } from "../services/temukarier.service.ts";
 import ImageComponent from "../services/ImageComponent.tsx";
+import axiosInstance from "../services/axiosInstance.ts";
 
 interface Bootcamp {
     id: number,
@@ -82,16 +83,6 @@ const TemuKarierBootcampPage = () => {
     const [filteredItems, setFilteredItems] = useState<Bootcamp[]>([]);
     const [tags, setTags] = useState<string[]>([]);
     const [bootcampData, setBootcampData] = useState<Bootcamp[]>([]);
-    // const [imageId, setImageId] = useState<number>(1);
-
-    // useEffect(() => {
-    //     getImages((success, message) => {
-    //         console.log("API Response:", message);
-    //         if (success) {
-    //             setImageId(message);
-    //         }
-    //     });
-    // }, []);
 
     useEffect(() => {
         getTags((success, message) => {
@@ -113,11 +104,11 @@ const TemuKarierBootcampPage = () => {
                 const formattedData = message.map((item: any) => ({
                     id: item.id,
                     imageId: item.imageId,
-                    position: item.name,
-                    location: "Unknown",
+                    title: item.name,
+                    source: "Unknown",
                     link: item.url,
                     category: item.tags[0] || "Unknown",
-                    imageUrl: `https://be-intern.bccdev.id/alex/api/images/${item.imageId}`
+                    imageUrl: `${axiosInstance.defaults.baseURL}/utils/images/${item.imageId}`
                 }));
                 setBootcampData(formattedData);
               }
@@ -200,8 +191,7 @@ const TemuKarierBootcampPage = () => {
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
                         {bootcampData.map(bootcamp => (
                             <CardKarier key={bootcamp.id}>
-                                <CardKarier.Header> 
-                                    <ImageComponent imageUrl={bootcamp.imageUrl} />
+                                <CardKarier.Header image={bootcamp.imageUrl}> 
                                 </CardKarier.Header>
                                     <CardKarier.Body title={bootcamp.title} source={bootcamp.source} />
                                         <CardKarier.Footer onClick={() => openLink(bootcamp.link)} />

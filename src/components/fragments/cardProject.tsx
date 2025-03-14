@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../elements/button';
+import ImageComponent from '../../services/ImageComponent';
 
 interface CardProjectProps {
   children: React.ReactNode;
@@ -35,11 +36,7 @@ const CardProject: CardProjectType = ({ children }) => {
 const Header: React.FC<HeaderProps> = ({ image }) => {
   return (
     <a href="#" className="relative">
-      <img 
-        src={image} 
-        alt="product image" 
-        className="w-full h-[300px] rounded-t-xl relative"
-      />
+      <ImageComponent imageUrl={image}></ImageComponent>
     </a>
   );
 };

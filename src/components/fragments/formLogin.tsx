@@ -85,7 +85,7 @@ const FormLogin = () => {
 
       </form>
 
-      {showPopup && (
+      {/* {showPopup && (
   <PopUpVerif
     image="/image/verif-eror-login.png"
     onClose={() => setShowPopup(false)}
@@ -94,7 +94,7 @@ const FormLogin = () => {
       {"Login gagal. Silakan coba lagi."}
     </p>
   </PopUpVerif>
-)}
+)} */}
 
     </>
     

@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageComponent from '../../services/ImageComponent';
 
 interface CardModulProductProps {
   children: React.ReactNode;
@@ -32,11 +33,13 @@ const CardModulProduct: CardModulProductType = ({ children }) => {
 const Header: React.FC<HeaderProps> = ({ image, job, onClick }) => {
   return (
     <a href="#" className="relative" onClick={onClick}>
-      <img 
+      <ImageComponent imageUrl={image}></ImageComponent>
+      
+      {/* <img 
         src={image} 
         alt="product image" 
-        className="w-[304px] h-auto rounded-t-md relative"
-      />
+        className=""
+      /> */}
       <div className="absolute -top-1 left-0">
         <label className='font-normal text-xs justify-center items-center bg-white rounded-tl-md rounded-br-md mr-1 py-0.5 px-1'>
           {job}

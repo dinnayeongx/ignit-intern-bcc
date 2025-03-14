@@ -1,12 +1,13 @@
 import React from 'react';
 import Button from '../elements/button';
+import ImageComponent from '../../services/ImageComponent';
 
 interface CardKarierProps {
   children: React.ReactNode;
 }
 
 interface HeaderProps {
-  image?: string;
+  image: string;
   children: React.ReactNode;
 }
 
@@ -38,11 +39,9 @@ const CardKarier: CardKarierType = ({ children }) => {
 const Header: React.FC<HeaderProps> = ({ image, children }) => {
   return (
     <a href="#" className="relative">
-      <img 
-        src={image} 
-        alt="product image" 
-        className="w-full h-[330px] rounded-t-md relative"
-      />
+      <ImageComponent
+      imageUrl={image}
+      ></ImageComponent>
       {children}
     </a>
   );

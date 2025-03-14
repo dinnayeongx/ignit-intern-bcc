@@ -7,6 +7,7 @@ import CardInform from "../components/fragments/cardInform.tsx";
 import QuizIT from "../components/fragments/quizIT.tsx";
 import NavigasiMajor from "../components/fragments/navMajor.tsx";
 import { getCakrawalaInfo } from "../services/cakrawalait.service.ts";
+import ImageComponent from "../services/ImageComponent.tsx";
 
 interface Inform {
     id: number,
@@ -52,6 +53,7 @@ interface CakrawalaInfoProps {
     answer: number,
     tag: string,
     imageIds: number[],
+    imageUrls: string[],
 }
 
 const UIUXPage = () => {
@@ -60,8 +62,13 @@ const UIUXPage = () => {
     useEffect(() => {
         getCakrawalaInfo((success, message) => {
             if (success) {
+                const formattedData = message.map((item: CakrawalaInfoProps) => ({
+                    ...item,
+                    imageIds: item.imageIds.map((id: number) => id),
+                    imageUrls: item.imageIds.map((id: number) => `https://be-intern.bccdev.id/alex/api/images/${id}`),
+                }))
                 console.log(message);
-                setCakrawalaInfoData(message as CakrawalaInfoProps);
+                setCakrawalaInfoData(formattedData[0]);
             }
             else {
                 console.error('Error fetching data:', message);
@@ -166,7 +173,8 @@ const UIUXPage = () => {
                     {cakrawalaInfoData?.careerOpportunities.map((inform, index) => (
                         <div key={index}>
                             <CardInform key={inform.id}>
-                            <CardInform.Header image={inform.image}/>
+                            <CardInform.Header image={inform.imageUrls}>
+                            </CardInform.Header>
                                 <CardInform.Body career={inform.career} title={inform.title}>
                                 </CardInform.Body>
                             {inform}

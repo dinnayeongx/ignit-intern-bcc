@@ -120,7 +120,7 @@ interface Projects {
   createdAt: string;
   updatedAt: string;
   tags: string[];
-  createBy: string;
+  createBy: number;
 }
 
 export const getProjects = async (callback: CallbackProjects): Promise<void> => {

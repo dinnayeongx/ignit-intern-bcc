@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { getTags } from "../services/temukarier.service.ts";
 import { getMagang } from "../services/temukarier.service.ts";
 import ImageComponent from "../services/ImageComponent.tsx";
+import axiosInstance from "../services/axiosInstance.ts";
 
 interface Magang {
     id: number,
@@ -128,7 +129,7 @@ const TemuKarierMagangPage = () => {
                 location: "Unknown",
                 link: item.url,
                 category: item.tags[0] || "Unknown",
-                imageUrl: `https://be-intern.bccdev.id/alex/api/images/${item.imageId}`
+                imageUrl: `${axiosInstance.defaults.baseURL}/utils/images/${item.imageId}`
             }));
             setMagangData(formattedData);
           }
@@ -213,8 +214,7 @@ const TemuKarierMagangPage = () => {
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
                         {magangData.map((magang) => (
                             <CardKarier key={magang.id}>
-                                <CardKarier.Header>
-                                    <ImageComponent imageUrl={magang.imageUrl}></ImageComponent>
+                                <CardKarier.Header image={magang.imageUrl}>
                                 </CardKarier.Header>
                                     <CardKarier.Body position={magang.position} location={magang.location} />
                                         <CardKarier.Footer onClick={() => navigate('/temukarier/magang/detail')} />

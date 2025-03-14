@@ -6,6 +6,8 @@ import CardProject from "../components/fragments/cardProject.tsx";
 import Footer from "../components/fragments/footer.tsx";
 import { useNavigate } from "react-router-dom";
 import { getTags, getProjects } from "../services/temukarier.service.ts";
+import axiosInstance from "../services/axiosInstance.ts";
+import ImageComponent from "../services/ImageComponent.tsx";
 
 interface Project {
     id: number,
@@ -14,6 +16,7 @@ interface Project {
     title: string
     category: string,
     status: string,
+    imageUrl: string
 }
 
 
@@ -99,11 +102,12 @@ const TemuKarierProjectPage = () => {
             if (success) {
                 const formattedData = message.map((item: any) => ({
                     id: item.id,
-                    image: `/image/karier-${item.imageId}.png`,
-                    author: item.createdBy,
+                    imageId: item.imageId,
+                    author: item.description,
                     title: item.name,
-                    category: item.tags[0] || "Unknown",
                     status: item.status,
+                    category: item.tags[0] || "Unknown",
+                    imageUrl: `${axiosInstance.defaults.baseURL}/utils/images/${item.imageId}`
                 }));
                     setProjectsData(formattedData);
                   }
@@ -178,7 +182,7 @@ const TemuKarierProjectPage = () => {
                     <li className="grid grid-cols-3 gap-10 items-center justify-center">
                         {projectsData.map(project => (
                             <CardProject key={project.id}>
-                                <CardProject.Header image={project.image} />
+                                <CardProject.Header image={project.imageUrl} />
                                 <CardProject.Body author={project.author} title={project.title} />
                                 <CardProject.Footer 
                                     onClick={() => navigate(`/temukarier/project/${project.id}`)}  />

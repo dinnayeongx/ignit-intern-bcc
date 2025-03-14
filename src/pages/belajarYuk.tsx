@@ -7,6 +7,10 @@ import Footer from "../components/fragments/footer.tsx";
 import PopUpVerif from "../components/fragments/popUpVerif.tsx";
 import { useNavigate } from "react-router-dom";
 import HeroSection from "../components/fragments/heroSection.tsx";
+import { getTags } from "../services/temukarier.service.ts";
+import { getBelajarYuk, getSavedBelajarYuk } from "../services/belajaryuk.sevice.ts";
+import ImageComponent from "../services/ImageComponent.tsx";
+import axiosInstance from "../services/axiosInstance.ts";
 
 
 interface Product {
@@ -19,79 +23,94 @@ interface Product {
     tag: string;
 }
 
-const products: Product[] = [
-    {
-        id: 1,
-        title: "Introduction to UI/UX",
-        product: "3 Modul",
-        price: "Rp50.000,-",
-        image: "/image/product-1.png",
-        job: "UI/UX",
-        tag: "UI/UX Designer",
-    },
-    {
-        id: 2,
-        title: "Introduction to Data science",
-        product: "2 Modul",
-        price: "Rp70.000,-",
-        image: "/image/product-2.png",
-        job: "Data Science",
-        tag: "Database Administrator",
-    },
-    {
-        id: 3,
-        title: "Data Science Algorithm",
-        product: "1 Modul",
-        price: "Rp60.000,-",
-        image: "/image/product-3.png",
-        job: "Data Science",
-        tag: "Database Administrator",
-    },
-];
+interface BelajarYuk {
+    id: number;
+    title: string;
+    subtitle: string;
+    imageId: number;
+    price: number;
+    tag: string;
+    image: string;
+    job: string;
+    moduleIds: number[];
+}
 
-const savedProducts: Product[] = [
-    {
-        id: 1,
-        title: "Introduction to UI/UX",
-        product: "3 Modul",
-        image: "/image/product-1.png",
-        job: "UI/UX",
-        tag: "UI/UX Designer",
-    },
-]
+
+
+
+// const products: Product[] = [
+//     {
+//         id: 1,
+//         title: "Introduction to UI/UX",
+//         product: "3 Modul",
+//         price: "Rp50.000,-",
+//         image: "/image/product-1.png",
+//         job: "UI/UX",
+//         tag: "UI/UX Designer",
+//     },
+//     {
+//         id: 2,
+//         title: "Introduction to Data science",
+//         product: "2 Modul",
+//         price: "Rp70.000,-",
+//         image: "/image/product-2.png",
+//         job: "Data Science",
+//         tag: "Database Administrator",
+//     },
+//     {
+//         id: 3,
+//         title: "Data Science Algorithm",
+//         product: "1 Modul",
+//         price: "Rp60.000,-",
+//         image: "/image/product-3.png",
+//         job: "Data Science",
+//         tag: "Database Administrator",
+//     },
+// ];
+
+// const savedProducts: Product[] = [
+//     {
+//         id: 1,
+//         title: "Introduction to UI/UX",
+//         product: "3 Modul",
+//         image: "/image/product-1.png",
+//         job: "UI/UX",
+//         tag: "UI/UX Designer",
+//     },
+// ]
 
 interface FilterTag {
     tag: string
 }
 
-const filterTag: FilterTag[] = [
-    {
-        tag: "Web Development",
-    },
-    {
-        tag: "Cloud Computing",
-    },
-    {
-        tag: "Cybersecurity",
-    },
-    {
-        tag: "UI/UX Designer",
-    },
-    {
-        tag: "IT Project Manager",
-    },
-    {
-        tag: "Database Administrator",
-    },
-    {
-        tag: "Network Engineer",
-    },
-];
+// const filterTag: FilterTag[] = [
+//     {
+//         tag: "Web Development",
+//     },
+//     {
+//         tag: "Cloud Computing",
+//     },
+//     {
+//         tag: "Cybersecurity",
+//     },
+//     {
+//         tag: "UI/UX Designer",
+//     },
+//     {
+//         tag: "IT Project Manager",
+//     },
+//     {
+//         tag: "Database Administrator",
+//     },
+//     {
+//         tag: "Network Engineer",
+//     },
+// ];
 
 const BelajarYukPage = () => {
     const navigate = useNavigate();
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
-    const [filteredProducts, setFilteredProducts] = useState<Product[]>(products.slice(0, 3));
+    const [filteredProducts, setFilteredProducts] = useState<BelajarYuk[]>([]);
     const [filterTitle, setFilterTitle] = useState<string>("Sedang Tren Saat Ini");
     const [filterDesc, setFilterDesc] = useState<string>("Pilihan BelajarYuk yang lagi tren dikalangan Mahasiswa IT!");
     const [showPopup, setShowPopup] = useState(0);
@@ -100,6 +119,75 @@ const BelajarYukPage = () => {
     const [popupLink, setPopupLink] = useState("https://wa.me/6282338373031");
     const [popupLinkText, setPopupLinkText] = useState("Link");
     const [showSavedSection, setShowSavedSection] = useState(false);
+    const [tags, setTags] = useState<string[]>([]);
+    const [belajaryukData, setBelajaryukData] = useState<BelajarYuk[]>([]);
+    const [savedBelajaryukData, setSavedBelajaryukData] = useState<BelajarYuk[]>([]);
+    
+    
+        useEffect(() => {
+            getTags((success, message) => {
+                console.log("API Response:", message);
+              if (success) {
+                setTags(message);
+              }
+            });
+          }, []);
+    
+        useEffect(() => {
+            console.log("Tags State:", tags);
+        }, [tags]);
+    
+        useEffect(() => {
+                getBelajarYuk((success, message) => {
+                    console.log("API Response 2:", message);
+                  if (success) {
+                    const formattedData = message.map((item: any) => ({
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        imageId: item.imageId,
+                        price: item.price,
+                        tag: item.tag,
+                        image: `${axiosInstance.defaults.baseURL}/utils/images/${item.imageId}`,
+                        moduleIds: item.moduleIds.map((id: number) => id),
+                    }));
+                    setBelajaryukData(formattedData);
+                    setFilteredProducts(formattedData.slice(0, 3));
+                  }
+                  else {
+                    console.error("Failed to fetch bootcamp data imageid:", message);
+                    }
+                });
+            }, []);
+
+            useEffect(() => {
+                getSavedBelajarYuk((success, message) => {
+                    console.log("API Response 2:", message);
+                  if (success) {
+                    const formattedData = message.map((item: any) => ({
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        imageId: item.imageId,
+                        price: item.price,
+                        tag: item.tag,
+                        image: `${axiosInstance.defaults.baseURL}/utils/images/${item.imageId}`,
+                        moduleIds: item.moduleIds.map((id: number) => id),
+                    }));
+                    setSavedBelajaryukData(formattedData);
+                    setFilteredProducts(formattedData.slice(0, 3));
+                  }
+                  else {
+                    console.error("Failed to fetch bootcamp data imageid:", message);
+                    }
+                });
+            }, []);
+        
+            useEffect(() => {
+                console.log("BelajarYuk Data:", belajaryukData);
+            }, [belajaryukData]);
+
+            useEffect(() => {
+                console.log("SavedBelajarYuk Data:", savedBelajaryukData);
+            }, [savedBelajaryukData]);
 
     useEffect(() => {
         if (sessionStorage.getItem('popupClicked') === 'true') {
@@ -117,25 +205,23 @@ const BelajarYukPage = () => {
                 sessionStorage.removeItem("isVerified");
             }
         }
-        
-        
     }, []);
 
     const handleFilterTagClick = (tag) => {
         setSelectedTag(tag);
         if (tag) {
-            setFilteredProducts(products.filter((product) => product.tag === tag));
+            setFilteredProducts(belajaryukData.filter((product) => product.tag === tag));
             setFilterTitle(`${tag} Packets`);
             setFilterDesc(`Upgrade your ${tag} knowledge`);
         }
         else {
-            setFilteredProducts(products.slice(0, 3));
+            setFilteredProducts(belajaryukData.slice(0, 3));
             setFilterTitle("Sedang Tren Saat Ini");
             setFilterDesc("Pilihan BelajarYuk yang lagi tren dikalangan Mahasiswa IT!");
         }
     };
 
-    const handleButtonClick = (tag) => {
+    const handleButtonClick = (tag: string) => {
         if (selectedTag == tag) {
             setSelectedTag(null);
         }
@@ -167,11 +253,11 @@ const BelajarYukPage = () => {
                         <h2 className="text-sm font-medium">Kategori Bidang IT</h2>
                     </div>
                     <div className="flex flex-wrap justify-start items-center">
-                        {filterTag.map(filterTag => (
-                            <div key={filterTag.tag}>
-                                <FilterBar tag={filterTag.tag} 
-                                    onClick={() => handleButtonClick(filterTag.tag)}
-                                    isSelected={selectedTag === filterTag.tag}
+                        {tags.map(filterTag => (
+                            <div key={filterTag}>
+                                <FilterBar tag={filterTag} 
+                                    onClick={() => handleButtonClick(filterTag)}
+                                    isSelected={selectedTag === filterTag}
                                 />
                             </div>
                         ))}
@@ -194,10 +280,11 @@ const BelajarYukPage = () => {
                         <img src="/image/belajar-1.png" alt="" className="w-[150px] ml-auto"/>
                     </div>
                     <li className='grid grid-cols-3 gap-10 pt-8'>
-                        {filteredProducts.map((product) => (
+                        {belajaryukData.map((product) => (
                             <CardModulProduct key={product.id}>
-                                <CardModulProduct.Header image={product.image} job={product.job} onClick={() => setShowPopup(1)}/>
-                                    <CardModulProduct.Body title={product.title} product={product.product} price={`Harga: ${product.price}`}>
+                                <CardModulProduct.Header image={product.image} job={product.job} onClick={() => setShowPopup(1)}>
+                                </CardModulProduct.Header>
+                                    <CardModulProduct.Body title={product.title} product={product.subtitle} price={`Harga: ${product.price}`}>
                                     </CardModulProduct.Body>
                             </CardModulProduct>
                         ))}
@@ -215,10 +302,10 @@ const BelajarYukPage = () => {
                             </div>
                         </div>
                         <li className='grid grid-cols-3 gap-10 pt-8'>
-                            {savedProducts.map((product) => (
+                            {savedBelajaryukData.map((product) => (
                                 <CardModulProduct key={product.id}>
                                     <CardModulProduct.Header image={product.image} job={product.job} onClick={() => navigate('modul')}/>
-                                        <CardModulProduct.Body title={product.title} product={product.product}>
+                                        <CardModulProduct.Body title={product.title} product={product.subtitle}>
                                         </CardModulProduct.Body>
                                 </CardModulProduct>
                             ))}

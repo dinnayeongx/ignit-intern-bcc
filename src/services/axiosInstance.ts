@@ -1,15 +1,16 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
-    baseURL: "https://be-intern.bccdev.id/alex/api",
+    baseURL: "https://daring-humane-swine.ngrok-free.app/api",
     headers: {
         "Content-Type": "application/json",
-        // "ngrok-skip-browser-warning": "69420",
+        "ngrok-skip-browser-warning": "69420",
     }, 
 });
 
 axiosInstance.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
+    const token = Cookies.get("token");
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
