@@ -27,7 +27,6 @@ const FormLogin = () => {
     const password = passwordRef.current?.value;
 
     if (!username || !password) {
-      setShowPopup(true);
       setError("Username dan Password harus diisi.");
       return;
     }
