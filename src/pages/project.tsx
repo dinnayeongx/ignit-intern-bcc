@@ -56,7 +56,7 @@ const ProjectPage = () => {
         <>
             <TopBar title="Temukarier"></TopBar> 
             <div className="pt-10 pb-24 px-[100px]">
-                <h1 className="text-[36px] font-bold text-left mb-[60px]">{gabungProjectData?.name}</h1>
+                <h1 className="text-[36px] font-bold text-left mb-[60px]">DesignSphere: Eksplorasi UI/UX Berbasis Web - Raihani Syuja</h1>
                 <div className="flex gap-[60px]">
                     <div className="float-left">
                         <div className="h-[320px] w-[320px] mb-10">
@@ -71,22 +71,24 @@ const ProjectPage = () => {
                     <div className="float-right">
                         <div className="flex-row mb-10">
                             <h2 className="text-[24px] font-normal mb-4">Deskripsi Singkat</h2>
-                            <p className="text-[16px] font-normal">{gabungProjectData?. description}</p>
+                            <p className="text-[16px] font-normal">Vestibulum quis velit ac dui ultricies consectetur. Curabitur lacinia ligula eu faucibus mollis.
+Curabitur lacinia ligula eu faucibus mollis.
+Curabitur lacinia ligula eu faucibus mollis.</p>
                         </div>
                         <div className="flex mb-10">
                             <h2 className="text-[24px] font-normal pr-16">Status</h2>
                             <button className="h-9 bg-[rgba(0,255,26,0.50)] p-2 flex items-center justify-center rounded-md" >
-                                <p className="text-sm font-normal text-black">{gabungProjectData?.status}</p>
+                                <p className="text-sm font-normal text-black">On going</p>
                             </button>
                         </div>
                         <div className="flex mb-10">
                             <h2 className="text-[24px] font-normal pr-10">Deadline</h2>
-                            <p className="text-[24px] font-medium text-black">{gabungProjectData?.deadline}</p>
+                            <p className="text-[24px] font-medium text-black">24 Oktober 2025</p>
                         </div>
                         <div className="flex">
                             <h2 className="text-[24px] font-normal pr-14">Kriteria</h2>
                             {gabungProjectData?.tags?.map((tag, index) => (
-                                <FilterBar key={index} tag={tag}></FilterBar>
+                                <FilterBar key={index} tag={tag}>UI/UX Designer</FilterBar>
                             ))}
                         </div>
                     </div>
