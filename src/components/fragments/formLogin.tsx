@@ -17,7 +17,6 @@ const FormLogin = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const [showPopup, setShowPopup] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -44,7 +43,7 @@ const FormLogin = () => {
         localStorage.setItem('token', res);
         navigate('/home');
       } else {
-        setShowPopup(true);
+        setError(res);
         console.log(res);
       }
     });
@@ -84,18 +83,6 @@ const FormLogin = () => {
         </div>
 
       </form>
-
-      {/* {showPopup && (
-  <PopUpVerif
-    image="/image/verif-eror-login.png"
-    onClose={() => setShowPopup(false)}
-  >
-    <p className="text-center mt-4 text-2xl font-bold">
-      {"Login gagal. Silakan coba lagi."}
-    </p>
-  </PopUpVerif>
-)} */}
-
     </>
     
   );

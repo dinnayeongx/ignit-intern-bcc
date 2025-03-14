@@ -103,7 +103,7 @@ interface ModulList {
   materialIds: number[];
 }
 
-export const getModulList = async (id: number, callback: CallbackModulList): Promise<void> => {
+export const getModulList = async (callback: CallbackModulList): Promise<void> => {
   try {
     const res = await axiosInstance.get("/belajaryuk/modules/1", {
       params: {
@@ -114,8 +114,8 @@ export const getModulList = async (id: number, callback: CallbackModulList): Pro
     });
     
     if (res.data.success) {
-      const modulListData: ModulList[] = res.data.payload;
-      if (modulListData.length > 0) {
+      const modulListData: ModulList[] | null = res.data.payload;
+      if (modulListData) {
         callback(true, modulListData);
       } else {
         callback(false, "No data found");

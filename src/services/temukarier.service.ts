@@ -153,3 +153,46 @@ export const getProjects = async (callback: CallbackProjects): Promise<void> => 
     callback(false, error.message || "Terjadi kesalahan"); 
   }
 };
+
+
+type CallbackGabungProject = (success: boolean, message: GabungProject[] | string) => void;
+
+interface GabungProject {
+  id: number;
+  name: string;
+  description: string;
+  imageId: number;
+  status: string;
+  deadline: string;
+  createdAt: string;
+  updatedAt: string;
+  tags: string[];
+  createdBy: number;
+}
+
+export const getGabungProject = async (callback: CallbackGabungProject): Promise<void> => {
+  try {
+    const res = await axiosInstance.get("/temukarier/projects/1", {
+      params: {
+      },
+      headers: {
+        accept: "*/*",
+      },
+    });
+    
+    if (res.data.success) {
+      const gabungProjectData: GabungProject[] = res.data.payload;
+      if (gabungProjectData.length > 0) {
+        callback(true, gabungProjectData);
+      } else {
+        callback(false, "No data found");
+      }
+    } else {
+      const errorMessage = res.data.error?.message || "Unknown error occurred";
+      callback(false, errorMessage);
+    }
+  }
+  catch (error) {
+    callback(false, error.message || "Terjadi kesalahan"); 
+  }
+};

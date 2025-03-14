@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const header = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${Cookies.get('token')}`,
-//   "ngrok-skip-browser-warning": "69420",
+  "ngrok-skip-browser-warning": "69420",
 }
 
 type CallbackProfile = (success: boolean, message: Profile[] | string) => void;

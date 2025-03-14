@@ -52,4 +52,23 @@ export const logout = (): void => {
 };
 
 
+export const verified = async (callback: Callback): Promise<void> => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("token") || localStorage.getItem("verificationToken");
+
+  if (!token) {
+    callback(false, "Token verifikasi tidak ditemukan.");
+    return;
+  }
+
+  try {
+    const res = await axiosInstance.get(`/auth/verify?token=${token}`, { headers: header });
+    callback(true, res.data.message);
+  } catch (error) {
+    const errorMessage =
+      error.response?.data?.message || error.message || "Terjadi kesalahan";
+    callback(false, errorMessage);
+  }
+};
+
 

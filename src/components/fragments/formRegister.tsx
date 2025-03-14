@@ -1,5 +1,5 @@
-import React, {useRef, useState} from "react";
-import { register } from "../../services/auth.service.ts";
+import React, {useEffect, useRef, useState} from "react";
+import { register, verified } from "../../services/auth.service.ts";
 import InputForm from "../elements/input";
 import Button from "../elements/button";
 import { Link } from "react-router-dom";
@@ -12,15 +12,21 @@ interface RegisterData {
   password: string;
 }
 
-const FormRegister = () => {
+interface RegisterProps {
+  onSuccess: () => void;
+  onVerify: () => void;
+}
+
+const FormRegister: React.FC<RegisterProps> = ({onSuccess, onVerify}) => {
 
   const usernameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
-
+  
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  
 
     const handleSignup = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -35,7 +41,7 @@ const FormRegister = () => {
         return;
       }
   
-      if (password != confirmPassword) {
+      if (password !== confirmPassword) {
         setError("Password tidak sama!");
         return;
       }
@@ -50,10 +56,8 @@ const FormRegister = () => {
         if (status) {
           localStorage.setItem('res', res);
           console.log(res);
-          <PopUpVerif image="/image/verif-email.png" onClose={() => navigate('/login')}>
-            <p className="text-center mt-4 text-2xl font-bold">Silakan melakukan verifikasi melalui link yang telah dikirimkan ke emailmu!</p>
-          </PopUpVerif>
-          navigate('/login');
+          onSuccess();
+          // navigate('/login');
         } else {
           setError(res);
           console.log(res);
@@ -61,47 +65,68 @@ const FormRegister = () => {
       });
     };
 
+    useEffect(() => {
+      verified((status, res) => {
+        if (status) {
+          onVerify();
+          console.log("Verified Response", res);
+
+          setTimeout(() => {
+            navigate("/login");
+          }, 3000);
+        }
+        else {
+          console.log("Verified Error Response", res);
+        }
+      })
+    }, [navigate]);
+
   return (
-    <form onSubmit={handleSignup}>
-      {error && <div className="text-red-500 mb-4">{error}</div>}
+    <>
+      
 
-      <InputForm 
-        type="text"
-        ref={usernameRef} 
-        placeholder="Username" 
-        name="username" />
+      <form onSubmit={handleSignup}>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      <InputForm 
-        type="email" 
-        ref={emailRef}
-        placeholder="E-mail" 
-        name="email" />
+        <InputForm 
+          type="text"
+          ref={usernameRef} 
+          placeholder="Username" 
+          name="username" />
 
-      <InputForm 
-        type="password" 
-        ref={passwordRef}
-        placeholder="Password" 
-        name="password" />
+        <InputForm 
+          type="email" 
+          ref={emailRef}
+          placeholder="E-mail" 
+          name="email" />
 
-      <InputForm 
-        type="password"
-        ref={confirmPasswordRef} 
-        placeholder="Ulangi Password" 
-        name="confirmPassword" />
+        <InputForm 
+          type="password" 
+          ref={passwordRef}
+          placeholder="Password" 
+          name="password" />
 
-      <div className="mt-4">
-        <p className="text-sm text-center">
-          Sudah punya akun?{" "}
-          <Link to="/login">
-            <span className="text-black font-semibold text-sm">Masuk</span>
-          </Link>
-        </p>
+        <InputForm 
+          type="password"
+          ref={confirmPasswordRef} 
+          placeholder="Ulangi Password" 
+          name="confirmPassword" />
 
-        <Button classname="mt-4 w-full rounded-[50px] text-white" type="submit">
-          Daftar
-        </Button>
-      </div>
-    </form>
+        <div className="mt-4">
+          <p className="text-sm text-center">
+            Sudah punya akun?{" "}
+            <Link to="/login">
+              <span className="text-black font-semibold text-sm">Masuk</span>
+            </Link>
+          </p>
+
+          <Button classname="mt-4 w-full rounded-[50px] text-white" type="submit">
+            Daftar
+          </Button>
+        </div>
+      </form>
+    </>
+    
   );
 };
 
