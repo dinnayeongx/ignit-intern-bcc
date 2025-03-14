@@ -56,6 +56,7 @@ interface CakrawalaInfoProps {
     imageUrls: string[],
 }
 
+
 const UIUXPage = () => {
     const [cakrawalaInfoData, setCakrawalaInfoData] = useState<CakrawalaInfoProps | null>(null);
 
@@ -177,7 +178,6 @@ const UIUXPage = () => {
                                 </CardInform.Header>
                                     <CardInform.Body career={inform.career} title={inform.title}>
                                     </CardInform.Body>
-                                {inform}
                             </CardInform>
                         </div>
                         
@@ -208,7 +208,7 @@ const UIUXPage = () => {
                     <h1 className="text-[40px] font-bold my-auto">Apakah Kamu Sudah Paham Mengenai Bidang Ini?</h1>
                     <div>
                         <div>
-                            <QuizIT questions={cakrawalaInfoData?.questions} />
+                            <QuizIT />
                         </div>
                     </div>
                 </div>

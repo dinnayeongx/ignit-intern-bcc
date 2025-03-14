@@ -35,22 +35,24 @@ interface EducationProps {
     end: string;
 }
 
-// const education: EducationProps[] = [
-//     {
-//         image: "/image/major-1.png",
-//         school: "University of ABC",
-//         major: "Sistem Informasi",
-//         start: "2023",
-//         end: "Sekarang",
-//     },
-//     {
-//         image: "/image/edu-1.png",
-//         school: "SMA Negeri 12",
-//         major: "Jurusan IPA",
-//         start: "2020",
-//         end: "2023",
-//     },
-// ]
+const education: EducationProps[] = [
+    {
+        id: 1,
+        image: "/image/major-1.png",
+        school: "University of ABC",
+        major: "Sistem Informasi",
+        start: "2023",
+        end: "Sekarang",
+    },
+    {
+        id: 2,
+        image: "/image/edu-1.png",
+        school: "SMA Negeri 12",
+        major: "Jurusan IPA",
+        start: "2020",
+        end: "2023",
+    },
+]
 
 interface SkillProps {
     id: number;
@@ -225,7 +227,7 @@ const UserProfilePage: React.FC<ProfileBarProps> = ({ name, description, passion
                     <h1 className="text-[40px] font-bold mb-6">Education</h1>
                 </div>
                 <div>
-                    {profileData.educations.map((edu, index) => (
+                    {education.map((edu, index) => (
                         <Education key={index} image={edu.image} school={edu.school} major={edu.major} start={edu.start} end={edu.end}>
                         </Education>
                     ))}
