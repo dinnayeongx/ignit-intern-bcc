@@ -3,13 +3,18 @@ import InputForm from "../elements/input";
 import Button from "../elements/button";
 
 interface FormUpdateProps {
-    initialFullname: string;
-    initialPassion: string;
-    initialSummary: string;
+    initialFullname?: string;
+    initialPassion?: string;
+    initialSummary?: string;
     onSubmit: (data: { fullName: string; passion: string; summary: string }) => void;
 }
 
-const FormUpdate: React.FC<FormUpdateProps> = ({ initialFullname, initialPassion, initialSummary, onSubmit }) => {
+const FormUpdate: React.FC<FormUpdateProps> = ({
+    initialFullname = "",
+    initialPassion = "",
+    initialSummary = "",
+    onSubmit
+}) => {
     const [formData, setFormData] = useState({
         fullName: initialFullname,
         passion: initialPassion,
@@ -20,15 +25,15 @@ const FormUpdate: React.FC<FormUpdateProps> = ({ initialFullname, initialPassion
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData((prev) => ({ ...prev, [name]: value || "" }));
         setError(null); // Reset error when user starts typing
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validation: Ensure no empty fields
-        if (!formData.fullName.trim() || !formData.passion.trim() || !formData.summary.trim()) {
+        // Ensure formData properties exist
+        if (!formData?.fullName?.trim() || !formData?.passion?.trim() || !formData?.summary?.trim()) {
             setError("All fields are required.");
             return;
         }
@@ -78,7 +83,7 @@ const FormUpdate: React.FC<FormUpdateProps> = ({ initialFullname, initialPassion
                         onChange={handleChange}
                     />
                 </div>
-                <Button classname="w-[240px] text-white p-3 rounded-lg" type="submit">
+                <Button className="w-[240px] text-white p-3 rounded-lg" type="submit">
                     Simpan Perubahan
                 </Button>
             </form>

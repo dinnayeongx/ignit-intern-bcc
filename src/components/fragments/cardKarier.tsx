@@ -7,7 +7,8 @@ interface CardKarierProps {
 }
 
 interface HeaderProps {
-  image: string;
+  imageUrl: string;
+  image?: string;
   children: React.ReactNode;
 }
 
@@ -36,12 +37,17 @@ const CardKarier: CardKarierType = ({ children }) => {
   );
 };
 
-const Header: React.FC<HeaderProps> = ({ image, children }) => {
+const Header: React.FC<HeaderProps> = ({ imageUrl, children, image }) => {
   return (
     <a href="#" className="relative">
       <ImageComponent
-      imageUrl={image}
+      imageUrl={imageUrl}
       ></ImageComponent>
+      <img 
+        src={image} 
+        alt="product image" 
+        className="w-full h-[310px] rounded-t-md relative mb-2"
+      />
       {children}
     </a>
   );

@@ -45,8 +45,6 @@ const ImageComponent: React.FC<ImageComponentProps> = ({ imageUrl }) => {
       {loading && <p>Loading image...</p>}
       {error ? (
         <div>
-          <p>Failed to load image.</p>
-          <img src="/path/to/fallback-image.png" alt="Fallback" />
         </div>
       ) : (
         imageSrc && <img src={imageSrc} className='w-full h-[300px] rounded-t-md relative' alt="Fetched from backend" />
