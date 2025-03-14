@@ -1,5 +1,6 @@
 import axiosInstance from "./axiosInstance";
 import Cookies from "js-cookie";
+import { useSearchParams } from "react-router-dom";
 
 interface LoginData {
   username: string;
@@ -53,9 +54,10 @@ export const logout = (): void => {
 
 
 export const verified = async (callback: Callback): Promise<void> => {
-  const urlParams = new URLSearchParams(window.location.search);
+  const [urlParams] = useSearchParams();
+  // const urlParams = new URLSearchParams(window.location.search);
   console.log("URL Saat Ini:", window.location.href);
-  let token = urlParams.get("token") || localStorage.getItem("verificationToken");
+  let token = urlParams.get("token") || localStorage.getItem("token");
   console.log("Token yang ditemukan:", token);
 
   if (!token) {
@@ -64,7 +66,7 @@ export const verified = async (callback: Callback): Promise<void> => {
   }
 
   try {
-    const res = await axiosInstance.get(`/auth/verify?token=eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIzIiwic3ViIjoiYWRtaW5pc3RyYXRvcl9pZ25pdCIsImVtYWlsIjoiYWRtaW5pc3RyYXRvckBpZ25pdC5jb20iLCJpYXQiOjE3NDE4OTEzMjcsImV4cCI6MTc0MTkxMjkyN30.8x8Zz3t9xYvgfQc71dVKBOJcSeQWNizEUrdPHR4WyxL12-wluN0r90669TPZlXLP`);
+    const res = await axiosInstance.get(`/auth/verify?token=${token}`);
     callback(true, res.data.message);
   } catch (error) {
     const errorMessage =
