@@ -23,6 +23,7 @@ import Scroll from './components/fragments/scroll.tsx';
 import TambahProject from './pages/tambahProject.tsx';
 import MyProject from './pages/myProject.tsx';
 import EditProject from './pages/editProject.tsx';
+import VerifyPage from './services/verify.tsx';
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/verify",
+    element: <VerifyPage />,
   },
   {
     path: "/home",

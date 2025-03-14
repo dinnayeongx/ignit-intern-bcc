@@ -1,6 +1,5 @@
 import axiosInstance from "./axiosInstance";
 import Cookies from "js-cookie";
-import { useSearchParams } from "react-router-dom";
 
 interface LoginData {
   username: string;
@@ -54,8 +53,7 @@ export const logout = (): void => {
 
 
 export const verified = async (callback: Callback): Promise<void> => {
-  const [urlParams] = useSearchParams();
-  // const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(window.location.search);
   console.log("URL Saat Ini:", window.location.href);
   let token = urlParams.get("token") || localStorage.getItem("token");
   console.log("Token yang ditemukan:", token);
