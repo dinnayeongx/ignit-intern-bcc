@@ -60,7 +60,7 @@ const ImageComponent: React.FC<ImageComponentProps> = ({ imageUrl }) => {
     <div>
       {loading && <p>Loading image...</p>}
       {error ? (
-        <div className="text-red-500">Failed to load image. Please try again.</div>
+        <div></div>
       ) : (
         imageSrc && <img src={imageSrc} className='w-full h-[300px] rounded-t-md relative' alt="Fetched from backend" />
       )}
