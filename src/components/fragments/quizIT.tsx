@@ -8,10 +8,6 @@ interface QuizITType {
     answer: string,
 }
 
-interface QuizITProps {
-    questions: QuizITType;
-}
-
 const questions: QuizITType[] = [
     {
         question: 'Menurut kamu, manakah yang paling penting dibutuhkan pada bidang UI/UX Designer?',
@@ -35,7 +31,7 @@ const QuizIT: React.FC<QuizITType> = ({ question, options, answer }) => {
     const navigate = useNavigate();
 
     const handleAnswer = (answer: string) => {
-        if (answer === question.answer) {
+        if (answer === answer) {
             setPopupMessage('🎉 Selamat! Kamu Jawab dengan Benar! 🎉<br/>Biar lebih jago lagi, explore di ');
             setImage('/image/popup-true.png');
             setNav('BelajarYuk! 🎨👨‍💻');
@@ -55,10 +51,10 @@ const QuizIT: React.FC<QuizITType> = ({ question, options, answer }) => {
     return (
         <>
             <div>
-                    <p className="text-[20px] font-medium mb-[40px] text-center">{questions.question}</p>
+                    <p className="text-[20px] font-medium mb-[40px] text-center">{question}</p>
                     <div className="items-center justify-center">
                     
-                    {questions.options && questions.options.map((option, index) => (
+                    {options && options.map((option, index) => (
                         <button
                         key={index} 
                         className="shadow-[0px_1px_10px_0px_rgba(0,0,0,0.25),0px_4px_5px_0px_rgba(0,0,0,0.25),0px_2px_4px_0px_rgba(0,0,0,0.25)] text-center mb-6 w-full h-auto bg-[#D4CBE7] rounded-2xl py-1 justify-center items-center hover:bg-opacity-50"
