@@ -116,7 +116,7 @@ const BelajarYukPage = () => {
     const [showPopup, setShowPopup] = useState(0);
     const [popupMessage, setPopupMessage] = useState("Silakan Klik Link dibawah Ini untuk Melakukan Pembayaran");
     const [popupImage, setPopupImage] = useState("/image/verif-payment.png");
-    const [popupLink, setPopupLink] = useState("https://wa.me/6282338373031");
+    const [popupLink, setPopupLink] = useState("https://example.com/");
     const [popupLinkText, setPopupLinkText] = useState("Link");
     const [showSavedSection, setShowSavedSection] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
