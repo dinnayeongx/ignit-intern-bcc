@@ -23,7 +23,7 @@ const karier: Karier[] = [
         image: "/image/karier-1.png",
         position: "Software Engineer",
         location: "Jakarta",
-        link: "https://wa.me/6282338373031",
+        link: "https://example.com/",
     },
     {
         id: 2,
@@ -37,7 +37,7 @@ const karier: Karier[] = [
         image: "/image/karier-3.png",
         position: "Data Scientist",
         location: "Surabaya",
-        link: "",
+        link: "https://example.com/",
     },
 ];
 
