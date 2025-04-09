@@ -121,7 +121,7 @@ const KomunitasPage = () => {
                     <p className="text-center mt-4 text-2xl font-bold">Silahkan bergabung dengan komunitasmu 
                     menggunakan link berikut:</p>
                     <div className="text-center mt-4">
-                    <a href="https://wa.me/6282338373031" className="text-[#584270] text-2xl font-bold">
+                    <a href="https://example.com/" className="text-[#584270] text-2xl font-bold">
                         Link Komunitas
                     </a>
                     </div>
